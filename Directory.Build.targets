@@ -1,0 +1,56 @@
+<Project>
+    <!-- This ensures the .runsettings file is automatically applied to all test projects -->
+    <PropertyGroup>
+        <!-- Path to the .runsettings file -->
+        <RunSettingsFile>$(SolutionDir).runsettings</RunSettingsFile>
+
+        <!-- Enables coverage collection -->
+        <CollectCoverage>true</CollectCoverage>
+
+        <!-- Formats for ReportGenerator output -->
+        <CoverageReportFormats>Html;Cobertura;MarkdownSummary</CoverageReportFormats>
+
+        <!-- Output folder for coverage reports -->
+        <CoverageOutputDir>$(SolutionDir)TestResults\CoverageReport</CoverageOutputDir>
+
+        <VSTestCLIRunSettings>$(RunSettingsFile)</VSTestCLIRunSettings>
+    </PropertyGroup>
+
+    <!-- Also inject it into Test projects so VS and dotnet test pick it up -->
+    <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+        <None Include="$(RunSettingsFile)" Link=".runsettings" Visible="false" />
+    </ItemGroup>
+
+    <!-- Force VSTest to use our runsettings -->
+    <Target Name="SetRunSettings" BeforeTargets="VSTest">
+        <ItemGroup>
+            <RunSettingsFile Include="$(RunSettingsFile)" />
+        </ItemGroup>
+    </Target>
+
+    <!-- Automatically collect coverage when running tests -->
+    <Target Name="EnableCoverage" BeforeTargets="Test">
+        <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+            <PackageReference Include="coverlet.collector" Version="3.2.0" />
+        </ItemGroup>
+    </Target>
+
+    <!-- Generate HTML coverage report after tests -->
+    <Target Name="GenerateCoverageReport"
+        AfterTargets="VSTest">
+
+        <!-- Only run if coverage file exists -->
+        <ItemGroup>
+            <CoverageFiles Include="$(SolutionDir)TestResults\**\*.cobertura.xml" />
+        </ItemGroup>
+
+        <!-- Debug : affiche les fichiers trouvés -->
+        <Message Text="Coverage files found: @(CoverageFiles)" Importance="High" />
+
+        <Exec Condition="@(CoverageFiles->Count()) > 0"
+              Command="dotnet tool run reportgenerator 
+                   -reports:@(CoverageFiles) 
+                   -targetdir:$(CoverageOutputDir)
+                   -reporttypes:$(CoverageReportFormats)" />
+    </Target>
+</Project>
