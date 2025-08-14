@@ -13,11 +13,6 @@
 <h1 align="center">MyNet</h1>
 
 [![MIT License][license-shield]][license-url]
-[![Build][build-shield]][build-url]
-[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
-[![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)
-[![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple)](#)
-[![C#](https://img.shields.io/badge/language-C%23-blue?style=for-the-badge)](#)
 [![GitHub Stars](https://img.shields.io/github/stars/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/network/members)
 [![GitHub Issues](https://img.shields.io/github/issues/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/issues)
@@ -30,6 +25,7 @@ A collection of useful libraries and extensions for .NET 8.0, designed to simpli
 ## Packages
 
 [![Build][build-shield]][build-url]
+[![C#](https://img.shields.io/badge/language-C%23-blue)](#)
 [![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
 [![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)
 [![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple)](#)
