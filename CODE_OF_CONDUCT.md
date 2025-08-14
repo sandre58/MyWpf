@@ -1,8 +1,8 @@
-﻿# MyClub Code of Conduct
+﻿# My .NET Code of Conduct
 
 ## Our Pledge
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to make participation in MyClub a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual orientation.
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to make participation in My .NET a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual orientation.
 
 ## Our Standards
 
@@ -40,4 +40,4 @@ This Code of Conduct applies both within project spaces and in public spaces whe
 
 ---
 
-Thank you for helping make MyClub a welcoming, safe, and productive community!
+Thank you for helping make My .NET a welcoming, safe, and productive community!

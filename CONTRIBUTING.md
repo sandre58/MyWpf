@@ -1,6 +1,6 @@
-# Contributing to MyClub
+# Contributing to My .NET
 
-Thank you for your interest in contributing to MyClub! We welcome contributions of all kinds and appreciate your help in making MyClub better.
+Thank you for your interest in contributing to My .NET! We welcome contributions of all kinds and appreciate your help in making My .NET better.
 
 ## How to Contribute
 
@@ -39,7 +39,7 @@ Thank you for your interest in contributing to MyClub! We welcome contributions 
 
 ## Code of Conduct
 
-Please note that by contributing to MyClub, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). We expect everyone to behave respectfully and professionally.
+Please note that by contributing to My .NET, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). We expect everyone to behave respectfully and professionally.
 
 ## Getting Help
 
@@ -47,4 +47,4 @@ If you have questions or need assistance, feel free to open an issue or contact 
 
 ---
 
-Thank you for helping make MyClub great!
+Thank you for helping make My .NET great!
