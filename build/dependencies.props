@@ -5,11 +5,6 @@
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
-    <!-- Versioning -->
-    <ItemGroup Condition="'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'">
-        <PackageReference Include="Nerdbank.GitVersioning" Version="3.8.38-alpha" PrivateAssets="all" />
-    </ItemGroup>
-
     <!-- UnitTests -->
     <ItemGroup Condition="'$(IsTestProject)' == 'true'">
         <PackageReference Include="GitHubActionsTestLogger" Version="2.4.1" PrivateAssets="All" />

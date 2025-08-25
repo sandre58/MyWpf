@@ -21,12 +21,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Actions", "GitHub Actions", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yml = .github\workflows\ci.yml
-		.github\workflows\create_extension_release.yml = .github\workflows\create_extension_release.yml
-		.github\workflows\create_release.yml = .github\workflows\create_release.yml
-		.github\GitVersion.yml = .github\GitVersion.yml
-		.github\workflows\git_version.yml = .github\workflows\git_version.yml
-		.github\workflows\publish_private.yml = .github\workflows\publish_private.yml
-		.github\workflows\publish_release.yml = .github\workflows\publish_release.yml
+		.github\workflows\release-please.yml = .github\workflows\release-please.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2E7433DA-B851-4B09-A8BF-5E8265B474AC}"
@@ -74,6 +70,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.UI", "src\MyNet.UI\MyNet.UI.csproj", "{C49DBB04-263E-DEE7-04DA-837EDB813775}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Humanizer.UnitTests", "tests\MyNet.Humanizer.UnitTests\MyNet.Humanizer.UnitTests.csproj", "{2090F530-BECF-6B20-D9BD-5E7E19A89366}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioning", "Versioning", "{ECE90391-AE4A-42D9-8332-508DC90BABE6}"
+	ProjectSection(SolutionItems) = preProject
+		.release-please-manifest.json = .release-please-manifest.json
+		release-please-config.json = release-please-config.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
