@@ -32,16 +32,16 @@ A collection of useful libraries and extensions for .NET 8.0, designed to simpli
 
 | Package | Description | NuGet |
 |---|---|---|
-| **MyNet.Utilities** | Core utilities for .NET development: authentication, cache, encryption, geography, generator, Google, IO, localization, logging, mail, messaging, progress tracking, threading. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities)](https://www.nuget.org/packages/MyNet.Utilities) |
-| **MyNet.UI** | UI helpers for notifications, dialogs, navigation, themes, and more. | [![NuGet](https://img.shields.io/nuget/v/MyNet.UI)](https://www.nuget.org/packages/MyNet.UI) |
-| **MyNet.Observable** | Editable and validatable object base classes and utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Observable)](https://www.nuget.org/packages/MyNet.Observable) |
-| **MyNet.Humanizer** | Convert objects and values to human-readable strings. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Humanizer)](https://www.nuget.org/packages/MyNet.Humanizer) |
-| **MyNet.CsvHelper.Extensions** | Extensions for CsvHelper to simplify CSV mapping and export. | [![NuGet](https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions)](https://www.nuget.org/packages/MyNet.CsvHelper.Extensions) |
-| **MyNet.Utilities.Generator.Extensions** | Generate random data for testing and simulations. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Generator.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Generator.Extensions) |
-| **MyNet.Utilities.Geography.Extensions** | Access detailed geography information. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Geography.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Geography.Extensions) |
-| **MyNet.Utilities.Localization.Extensions** | Localization resources and helpers. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Localization.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Localization.Extensions) |
-| **MyNet.Utilities.Logging.NLog** | Logging integration with NLog. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Logging.NLog)](https://www.nuget.org/packages/MyNet.Utilities.Logging.NLog) |
-| **MyNet.Utilities.Mail.MailKit** | Email sending with MailKit. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Mail.MailKit)](https://www.nuget.org/packages/MyNet.Utilities.Mail.MailKit) |
+| [**MyNet.Utilities**](src/MyNet.Utilities) | Core utilities for .NET development: authentication, cache, encryption, geography, generator, Google, IO, localization, logging, mail, messaging, progress tracking, threading. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities)](https://www.nuget.org/packages/MyNet.Utilities) |
+| [**MyNet.UI**](src/MyNet.UI) | UI helpers for notifications, dialogs, navigation, themes, and more. | [![NuGet](https://img.shields.io/nuget/v/MyNet.UI)](https://www.nuget.org/packages/MyNet.UI) |
+| [**MyNet.Observable**](src/MyNet.Observable) | Editable and validatable object base classes and utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Observable)](https://www.nuget.org/packages/MyNet.Observable) |
+| [**MyNet.Humanizer**](src/MyNet.Humanizer) | Convert objects and values to human-readable strings. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Humanizer)](https://www.nuget.org/packages/MyNet.Humanizer) |
+| [**MyNet.CsvHelper.Extensions**](src/MyNet.CsvHelper.Extensions) | Extensions for CsvHelper to simplify CSV mapping and export. | [![NuGet](https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions)](https://www.nuget.org/packages/MyNet.CsvHelper.Extensions) |
+| [**MyNet.Utilities.Generator.Extensions**](src/MyNet.Utilities.Generator.Extensions) | Generate random data for testing and simulations. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Generator.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Generator.Extensions) |
+| [**MyNet.Utilities.Geography.Extensions**](src/MyNet.Utilities.Geography.Extensions) | Access detailed geography information. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Geography.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Geography.Extensions) |
+| [**MyNet.Utilities.Localization.Extensions**](src/MyNet.Utilities.Localization.Extensions) | Localization resources and helpers. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Localization.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Localization.Extensions) |
+| [**MyNet.Utilities.Logging.NLog**](src/MyNet.Utilities.Logging.NLog) | Logging integration with NLog. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Logging.NLog)](https://www.nuget.org/packages/MyNet.Utilities.Logging.NLog) |
+| [**MyNet.Utilities.Mail.MailKit**](src/MyNet.Utilities.Mail.MailKit) | Email sending with MailKit. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Mail.MailKit)](https://www.nuget.org/packages/MyNet.Utilities.Mail.MailKit) |
 
 ## Getting Started
 
