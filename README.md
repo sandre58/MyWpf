@@ -10,7 +10,7 @@
   <img src="assets/MyNetCsvHelper.png" width="128" alt="MyNetCsvHelper">
 </div>
 
-<h1 align="center">MyNet</h1>
+<h1 align="center">My .NET</h1>
 
 [![MIT License][license-shield]][license-url]
 [![GitHub Stars](https://img.shields.io/github/stars/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/stargazers)

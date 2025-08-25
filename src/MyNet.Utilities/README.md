@@ -6,7 +6,7 @@
   <img src="../../assets/MyNetUtilities.png" width="128" alt="MyNetUtilities">
 </div>
 
-<h1 align="center">MyNet.Utilities</h1>
+<h1 align="center">MyNet Utilities</h1>
 
 [![MIT License](https://img.shields.io/github/license/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/blob/main/LICENSE)
 [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities?style=for-the-badge)](https://www.nuget.org/packages/MyNet.Utilities)

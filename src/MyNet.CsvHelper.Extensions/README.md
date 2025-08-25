@@ -3,87 +3,55 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <a href="https://github.com/sandre58/MyNetCsvHelper">
-    <img src="images/logo.png" width="256" height="256">
-  </a>
-
-<h1 align="center">My .NET CsvHelper</h1>
-
-[![Downloads][downloads-shield]][downloads-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-  <p align="center">
-    <br />
-    The .NET CsvHelper is a versatile class library designed to simplify the process of converting objects into human-readable strings in .NET applications. This library provides developers with an easy-to-use interface for generating informative and understandable string representations of complex objects.
-    <br />
-    Supporting only .NET 8.0
-  </p>
-
-[![Language][language-shield]][language-url]
-[![Framework][framework-shield]][framework-url]
-[![Version][version-shield]][version-url]
-[![Build][build-shield]][build-url]
-
+  <img src="../../assets/MyNetCsvHelper.png" width="128" alt="MyNetCsvHelper">
 </div>
 
-## Getting Started
+<h1 align="center">My .NET - CsvHelper</h1>
 
-To start using My .NET CsvHelper in your project, follow these steps:
+[![MIT License](https://img.shields.io/github/license/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/blob/main/LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions?style=for-the-badge)](https://www.nuget.org/packages/MyNet.CsvHelper.Extensions)
 
-1. Install the library via NuGet Package Manager:
-   ```bash
-   dotnet add package MyNet.CsvHelper.Extensions
+A versatile extension library for advanced CSV parsing, writing, and integration in .NET applications.
 
-## What's included ?
+[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
+[![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)
+[![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple)](#)
+[![C#](https://img.shields.io/badge/language-C%23-blue)](#)
 
-### Advanced CSV Parsing
+---
 
-- **Custom Mappings**: Define custom mappings and configurations to parse CSV records into complex object graphs with ease.
+## Installation
 
-- **Dynamic Parsing**: Dynamically parse CSV records into dynamic objects or dictionaries to handle unknown or variable data structures.
+Install via NuGet:
 
-### Flexible CSV Writing
+```bash
+dotnet add package MyNet.CsvHelper.Extensions
+```
 
-- **Custom Formatting**: Customize CSV output formats and styles, including delimiters, quote characters, and escape sequences, to meet specific requirements.
+## Features
 
-- **Header Management**: Control the generation and formatting of CSV headers, including automatic header detection and customizable header names.
+- **Advanced CSV Parsing**: Custom mappings, dynamic parsing, and flexible object graphs.
+- **Flexible CSV Writing**: Custom formatting, header management, and output control.
+- **Data Manipulation and Transformation**: Filtering, validation, and transformation of CSV data.
+- **Excel Integration**: Read and write Excel files using CsvHelper.
 
-### Data Manipulation and Transformation
+## Example Usage
 
-- **Data Filtering**: Filter CSV records based on specified criteria or conditions to extract subsets of data for further processing.
+```csharp
+using MyNet.CsvHelper.Extensions;
 
-- **Data Validation**: Validate CSV data against predefined rules or constraints to ensure data integrity and consistency.
+// Parse CSV to objects
+var records = CsvReaderExtensions.Read<MyClass>(csvStream);
 
-### Integration with Excel
+// Write objects to CSV
+CsvWriterExtensions.Write(records, csvStream);
 
-- **Excel reader and writer**: Integrate CsvHelper with Excel files
+// Read Excel file
+var excelRecords = ExcelReader.Read<MyClass>(excelStream);
+```
 
 ## License
 
 Copyright © Stéphane ANDRE.
 
-My .NET CsvHelper is provided as-is under the MIT license. For more information see [LICENSE](./LICENSE).
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[language-shield]: https://img.shields.io/github/languages/top/sandre58/MyNetCsvHelper
-[language-url]: https://github.com/sandre58/MyNetCsvHelper
-[forks-shield]: https://img.shields.io/github/forks/sandre58/MyNetCsvHelper?style=for-the-badge
-[forks-url]: https://github.com/sandre58/MyNetCsvHelper/network/members
-[stars-shield]: https://img.shields.io/github/stars/sandre58/MyNetCsvHelper?style=for-the-badge
-[stars-url]: https://github.com/sandre58/MyNetCsvHelper/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sandre58/MyNetCsvHelper?style=for-the-badge
-[issues-url]: https://github.com/sandre58/MyNetCsvHelper/issues
-[license-shield]: https://img.shields.io/github/license/sandre58/MyNetCsvHelper?style=for-the-badge
-[license-url]: https://github.com/sandre58/MyNetCsvHelper/blob/main/LICENSE
-[build-shield]: https://img.shields.io/github/actions/workflow/status/sandre58/MyNetCsvHelper/ci.yml?logo=github&label=CI
-[build-url]: https://github.com/sandre58/MyNetCsvHelper/actions
-[downloads-shield]: https://img.shields.io/github/downloads/sandre58/MyNetCsvHelper/total?style=for-the-badge
-[downloads-url]: https://github.com/sandre58/MyNetCsvHelper/releases
-[framework-shield]: https://img.shields.io/badge/.NET-8.0-purple
-[framework-url]: https://github.com/sandre58/MyNetCsvHelper/tree/main/src/MyNet.CsvHelper.Extensions
-[version-shield]: https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions
-[version-url]: https://www.nuget.org/packages/MyNet.CsvHelper.Extensions
+Distributed under the MIT License. See [LICENSE](../../LICENSE) for details.
