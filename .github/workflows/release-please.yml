@@ -1,10 +1,8 @@
 name: Release PR
 
+# Trigger the workflow manually
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
 
@@ -14,9 +12,8 @@ jobs:
     steps:
 
       # Step 1: Run Release Please to automate release and changelog creation
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
