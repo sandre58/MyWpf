@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{892DFD87
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		global.json = global.json
+		NuGet.config = NuGet.config
 		build\package.props = build\package.props
 	EndProjectSection
 EndProject
@@ -75,6 +76,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioning", "Versioning", 
 	ProjectSection(SolutionItems) = preProject
 		.release-please-manifest.json = .release-please-manifest.json
 		release-please-config.json = release-please-config.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4942B6F1-961C-4D26-A566-06D348BA98C1}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\test-coverage.ps1 = scripts\test-coverage.ps1
 	EndProjectSection
 EndProject
 Global
