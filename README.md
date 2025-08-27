@@ -27,6 +27,7 @@ A collection of useful libraries and extensions for .NET 8.0, designed to simpli
 ## Packages
 
 [![Build][build-shield]][build-url]
+[![Coverage](https://codecov.io/gh/sandre58/mynet/branch/main/graph/badge.svg)](https://codecov.io/gh/sandre58/mynet)
 [![C#](https://img.shields.io/badge/language-C%23-blue)](#)
 [![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
 [![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)

@@ -52,3 +52,19 @@ jobs:
         with:
           name: coverage-report
           path: coveragereport
+
+      # Step 8: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage-report
+          publish_branch: gh-pages
+
+      # Step 9: Upload coverage to Codecov
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: '**/coverage.cobertura.xml'
+          fail_ci_if_error: true
