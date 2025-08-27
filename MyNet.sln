@@ -83,6 +83,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4942
 		scripts\test-coverage.ps1 = scripts\test-coverage.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.AutoMapper.Extensions", "src\MyNet.AutoMapper.Extensions\MyNet.AutoMapper.Extensions.csproj", "{A0F36FB9-5442-CC32-B310-7A83D2CAA776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Http", "src\MyNet.Http\MyNet.Http.csproj", "{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +141,14 @@ Global
 		{2090F530-BECF-6B20-D9BD-5E7E19A89366}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2090F530-BECF-6B20-D9BD-5E7E19A89366}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2090F530-BECF-6B20-D9BD-5E7E19A89366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F36FB9-5442-CC32-B310-7A83D2CAA776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F36FB9-5442-CC32-B310-7A83D2CAA776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F36FB9-5442-CC32-B310-7A83D2CAA776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F36FB9-5442-CC32-B310-7A83D2CAA776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

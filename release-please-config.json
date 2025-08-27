@@ -27,6 +27,12 @@
     "src/MyNet.CsvHelper.Extensions": {
       "package-name": "MyNet.CsvHelper.Extensions"
     },
+    "src/MyNet.AutoMapper.Extensions": {
+      "package-name": "MyNet.AutoMapper.Extensions"
+    },
+    "src/MyNet.Http": {
+      "package-name": "MyNet.Http"
+    },
     "src/MyNet.Humanizer": {
       "package-name": "MyNet.Humanizer"
     },

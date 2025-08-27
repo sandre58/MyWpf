@@ -8,6 +8,8 @@
   <img src="assets/MyNetObservable.png" width="128" alt="MyNetObservable">
   <img src="assets/MyNetHumanizer.png" width="128" alt="MyNetHumanizer">
   <img src="assets/MyNetCsvHelper.png" width="128" alt="MyNetCsvHelper">
+  <img src="assets/MyNetAutoMapper.png" width="128" alt="MyNetAutoMapper">
+  <img src="assets/MyNetHttp.png" width="128" alt="MyNetHttp">
 </div>
 
 <h1 align="center">My .NET</h1>
@@ -37,6 +39,8 @@ A collection of useful libraries and extensions for .NET 8.0, designed to simpli
 | [**MyNet.Observable**](src/MyNet.Observable) | Editable and validatable object base classes and utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Observable)](https://www.nuget.org/packages/MyNet.Observable) |
 | [**MyNet.Humanizer**](src/MyNet.Humanizer) | Convert objects and values to human-readable strings. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Humanizer)](https://www.nuget.org/packages/MyNet.Humanizer) |
 | [**MyNet.CsvHelper.Extensions**](src/MyNet.CsvHelper.Extensions) | Extensions for CsvHelper to simplify CSV mapping and export. | [![NuGet](https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions)](https://www.nuget.org/packages/MyNet.CsvHelper.Extensions) |
+| [**MyNet.AutoMapper.Extensions**](src/MyNet.AutoMapper.Extensions) | Extensions and helpers for AutoMapper integration. | [![NuGet](https://img.shields.io/nuget/v/MyNet.AutoMapper.Extensions)](https://www.nuget.org/packages/MyNet.AutoMapper.Extensions) |
+| [**MyNet.Http**](src/MyNet.Http) | HTTP client helpers and extensions. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Http)](https://www.nuget.org/packages/MyNet.Http) |
 | [**MyNet.Utilities.Generator.Extensions**](src/MyNet.Utilities.Generator.Extensions) | Generate random data for testing and simulations. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Generator.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Generator.Extensions) |
 | [**MyNet.Utilities.Geography.Extensions**](src/MyNet.Utilities.Geography.Extensions) | Access detailed geography information. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Geography.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Geography.Extensions) |
 | [**MyNet.Utilities.Localization.Extensions**](src/MyNet.Utilities.Localization.Extensions) | Localization resources and helpers. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Localization.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Localization.Extensions) |

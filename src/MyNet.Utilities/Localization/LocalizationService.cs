@@ -98,6 +98,10 @@ public static class LocalizationService
 
             if (provider is not null || culture.IsNeutralCulture) return provider;
 
+            // Prevent infinite recursion for invariant culture
+            if (culture.Parent == culture)
+                return GetOrDefault<TProvider>(DefaultProviders, typeof(TProvider));
+
             provider = Get<TProvider>(culture.Parent);
             return provider is not null ? provider : GetOrDefault<TProvider>(DefaultProviders, typeof(TProvider));
         }
