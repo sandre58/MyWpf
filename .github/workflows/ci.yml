@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: write      # required to push to gh-pages
+  pages: write         # required to publish to GitHub Pages
+  id-token: write      # required for OIDC authentication if needed
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
