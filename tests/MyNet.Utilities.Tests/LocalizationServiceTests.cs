@@ -14,6 +14,7 @@ using Xunit;
 
 namespace MyNet.Utilities.Tests;
 
+[Collection("UseCultureSequential")]
 public class LocalizationServiceTests
 {
     public LocalizationServiceTests() => TranslationService.RegisterResources(nameof(DataResources), DataResources.ResourceManager);
