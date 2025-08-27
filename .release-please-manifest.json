@@ -1,7 +1,7 @@
 {
   "src/MyNet.CsvHelper.Extensions/MyNet.CsvHelper.Extensions.csproj": "1.1.0",
-  "src/MyNet.AutoMapper.Extensions/MyNet.AutoMapper.Extensions.csproj": "1.1.0",
-  "src/MyNet.Http/MyNet.Http.csproj": "1.1.0",
+  "src/MyNet.AutoMapper.Extensions/MyNet.AutoMapper.Extensions.csproj": "1.0.0",
+  "src/MyNet.Http/MyNet.Http.csproj": "1.0.0",
   "src/MyNet.Humanizer/MyNet.Humanizer.csproj": "5.0.0",
   "src/MyNet.Observable/MyNet.Observable.csproj": "9.0.0",
   "src/MyNet.UI/MyNet.UI.csproj": "11.0.0",
