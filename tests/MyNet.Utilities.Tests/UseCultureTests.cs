@@ -10,6 +10,7 @@ using Xunit;
 namespace MyNet.Utilities.Tests;
 
 [UseCulture("en")]
+[Collection("UseCultureSequential")]
 public class UseCultureTests
 {
     [Fact]

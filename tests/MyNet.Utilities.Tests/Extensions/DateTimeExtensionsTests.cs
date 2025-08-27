@@ -10,6 +10,7 @@ using Xunit;
 
 namespace MyNet.Utilities.Tests.Extensions;
 
+[Collection("UseCultureSequential")]
 public class DateTimeExtensionsTests
 {
     private const int DaysPerWeek = 7;
