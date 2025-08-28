@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <EnableNETAnalyzers>false</EnableNETAnalyzers>
+        <IsPackable>false</IsPackable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LiveCharts\LiveCharts.csproj" />
+    </ItemGroup>
+</Project>

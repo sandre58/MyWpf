@@ -26,11 +26,12 @@
     <PropertyGroup>
         <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
         <IsDemoProject>$(MSBuildProjectName.EndsWith('Demo'))</IsDemoProject>
+        <IsPackable>'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'</IsPackable>
     </PropertyGroup>
     
     <!-- Imports -->
     <Import Project="$(SolutionDir)\build\code-analysis.props" />
     <Import Project="$(SolutionDir)\build\dependencies.props" />
-    <Import Project="$(SolutionDir)\build\package.props" Condition="'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'"  />
+    <Import Project="$(SolutionDir)\build\package.props" Condition="'$(IsPackable)' == 'true'"  />
 
 </Project>

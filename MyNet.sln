@@ -18,14 +18,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Utilities.Mail.MailKi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Utilities.Tests", "tests\MyNet.Utilities.Tests\MyNet.Utilities.Tests.csproj", "{4CFCE474-D538-9CA7-60BF-C6F6BDD132B3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Actions", "GitHub Actions", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github actions", ".github actions", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		.github\workflows\release-please.yml = .github\workflows\release-please.yml
 		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2E7433DA-B851-4B09-A8BF-5E8265B474AC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{2E7433DA-B851-4B09-A8BF-5E8265B474AC}"
 	ProjectSection(SolutionItems) = preProject
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		CONTRIBUTING.md = CONTRIBUTING.md
@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2E7433DA-B
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{892DFD87-4C6A-412C-8243-7E9709DF5209}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{892DFD87-4C6A-412C-8243-7E9709DF5209}"
 	ProjectSection(SolutionItems) = preProject
 		.runsettings = .runsettings
 		build\code-analysis.props = build\code-analysis.props
@@ -44,9 +44,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{892DFD87
 		global.json = global.json
 		NuGet.config = NuGet.config
 		build\package.props = build\package.props
+		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{FB9A9AA6-6119-43F3-9F1B-A4539F2DD1A3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".assets", ".assets", "{FB9A9AA6-6119-43F3-9F1B-A4539F2DD1A3}"
 	ProjectSection(SolutionItems) = preProject
 		assets\MyNetCsvHelper.png = assets\MyNetCsvHelper.png
 		assets\MyNetDynamicData.png = assets\MyNetDynamicData.png
@@ -56,7 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{FB9A9A
 		assets\MyNetUtilities.png = assets\MyNetUtilities.png
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Analysis", "Code Analysis", "{015D541F-7A6E-4FF7-A267-7FA869C00DE0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".code analysis", ".code analysis", "{015D541F-7A6E-4FF7-A267-7FA869C00DE0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		stylecop.json = stylecop.json
@@ -72,13 +73,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.UI", "src\MyNet.UI\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Humanizer.UnitTests", "tests\MyNet.Humanizer.UnitTests\MyNet.Humanizer.UnitTests.csproj", "{2090F530-BECF-6B20-D9BD-5E7E19A89366}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioning", "Versioning", "{ECE90391-AE4A-42D9-8332-508DC90BABE6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".versioning", ".versioning", "{ECE90391-AE4A-42D9-8332-508DC90BABE6}"
 	ProjectSection(SolutionItems) = preProject
 		.release-please-manifest.json = .release-please-manifest.json
 		release-please-config.json = release-please-config.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4942B6F1-961C-4D26-A566-06D348BA98C1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".scripts", ".scripts", "{4942B6F1-961C-4D26-A566-06D348BA98C1}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\test-coverage.ps1 = scripts\test-coverage.ps1
 	EndProjectSection
@@ -86,6 +87,23 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.AutoMapper.Extensions", "src\MyNet.AutoMapper.Extensions\MyNet.AutoMapper.Extensions.csproj", "{A0F36FB9-5442-CC32-B310-7A83D2CAA776}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Http", "src\MyNet.Http\MyNet.Http.csproj", "{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{588950BE-D5F6-4387-B511-BDB903493436}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avalonia", "Avalonia", "{7C7CC95A-7D7D-427F-BAA9-19EE998C6D23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCharts", "src\Wpf\LiveCharts\LiveCharts\LiveCharts.csproj", "{962BF176-50A4-A051-6B4F-3C9668767590}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LiveCharts", "LiveCharts", "{3FA842DE-2B04-49C8-AE73-5E80F3D3DB4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCharts.Wpf", "src\Wpf\LiveCharts\LiveCharts.Wpf\LiveCharts.Wpf.csproj", "{01FEEE64-B857-4C93-CB41-1CEC931BC4FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf", "src\Wpf\MyNet.Wpf\MyNet.Wpf.csproj", "{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{DF13C343-DA01-492C-A08F-E8C7F28E17E3}"
+	ProjectSection(SolutionItems) = preProject
+		src\Wpf\Directory.Build.props = src\Wpf\Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +167,18 @@ Global
 		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{916AE5D1-AEFA-6E1D-D395-BD4EDC7ED10D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962BF176-50A4-A051-6B4F-3C9668767590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962BF176-50A4-A051-6B4F-3C9668767590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962BF176-50A4-A051-6B4F-3C9668767590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962BF176-50A4-A051-6B4F-3C9668767590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01FEEE64-B857-4C93-CB41-1CEC931BC4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01FEEE64-B857-4C93-CB41-1CEC931BC4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01FEEE64-B857-4C93-CB41-1CEC931BC4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01FEEE64-B857-4C93-CB41-1CEC931BC4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +186,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4CFCE474-D538-9CA7-60BF-C6F6BDD132B3} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{2090F530-BECF-6B20-D9BD-5E7E19A89366} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{962BF176-50A4-A051-6B4F-3C9668767590} = {3FA842DE-2B04-49C8-AE73-5E80F3D3DB4B}
+		{3FA842DE-2B04-49C8-AE73-5E80F3D3DB4B} = {588950BE-D5F6-4387-B511-BDB903493436}
+		{01FEEE64-B857-4C93-CB41-1CEC931BC4FE} = {3FA842DE-2B04-49C8-AE73-5E80F3D3DB4B}
+		{E3A42752-A3CD-2D7C-41D6-D6D7C3B0DEDB} = {588950BE-D5F6-4387-B511-BDB903493436}
+		{DF13C343-DA01-492C-A08F-E8C7F28E17E3} = {588950BE-D5F6-4387-B511-BDB903493436}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {075CDC9E-861B-4CC2-87C4-C6DD6DDB77B6}

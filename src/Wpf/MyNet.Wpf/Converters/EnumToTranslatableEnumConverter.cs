@@ -1,0 +1,18 @@
+﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using System.Globalization;
+using System.Windows.Data;
+using MyNet.Observable.Translatables;
+
+namespace MyNet.Wpf.Converters;
+
+public class EnumToEnumTranslatableConverter : IValueConverter
+{
+    public static readonly EnumToEnumTranslatableConverter Default = new();
+
+    public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is not Enum val ? null : new EnumTranslatable(val);
+
+    public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value is not EnumTranslatable val ? null : val.Value;
+}

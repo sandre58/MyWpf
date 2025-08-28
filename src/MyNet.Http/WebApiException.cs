@@ -6,23 +6,22 @@
 
 using System;
 
-namespace MyNet.Http
+namespace MyNet.Http;
+
+public class WebApiException : Exception
 {
-    public class WebApiException : Exception
+    public object? Exception { get; }
+
+    public WebApiException()
     {
-        public object? Exception { get; }
-
-        public WebApiException()
-        {
-        }
-
-        public WebApiException(object? exception)
-            : base(exception?.ToString()) => Exception = exception;
-
-        protected WebApiException(string message)
-            : base(message) { }
-
-        protected WebApiException(string message, Exception? exception)
-            : base(message, exception) { }
     }
+
+    public WebApiException(object? exception)
+        : base(exception?.ToString()) => Exception = exception;
+
+    protected WebApiException(string message)
+        : base(message) { }
+
+    protected WebApiException(string message, Exception? exception)
+        : base(message, exception) { }
 }

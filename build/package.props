@@ -23,7 +23,6 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 
         <!-- Build configuration -->
-        <IsPackable>true</IsPackable>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
