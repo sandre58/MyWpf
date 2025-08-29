@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System;
+using MyNet.Utilities;
 using MyNet.Utilities.Comparison;
 
 namespace MyNet.UI.ViewModels.List.Filtering.Filters;
@@ -71,7 +72,7 @@ public class StringFilterViewModel(string propertyName, StringOperator filterMod
 
     public override bool Equals(object? obj) => obj is StringFilterViewModel o && base.Equals(obj) && Operator == o.Operator && CaseSensitive == o.CaseSensitive;
 
-    public override int GetHashCode() => base.GetHashCode();
+    public override int GetHashCode() => Value.OrEmpty().GetHashCode(StringComparison.InvariantCultureIgnoreCase);
 
     public override void SetFrom(object? from)
     {

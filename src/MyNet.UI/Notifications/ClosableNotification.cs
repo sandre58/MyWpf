@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ public class ClosableNotification(string message, string title, NotificationSeve
     /// <summary>
     /// Occurs when a request to close the notification is made.
     /// </summary>
-    public event CancelEventHandler? CloseRequest;
+    public event EventHandler<CancelEventArgs>? CloseRequest;
 
     /// <summary>
     /// Determines asynchronously whether the notification can be closed.

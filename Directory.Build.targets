@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <!-- Also inject it into Test projects so VS and dotnet test pick it up -->
-    <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <ItemGroup Condition="'$(IsTestProject)' == 'True'">
         <None Include="$(RunSettingsFile)" Link=".runsettings" Visible="false" />
     </ItemGroup>
 
@@ -30,7 +30,7 @@
 
     <!-- Automatically collect coverage when running tests -->
     <Target Name="EnableCoverage" BeforeTargets="Test">
-        <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+        <ItemGroup Condition="'$(IsTestProject)' == 'True'">
             <PackageReference Include="coverlet.collector" Version="3.2.0" />
         </ItemGroup>
     </Target>
@@ -51,6 +51,13 @@
                    -reports:@(CoverageFiles) 
                    -targetdir:$(CoverageOutputDir)
                    -reporttypes:$(CoverageReportFormats)" />
+    </Target>
+
+    <Target Name="RemoveWpfTemp" AfterTargets="Build">
+        <ItemGroup>
+            <WpfTempDirectories Include="$([System.IO.Directory]::GetDirectories(&quot;$(BaseOutputPath)..&quot;,&quot;$(MSBuildProjectName)_*_wpftmp&quot;))"/>
+        </ItemGroup>
+        <RemoveDir Directories="@(WpfTempDirectories)" />
     </Target>
     
     <!-- Target to display the main properties of each project -->

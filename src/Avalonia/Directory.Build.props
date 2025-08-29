@@ -1,0 +1,12 @@
+<Project>
+    <!-- Force import of root -->
+    <Import Project="$(SolutionDir)\Directory.Build.props" />
+
+    <PropertyGroup>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    </ItemGroup>
+</Project>

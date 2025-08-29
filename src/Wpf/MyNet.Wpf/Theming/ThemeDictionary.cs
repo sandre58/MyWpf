@@ -98,7 +98,7 @@ public class ThemeDictionary : ResourceDictionary
         if (_themeResourcePatterns is IEnumerable<string> resourcePatterns)
             listOfResourcePatterns.AddRange(resourcePatterns);
 
-        var listOfOldResourceUris = Enum.GetNames(typeof(ThemeBase)).SelectMany(x => listOfResourcePatterns.Select(y => new Uri(y.FormatWith(x), UriKind.Absolute))).ToList();
+        var listOfOldResourceUris = Enum.GetNames<ThemeBase>().SelectMany(x => listOfResourcePatterns.Select(y => new Uri(y.FormatWith(x), UriKind.Absolute))).ToList();
         var listOfNewResourceUris = listOfResourcePatterns.Select(y => new Uri(y.FormatWith(themeBase), UriKind.Absolute)).ToList();
 
         MergedDictionaries.RemoveMany(MergedDictionaries.Where(x => listOfOldResourceUris.Contains(x.Source)).ToList());

@@ -152,7 +152,7 @@ public abstract class ItemDialogViewModel<TModel> : ItemViewModel<TModel>, IDial
     /// <summary>
     /// Closes the dialog.
     /// </summary>
-    public event CancelEventHandler? CloseRequest;
+    public event EventHandler<CancelEventArgs>? CloseRequest;
 
     #endregion Events
 }

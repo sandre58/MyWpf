@@ -33,6 +33,7 @@ public class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging,
         remove => PropertyChangedHandler -= value;
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Roslynator", "RCS1159:Use EventHandler<T>", Justification = "Implement interface")]
     private event PropertyChangedEventHandler? PropertyChangedHandler;
 
     /// <summary>
@@ -82,6 +83,7 @@ public class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging,
         remove => PropertyChangingHandler -= value;
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Roslynator", "RCS1159:Use EventHandler<T>", Justification = "Implement interface")]
     private event PropertyChangingEventHandler? PropertyChangingHandler;
 
     /// <summary>

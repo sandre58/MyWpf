@@ -42,7 +42,7 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
         return result;
     }
 
-    public async Task<MessageBoxResult?> ShowMessageBoxAsync(IMessageBox viewModel)
+    public async Task<MessageBoxResult?> ShowMessageBoxAsync(IMessageBox viewModel, CancellationToken cancellationToken = default)
     {
         var view = new MessageView(viewModel);
 
@@ -58,5 +58,4 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
     protected abstract Task<bool?> ShowDialogCoreAsync(object view, IDialogViewModel viewModel);
 
     public void CloseDialog(IDialogViewModel dialog) => dialog.Close();
-    public Task<MessageBoxResult?> ShowMessageBoxAsync(IMessageBox viewModel, CancellationToken cancellationToken = default) => throw new NotImplementedException();
 }

@@ -41,7 +41,7 @@ public abstract class ExportViewModelBase<T> : WorkspaceDialogViewModel
 
     protected virtual async Task ExportAndCloseAsync()
     {
-        if (_items is null || !_items.Any())
+        if (_items?.Any() != true)
             throw new TranslatableException(UiResources.ExportNoItemsError);
 
         if (ValidateProperties())

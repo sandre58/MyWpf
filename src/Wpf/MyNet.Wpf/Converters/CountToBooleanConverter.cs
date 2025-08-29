@@ -16,16 +16,16 @@ namespace MyNet.Wpf.Converters;
 public sealed class CountToBooleanConverter
     : IValueConverter
 {
-    private readonly ComparaisonToBooleanConverter _converter;
+    private readonly ComparisonToBooleanConverter _converter;
     private readonly int _parameter;
 
-    public static readonly CountToBooleanConverter Any = new(ComparaisonToBooleanConverter.IsGreaterThan, 0);
-    public static readonly CountToBooleanConverter NotAny = new(ComparaisonToBooleanConverter.IsLessThan, 1);
-    public static readonly CountToBooleanConverter Many = new(ComparaisonToBooleanConverter.IsGreaterThan, 1);
-    public static readonly CountToBooleanConverter NotMany = new(ComparaisonToBooleanConverter.IsLessThan, 2);
-    public static readonly CountToBooleanConverter One = new(ComparaisonToBooleanConverter.IsEqualsTo, 1);
+    public static readonly CountToBooleanConverter Any = new(ComparisonToBooleanConverter.IsGreaterThan, 0);
+    public static readonly CountToBooleanConverter NotAny = new(ComparisonToBooleanConverter.IsLessThan, 1);
+    public static readonly CountToBooleanConverter Many = new(ComparisonToBooleanConverter.IsGreaterThan, 1);
+    public static readonly CountToBooleanConverter NotMany = new(ComparisonToBooleanConverter.IsLessThan, 2);
+    public static readonly CountToBooleanConverter One = new(ComparisonToBooleanConverter.IsEqualsTo, 1);
 
-    private CountToBooleanConverter(ComparaisonToBooleanConverter converter, int parameter)
+    private CountToBooleanConverter(ComparisonToBooleanConverter converter, int parameter)
     {
         _converter = converter;
         _parameter = parameter;

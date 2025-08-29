@@ -20,6 +20,6 @@ public static class StringDehumanizeExtensions
     public static string Dehumanize(this string input)
     {
         var titlizedWords = input.Split(' ').Select(word => word.Humanize(LetterCasing.Title));
-        return string.Join(string.Empty, titlizedWords).Replace(" ", string.Empty, System.StringComparison.OrdinalIgnoreCase);
+        return string.Concat(titlizedWords).Replace(" ", string.Empty, System.StringComparison.OrdinalIgnoreCase);
     }
 }

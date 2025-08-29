@@ -45,8 +45,8 @@ public class ExcelParser : IParser
     /// Initializes a new instance of the <see cref="ExcelParser"/> class.
     /// </summary>
     /// <param name="path">The stream.</param>
-    /// <param name="sheetName">The sheet name.</param>
     /// <param name="configuration">The configuration.</param>
+    /// <param name="sheetName">The sheet name.</param>
     public ExcelParser(string path, CsvConfiguration configuration, string? sheetName = null)
         : this(File.Open(path, FileMode.OpenOrCreate, FileAccess.Read), sheetName, configuration) { }
 

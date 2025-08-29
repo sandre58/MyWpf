@@ -33,7 +33,7 @@
                 <Setter Property="p:ProgressBarAssist.InnerPadding" Value="{Binding Path=(p:ProgressBarAssist.BorderThickness), RelativeSource={RelativeSource Self}, Converter={x:Static c:MathConverter.Add}, ConverterParameter=4}" />
                 <Setter Property="p:ProgressBarAssist.StrokeThickness" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}, Converter={x:Static c:MathConverter.Divide}, ConverterParameter=20}" />
             </Trigger>
-            <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparaisonToBooleanConverter.IsGreaterThan}, ConverterParameter=0}" Value="True">
+            <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparisonToBooleanConverter.IsGreaterThan}, ConverterParameter=0}" Value="True">
                 <Setter Property="Foreground" Value="{me:BrushBinding SelfPath=BorderBrush}" />
             </DataTrigger>
         </Style.Triggers>

@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -178,7 +179,7 @@ public class ContentDialog : HeaderedContentControl, IOverlayDialog, IDialogView
 
     #region Dialog
 
-    public event CancelEventHandler? CloseRequest;
+    public event EventHandler<CancelEventArgs>? CloseRequest;
 
     string? IDialogViewModel.Title { get => Header?.ToString(); set => Header = value; }
 

@@ -99,7 +99,7 @@
                                                VerticalAlignment="Bottom"
                                                FontSize="{StaticResource MyNet.Font.Size.Secondary}"
                                                Text="{Binding Order}"
-                                               Visibility="{Binding Order, Converter={x:Static my:ComparaisonToVisibilityConverter.CollapsedIfIsLessThanTo}, ConverterParameter=2}" />
+                                               Visibility="{Binding Order, Converter={x:Static my:ComparisonToVisibilityConverter.CollapsedIfIsLessThanTo}, ConverterParameter=2}" />
                                 </StackPanel>
                             </DataTemplate>
                         </Setter.Value>

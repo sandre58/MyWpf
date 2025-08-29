@@ -399,7 +399,7 @@ public static class DateTimeOffsetExtensions
     {
         var currentCulture = CultureInfo.CurrentCulture;
         var firstDayOfWeek = currentCulture.DateTimeFormat.FirstDayOfWeek;
-        var offset = dateTime.DayOfWeek - firstDayOfWeek < 0 ? 7 : 0;
+        var offset = dateTime.DayOfWeek < firstDayOfWeek ? 7 : 0;
         var numberOfDaysSinceBeginningOfTheWeek = dateTime.DayOfWeek + offset - firstDayOfWeek;
 
         return dateTime.AddDays(-numberOfDaysSinceBeginningOfTheWeek);

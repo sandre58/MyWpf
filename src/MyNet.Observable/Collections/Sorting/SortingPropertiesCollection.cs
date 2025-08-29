@@ -15,7 +15,6 @@ using PropertyChanged;
 
 namespace MyNet.Observable.Collections.Sorting;
 
-[Serializable]
 public class SortingPropertiesCollection : OptimizedObservableCollection<SortingProperty>
 {
     private readonly Deferrer _sortChangedDeferrer;

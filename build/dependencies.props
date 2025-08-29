@@ -1,12 +1,16 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+    <PropertyGroup>
+        <AvaloniaVersion>11.3.3</AvaloniaVersion>
+    </PropertyGroup>
+    
     <!-- Source link -->
-    <ItemGroup Condition="'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'">
+    <ItemGroup Condition="'$(IsDemoProject)' != 'True' And '$(IsTestProject)' != 'True'">
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
     <!-- UnitTests -->
-    <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <ItemGroup Condition="'$(IsTestProject)' == 'True'">
         <PackageReference Include="GitHubActionsTestLogger" Version="2.4.1" PrivateAssets="All" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageReference Include="xunit" Version="2.9.3" />

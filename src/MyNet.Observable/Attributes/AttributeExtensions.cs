@@ -46,5 +46,5 @@ public static class AttributeExtensions
           property.PropertyType.CanNotify() &&
           property.ReflectedType.CanNotify()));
 
-    public static bool CanNotify(this Type? type) => type == null || type.GetCustomAttributes<CanNotifyAttribute>().All(x => x.Value);
+    public static bool CanNotify(this Type? type) => type?.GetCustomAttributes<CanNotifyAttribute>().All(x => x.Value) != false;
 }

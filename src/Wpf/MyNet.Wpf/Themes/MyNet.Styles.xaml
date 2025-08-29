@@ -5803,7 +5803,7 @@ Styles\MyNet.VirtualizingWrapPanel.xaml
         <Setter Property="p:ProgressBarAssist.InnerPadding" Value="{Binding Path=(p:ProgressBarAssist.BorderThickness), RelativeSource={RelativeSource Self}, Converter={x:Static c:MathConverter.Add}, ConverterParameter=4}" />
         <Setter Property="p:ProgressBarAssist.StrokeThickness" Value="{Binding ActualHeight, RelativeSource={RelativeSource Self}, Converter={x:Static c:MathConverter.Divide}, ConverterParameter=20}" />
       </Trigger>
-      <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparaisonToBooleanConverter.IsGreaterThan}, ConverterParameter=0}" Value="True">
+      <DataTrigger Binding="{Binding Value, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparisonToBooleanConverter.IsGreaterThan}, ConverterParameter=0}" Value="True">
         <Setter Property="Foreground" Value="{me:BrushBinding SelfPath=BorderBrush}" />
       </DataTrigger>
     </Style.Triggers>
@@ -7732,7 +7732,7 @@ Styles\MyNet.VirtualizingWrapPanel.xaml
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" Focusable="False" IsHitTestVisible="False" Visibility="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparaisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter=0}">
+            <Grid x:Name="PART_ContentCoverGrid" Background="Transparent" Focusable="False" IsHitTestVisible="False" Visibility="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter=0}">
               <Border x:Name="ContentCoverBorder" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" />
               <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">
                 <Border.InputBindings>

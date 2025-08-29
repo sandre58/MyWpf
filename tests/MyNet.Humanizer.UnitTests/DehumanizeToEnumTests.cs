@@ -23,10 +23,10 @@ public class DehumanizeToEnumTests
     public void ThrowsForEnumNoMatch() => _ = Assert.Throws<NoMatchFoundException>(() => EnumTestsResources.MemberWithDescriptionAttribute.DehumanizeTo<Dummy>(onNoMatch: OnNoMatch.ThrowsException));
 
     [Fact]
-    public void DehumanizeMembersWithoutDescriptionAttribute() => Assert.Equal(EnumUnderTest.MemberWithoutDescriptionAttribute, EnumUnderTest.MemberWithoutDescriptionAttribute.ToString().DehumanizeTo<EnumUnderTest>());
+    public void DehumanizeMembersWithoutDescriptionAttribute() => Assert.Equal(EnumUnderTest.MemberWithoutDescriptionAttribute, nameof(EnumUnderTest.MemberWithoutDescriptionAttribute).DehumanizeTo<EnumUnderTest>());
 
     [Fact]
-    public void AllCapitalMembersAreReturnedAsIs() => Assert.Equal(EnumUnderTest.ALLCAPITALS, EnumUnderTest.ALLCAPITALS.ToString().DehumanizeTo<EnumUnderTest>());
+    public void AllCapitalMembersAreReturnedAsIs() => Assert.Equal(EnumUnderTest.ALLCAPITALS, nameof(EnumUnderTest.ALLCAPITALS).DehumanizeTo<EnumUnderTest>());
 
     [Fact]
     public void HonorsDisplayAttribute() => Assert.Equal(EnumUnderTest.MemberWithDisplayAttribute, EnumTestsResources.MemberWithDisplayAttribute.DehumanizeTo<EnumUnderTest>());

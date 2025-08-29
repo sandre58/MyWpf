@@ -27,7 +27,7 @@ public class EnumHumanizeTests
         EnumUnderTest.MemberWithoutDescriptionAttribute.Humanize(LetterCasing.LowerCase));
 
     [Fact]
-    public void AllCapitalMembersAreReturnedAsIs() => Assert.Equal(EnumUnderTest.ALLCAPITALS.ToString(), EnumUnderTest.ALLCAPITALS.Humanize());
+    public void AllCapitalMembersAreReturnedAsIs() => Assert.Equal(nameof(EnumUnderTest.ALLCAPITALS), EnumUnderTest.ALLCAPITALS.Humanize());
 
     [Fact]
     public void HonorsDisplayAttribute() => Assert.Equal(EnumTestsResources.MemberWithDisplayAttribute, EnumUnderTest.MemberWithDisplayAttribute.Humanize());

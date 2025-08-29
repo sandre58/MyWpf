@@ -15,7 +15,6 @@ using PropertyChanged;
 
 namespace MyNet.Observable.Collections.Filters;
 
-[Serializable]
 public class FiltersCollection : OptimizedObservableCollection<CompositeFilter>
 {
     private readonly Deferrer _filtersChangedDeferrer;

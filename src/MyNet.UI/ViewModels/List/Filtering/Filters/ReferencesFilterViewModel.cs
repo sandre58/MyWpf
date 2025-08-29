@@ -15,7 +15,7 @@ public class ReferencesFilterViewModel<T>(string propertyName, IEnumerable<T> al
 {
     protected override bool IsMatchProperty(object? toCompare)
     {
-        var result = Values is not null && Values.Cast<object>().Any(x => ReferenceEquals(x, toCompare));
+        var result = Values?.Cast<object>().Any(x => ReferenceEquals(x, toCompare)) == true;
 
         return Operator switch
         {

@@ -44,7 +44,7 @@ public class PropertyFilter(string propertyName, Func<object?, bool> predicate) 
                 return toCompareEnumerableRecursive.Cast<object>().Any(x => IsMatchInternal(x, newPropertyNames));
         }
 
-        return toCompare is IList toCompareEnumerable ? IsMatchPropertyList(toCompareEnumerable.Cast<object>()) : IsMatchProperty(toCompare!);
+        return toCompare is IList toCompareEnumerable ? IsMatchPropertyList(toCompareEnumerable.Cast<object>()) : IsMatchProperty(toCompare);
     }
 
     private bool IsMatchPropertyList(IEnumerable<object> toCompareEnumerable) => toCompareEnumerable.Any(IsMatchProperty);

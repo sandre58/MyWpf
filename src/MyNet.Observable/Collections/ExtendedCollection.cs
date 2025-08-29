@@ -30,7 +30,6 @@ using MyNet.Utilities.Providers;
 
 namespace MyNet.Observable.Collections;
 
-[Serializable]
 [System.Runtime.InteropServices.ComVisible(false)]
 [DebuggerDisplay("Count = {Count}/{SourceCount}")]
 public class ExtendedCollection<T> : ObservableObject, ICollection<T>, IReadOnlyList<T>, INotifyCollectionChanged
@@ -181,6 +180,7 @@ public class ExtendedCollection<T> : ObservableObject, ICollection<T>, IReadOnly
         remove => CollectionChanged -= value;
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Roslynator", "RCS1159:Use EventHandler<T>", Justification = "Use OnCollectionChanged")]
     private event NotifyCollectionChangedEventHandler? CollectionChanged;
 
     private void HandleCollectionChanged(NotifyCollectionChangedEventArgs e) => CollectionChanged?.Invoke(this, e);

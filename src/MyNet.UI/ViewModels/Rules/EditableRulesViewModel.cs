@@ -33,7 +33,7 @@ public class EditableRulesViewModel<T> : EditableObject
         MoveDownCommand = CommandsManager.CreateNotNull<T>(MoveDown, CanMoveDown);
 
         if (addValidationRuleForBlockEmptyRules)
-            ValidationRules.Add<EditableRulesViewModel<T>, UiObservableCollection<T>>(x => x.Rules, ValidationResources.FieldXMustBeContainOneItemAtLeastError.FormatWith(UiResources.Rules), x => x is not null && x.Count > 0);
+            ValidationRules.Add<EditableRulesViewModel<T>, UiObservableCollection<T>>(x => x.Rules, ValidationResources.FieldXMustBeContainOneItemAtLeastError.FormatWith(UiResources.Rules), x => x?.Count > 0);
     }
 
     [CanSetIsModified(false)]

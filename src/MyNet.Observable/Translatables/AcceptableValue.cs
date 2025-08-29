@@ -64,7 +64,7 @@ public class AcceptableValue<T> : EditableObject, IAcceptableValue<T>
         _acceptableRange = acceptableValueRange;
         DefaultValue = defaultValue;
 
-        ValidationRules.Add<IAcceptableValue<T>, T?>(x => Value,
+        ValidationRules.Add<IAcceptableValue<T>, T?>(_ => Value,
             () => Min.HasValue && Max.HasValue
             ? ValidationResources.FieldXMustBeBetweenYAndZError.FormatWith(nameof(Value).Translate(), Min.Value, Max.Value)
             : Min.HasValue
@@ -138,7 +138,7 @@ public class AcceptableValue<T> : EditableObject, IAcceptableValue<T>
 
     public int GetHashCode(T obj) => obj.GetHashCode();
 
-    public bool Equals(IAcceptableValue<T>? x, IAcceptableValue<T>? y) => x is not null && x.Equals(y);
+    public bool Equals(IAcceptableValue<T>? x, IAcceptableValue<T>? y) => x?.Equals(y) == true;
 
     public int GetHashCode(IAcceptableValue<T> obj) => obj.GetHashCode();
 

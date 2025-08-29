@@ -16,21 +16,21 @@ namespace MyNet.Wpf.Converters;
 public sealed class CountToVisibilityConverter
     : IValueConverter
 {
-    private readonly ComparaisonToVisibilityConverter _converter;
+    private readonly ComparisonToVisibilityConverter _converter;
     private readonly int _parameter;
 
-    public static readonly CountToVisibilityConverter CollapsedIfAny = new(ComparaisonToVisibilityConverter.CollapsedIfIsGreaterThanTo, 0);
-    public static readonly CountToVisibilityConverter CollapsedIfNotAny = new(ComparaisonToVisibilityConverter.CollapsedIfIsLessThanTo, 1);
-    public static readonly CountToVisibilityConverter CollapsedIfMany = new(ComparaisonToVisibilityConverter.CollapsedIfIsGreaterThanTo, 1);
-    public static readonly CountToVisibilityConverter CollapsedIfNotMany = new(ComparaisonToVisibilityConverter.CollapsedIfIsLessThanTo, 2);
-    public static readonly CountToVisibilityConverter CollapsedIfOne = new(ComparaisonToVisibilityConverter.CollapsedIfIsEqualsTo, 1);
-    public static readonly CountToVisibilityConverter CollapsedIfNotOne = new(ComparaisonToVisibilityConverter.CollapsedIfIsNotEqualsTo, 1);
-    public static readonly CountToVisibilityConverter HiddenIfAny = new(ComparaisonToVisibilityConverter.HiddenIfIsGreaterThanTo, 0);
-    public static readonly CountToVisibilityConverter HiddenIfNotAny = new(ComparaisonToVisibilityConverter.HiddenIfIsLessThanTo, 1);
-    public static readonly CountToVisibilityConverter HiddenIfMany = new(ComparaisonToVisibilityConverter.HiddenIfIsGreaterThanTo, 1);
-    public static readonly CountToVisibilityConverter HiddenIfNotMany = new(ComparaisonToVisibilityConverter.HiddenIfIsLessThanTo, 2);
+    public static readonly CountToVisibilityConverter CollapsedIfAny = new(ComparisonToVisibilityConverter.CollapsedIfIsGreaterThanTo, 0);
+    public static readonly CountToVisibilityConverter CollapsedIfNotAny = new(ComparisonToVisibilityConverter.CollapsedIfIsLessThanTo, 1);
+    public static readonly CountToVisibilityConverter CollapsedIfMany = new(ComparisonToVisibilityConverter.CollapsedIfIsGreaterThanTo, 1);
+    public static readonly CountToVisibilityConverter CollapsedIfNotMany = new(ComparisonToVisibilityConverter.CollapsedIfIsLessThanTo, 2);
+    public static readonly CountToVisibilityConverter CollapsedIfOne = new(ComparisonToVisibilityConverter.CollapsedIfIsEqualsTo, 1);
+    public static readonly CountToVisibilityConverter CollapsedIfNotOne = new(ComparisonToVisibilityConverter.CollapsedIfIsNotEqualsTo, 1);
+    public static readonly CountToVisibilityConverter HiddenIfAny = new(ComparisonToVisibilityConverter.HiddenIfIsGreaterThanTo, 0);
+    public static readonly CountToVisibilityConverter HiddenIfNotAny = new(ComparisonToVisibilityConverter.HiddenIfIsLessThanTo, 1);
+    public static readonly CountToVisibilityConverter HiddenIfMany = new(ComparisonToVisibilityConverter.HiddenIfIsGreaterThanTo, 1);
+    public static readonly CountToVisibilityConverter HiddenIfNotMany = new(ComparisonToVisibilityConverter.HiddenIfIsLessThanTo, 2);
 
-    private CountToVisibilityConverter(ComparaisonToVisibilityConverter converter, int parameter)
+    private CountToVisibilityConverter(ComparisonToVisibilityConverter converter, int parameter)
     {
         _converter = converter;
         _parameter = parameter;

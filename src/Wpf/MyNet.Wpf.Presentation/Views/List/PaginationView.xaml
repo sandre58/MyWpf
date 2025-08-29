@@ -38,12 +38,12 @@
                         <my:SimpleStackPanel VerticalAlignment="Center"
                                              Orientation="Horizontal"
                                              Spacing="{StaticResource MyNet.Margin.Default}"
-                                             Visibility="{Binding Converter={x:Static my:ComparaisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter={StaticResource All}}">
+                                             Visibility="{Binding Converter={x:Static my:ComparisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter={StaticResource All}}">
                             <TextBlock Text="{Binding}" />
                             <TextBlock Opacity="{StaticResource MyNet.Opacity.Secondary}" Text="{my:Resource ItemsByPage}" />
                         </my:SimpleStackPanel>
 
-                        <TextBlock Opacity="{StaticResource MyNet.Opacity.Secondary}" Text="{my:Resource DisplayAll}" Visibility="{Binding Converter={x:Static my:ComparaisonToVisibilityConverter.CollapsedIfIsNotEqualsTo}, ConverterParameter={StaticResource All}}" />
+                        <TextBlock Opacity="{StaticResource MyNet.Opacity.Secondary}" Text="{my:Resource DisplayAll}" Visibility="{Binding Converter={x:Static my:ComparisonToVisibilityConverter.CollapsedIfIsNotEqualsTo}, ConverterParameter={StaticResource All}}" />
                     </Grid>
                 </DataTemplate>
             </my:DropDownButton.ToggleContentTemplate>

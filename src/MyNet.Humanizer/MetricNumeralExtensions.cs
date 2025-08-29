@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using MyNet.Utilities;
 
 namespace MyNet.Humanizer;
 
@@ -110,7 +111,7 @@ public static class MetricNumeralExtensions
     /// <returns>A number after a conversion from a Metric representation.</returns>
     public static double FromMetric(this string? input)
     {
-        input = CleanRepresentation(input);
+        input = CleanRepresentation(input.OrEmpty());
         return BuildNumber(input, input[^1]);
     }
 
@@ -165,14 +166,14 @@ public static class MetricNumeralExtensions
     /// </summary>
     /// <param name="input">Metric representation to clean.</param>
     /// <returns>A cleaned representation.</returns>
-    private static string CleanRepresentation(string? input)
+    private static string CleanRepresentation(string input)
     {
         ArgumentNullException.ThrowIfNull(input);
 
         input = input.Trim();
         input = ReplaceNameBySymbol(input);
         return input.Length == 0 || input.IsInvalidMetricNumeral()
-            ? throw new ArgumentException(@"Empty or invalid Metric string.", nameof(input))
+            ? throw new ArgumentException("Empty or invalid Metric string.", nameof(input))
             : input.Replace(" ", string.Empty, StringComparison.OrdinalIgnoreCase);
     }
 

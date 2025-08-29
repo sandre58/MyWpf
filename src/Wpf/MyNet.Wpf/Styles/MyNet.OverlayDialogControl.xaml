@@ -135,7 +135,7 @@
                               Background="Transparent"
                               Focusable="False"
                               IsHitTestVisible="False"
-                              Visibility="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparaisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter=0}">
+                              Visibility="{Binding Opacity, RelativeSource={RelativeSource Self}, Converter={x:Static c:ComparisonToVisibilityConverter.CollapsedIfIsEqualsTo}, ConverterParameter=0}">
                             <Border x:Name="ContentCoverBorder" Background="{Binding OverlayBackground, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" />
 
                             <Border Background="Transparent" IsHitTestVisible="{TemplateBinding CloseOnClickAway}">

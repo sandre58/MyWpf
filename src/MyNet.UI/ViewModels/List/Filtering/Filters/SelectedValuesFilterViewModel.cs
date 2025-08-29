@@ -25,7 +25,7 @@ public class SelectedValuesFilterViewModel<TAllowedValues>(string propertyName, 
 
     protected override bool IsMatchProperty(object? toCompare)
     {
-        var result = Values is not null && Values.Cast<object>().Any(x => (x is not null && x.Equals(toCompare)) || (x is null && toCompare is null));
+        var result = Values?.Cast<object>().Any(x => (x?.Equals(toCompare) == true) || (x is null && toCompare is null)) == true;
 
         return Operator switch
         {
@@ -37,7 +37,7 @@ public class SelectedValuesFilterViewModel<TAllowedValues>(string propertyName, 
         };
     }
 
-    public override bool IsEmpty() => Values is null || !Values.Cast<object>().Any();
+    public override bool IsEmpty() => Values?.Cast<object>().Any() != true;
 
     public override void Reset() => Values = null;
 

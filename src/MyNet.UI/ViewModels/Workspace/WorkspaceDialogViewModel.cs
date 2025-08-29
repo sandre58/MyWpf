@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -93,7 +94,7 @@ public abstract class WorkspaceDialogViewModel : WorkspaceViewModel, IDialogView
     /// <summary>
     /// Closes the dialog.
     /// </summary>
-    public event CancelEventHandler? CloseRequest;
+    public event EventHandler<CancelEventArgs>? CloseRequest;
 
     #endregion Events
 }

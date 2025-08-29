@@ -233,5 +233,5 @@ public class NavigationParameters : INavigationParameters, ICloneable<Navigation
     }
 
     /// <inheritdoc/>
-    public bool IsSimilar(NavigationParameters? obj) => obj is not null && obj.All(x => Equals(Get<object>(x.Key), x.Value));
+    public bool IsSimilar(NavigationParameters? obj) => obj?.All(x => Equals(Get<object>(x.Key), x.Value)) == true;
 }

@@ -4,6 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ public interface IClosable
     /// <summary>
     /// Occurs when a request to close the object is made.
     /// </summary>
-    event CancelEventHandler? CloseRequest;
+    event EventHandler<CancelEventArgs> CloseRequest;
 
     /// <summary>
     /// Determines asynchronously whether the object can be closed.

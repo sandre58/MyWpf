@@ -82,7 +82,7 @@ internal static class DateTimeHumanize
     {
         Assert.Equal(expectedCultureName, culture?.Name ?? CultureInfo.CurrentCulture.Name);
 
-        Assert.Equal(expectedString, culture == null ? baseDateUtc?.Add(deltaFromBase).Humanize(utcDate: true, dateToCompareAgainst: baseDateUtc) : baseDateUtc?.Add(deltaFromBase).Humanize(utcDate: true, dateToCompareAgainst: baseDateUtc, culture: culture));
+        Assert.Equal(expectedString, culture == null ? baseDateUtc?.Add(deltaFromBase).Humanize(dateToCompareAgainst: baseDateUtc, utcDate: true) : baseDateUtc?.Add(deltaFromBase).Humanize(dateToCompareAgainst: baseDateUtc, utcDate: true, culture: culture));
         Assert.Equal(expectedString, baseDate?.Add(deltaFromBase).Humanize(baseDate, utcDate: false, culture: culture));
     }
 }

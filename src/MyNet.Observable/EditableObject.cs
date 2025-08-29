@@ -146,8 +146,7 @@ public abstract class EditableObject : LocalizableObject, IEditableObject
         result.AddRange(complexValidationErrors);
 
         var collectionValidationErrors =
-            _publicProperties.Where(x => x.CanBeValidated(this))
-                             .Where(x => !typeof(IValidatable).IsAssignableFrom(x.PropertyType))
+            _publicProperties.Where(x => x.CanBeValidated(this) && !typeof(IValidatable).IsAssignableFrom(x.PropertyType))
                              .GetValuesOfType<IEnumerable>(this)
                              .SelectMany(x => x?.OfType<IValidatable>() ?? [])
                              .SelectMany(x => x.GetValidationErrors()).ToList();
@@ -174,14 +173,14 @@ public abstract class EditableObject : LocalizableObject, IEditableObject
     protected virtual void ValidateProperty(string propertyName, object? value)
     {
         var prop = GetType().GetProperty(propertyName);
-        if (ValidatePropertySuspender.IsSuspended || prop == null || !prop.CanBeValidated(this)) return;
+        if (ValidatePropertySuspender.IsSuspended || prop?.CanBeValidated(this) != true) return;
 
         var metadataValidationResults = new List<ValidationResult>();
 
         // Validation by Metadata
         _ = Validator.TryValidateProperty(value, new ValidationContext(this) { MemberName = propertyName }, metadataValidationResults);
 
-        var validationResults = metadataValidationResults.Select(x => new SeverityValidationResult(x.ErrorMessage, x.MemberNames)).ToList();
+        var validationResults = metadataValidationResults.ConvertAll(x => new SeverityValidationResult(x.ErrorMessage, x.MemberNames));
 
         // Custom Validation
         var customValidations = ValidationRules.Apply(this, propertyName).Select(x => new SeverityValidationResult(x.Error, [propertyName], x.Severity)).ToList();
@@ -264,7 +263,7 @@ public abstract class EditableObject : LocalizableObject, IEditableObject
         if (PropertyChangedSuspender.IsSuspended || GetType().GetCustomAttributes<CanNotifyAttribute>().Any(x => !x.Value)) return;
 
         var prop = _publicProperties.FirstOrDefault(x => x.Name == propertyName);
-        if (prop == null || !prop.CanNotify()) return;
+        if (prop?.CanNotify() != true) return;
 
         // Validation
         if (prop.CanBeValidated(this))
@@ -309,7 +308,7 @@ public abstract class EditableObject : LocalizableObject, IEditableObject
         var propertiesToChecked = _publicProperties.Where(x => x.CanSetIsModified(this)).ToList();
 
         var complexIsModified =
-            propertiesToChecked.GetValuesOfType<IModifiable>(this).Any(x => x != null && x.IsModified());
+            propertiesToChecked.GetValuesOfType<IModifiable>(this).Any(x => x?.IsModified() == true);
         if (complexIsModified) return true;
 
         var collectionIsModified =
