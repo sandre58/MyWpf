@@ -2,7 +2,7 @@
     <!-- This ensures the .runsettings file is automatically applied to all test projects -->
     <PropertyGroup>
         <!-- Path to the .runsettings file -->
-        <RunSettingsFile>$(SolutionDir).runsettings</RunSettingsFile>
+        <RunSettingsFile>$(MSBuildThisFileDirectory).runsettings</RunSettingsFile>
 
         <!-- Enables coverage collection -->
         <CollectCoverage>true</CollectCoverage>
@@ -11,7 +11,7 @@
         <CoverageReportFormats>Html;Cobertura;MarkdownSummary</CoverageReportFormats>
 
         <!-- Output folder for coverage reports -->
-        <CoverageOutputDir>$(SolutionDir)TestResults\CoverageReport</CoverageOutputDir>
+        <CoverageOutputDir>$(MSBuildThisFileDirectory)TestResults\CoverageReport</CoverageOutputDir>
 
         <VSTestCLIRunSettings>$(RunSettingsFile)</VSTestCLIRunSettings>
     </PropertyGroup>
@@ -40,7 +40,7 @@
 
         <!-- Only run if coverage file exists -->
         <ItemGroup>
-            <CoverageFiles Include="$(SolutionDir)TestResults\**\*.cobertura.xml" />
+            <CoverageFiles Include="$(MSBuildThisFileDirectory)TestResults\**\*.cobertura.xml" />
         </ItemGroup>
 
         <!-- Debug : affiche les fichiers trouvés -->

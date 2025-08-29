@@ -26,13 +26,13 @@
 
         <!-- Output builds -->
         <BaseOutputPath Condition="'$(IsDemoProject)' != 'True'">bin</BaseOutputPath>
-        <BaseOutputPath Condition="'$(IsDemoProject)' == 'True'">$(SolutionDir)\artifacts\demos\$(MSBuildProjectName)</BaseOutputPath>
+        <BaseOutputPath Condition="'$(IsDemoProject)' == 'True'">$(MSBuildThisFileDirectory)\artifacts\demos\$(MSBuildProjectName)</BaseOutputPath>
         <AppendTargetFrameworkToOutputPath Condition="'$(IsDemoProject)' != 'True'">true</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
     
     <!-- Imports -->
-    <Import Project="$(SolutionDir)/build/code-analysis.props" Condition="Exists('$(SolutionDir)/build/code-analysis.props')" />
-    <Import Project="$(SolutionDir)/build/dependencies.props" Condition="Exists('$(SolutionDir)/build/dependencies.props')" />
-    <Import Project="$(SolutionDir)/build/package.props" Condition="Exists('$(SolutionDir)/build/package.props') and '$(IsPackable)' == 'true'" />
+    <Import Project="$(MSBuildThisFileDirectory)/build/code-analysis.props" Condition="Exists('$(MSBuildThisFileDirectory)/build/code-analysis.props')" />
+    <Import Project="$(MSBuildThisFileDirectory)/build/dependencies.props" Condition="Exists('$(MSBuildThisFileDirectory)/build/dependencies.props')" />
+    <Import Project="$(MSBuildThisFileDirectory)/build/package.props" Condition="Exists('$(MSBuildThisFileDirectory)/build/package.props') and '$(IsPackable)' == 'true'" />
 
 </Project>

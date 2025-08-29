@@ -26,7 +26,7 @@
 
     <!-- Analysis configuration files -->
     <ItemGroup Condition="'$(EnableAnalyzers)' == 'true'">
-        <AdditionalFiles Include="$(SolutionDir)\stylecop.json" Link=".stylecop.json" Visible="False" />
+        <AdditionalFiles Include="$(MSBuildThisFileDirectory)..\stylecop.json" Link=".stylecop.json" Visible="False" />
     </ItemGroup>
 
     <!-- Add common analyzer packages -->

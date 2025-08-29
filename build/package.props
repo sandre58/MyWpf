@@ -13,7 +13,7 @@
         <RepositoryUrl>https://github.com/sandre58/MyNet</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryBranch>main</RepositoryBranch>
-        <PackageOutputPath>$(SolutionDir)\artifacts\packages</PackageOutputPath>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)..\artifacts\packages</PackageOutputPath>
         <PackageProjectUrl>https://github.com/sandre58/MyNet</PackageProjectUrl>
         <PackageReleaseNotes>https://github.com/sandre58/MyNet/releases</PackageReleaseNotes>
         <PackageIconUrl>$(PackageIcon)</PackageIconUrl>
@@ -32,10 +32,10 @@
 
     <!-- Embedded files -->
     <ItemGroup>
-        <None Include="$(SolutionDir)\LICENSE" Pack="true" PackagePath="">
+        <None Include="$(MSBuildThisFileDirectory)..\LICENSE" Pack="true" PackagePath="">
             <Link>_package/LICENSE</Link>
         </None>
-        <None Include="$(SolutionDir)\assets\$(PackageIcon)" Pack="true" PackagePath="">
+        <None Include="$(MSBuildThisFileDirectory)..\assets\$(PackageIcon)" Pack="true" PackagePath="">
             <Link>_package/$(PackageIcon)</Link>
         </None>
         <None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="">
