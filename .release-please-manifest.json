@@ -15,5 +15,9 @@
   "src/Wpf/MyNet.Wpf.DragAndDrop/MyNet.Wpf.DragAndDrop.csproj": "6.0.0",
   "src/Wpf/MyNet.Wpf.LiveCharts/MyNet.Wpf.LiveCharts.csproj": "6.0.0",
   "src/Wpf/MyNet.Wpf.Presentation/MyNet.Wpf.Presentation.csproj": "6.0.0",
-  "src/Wpf/MyNet.Wpf.Web/MyNet.Wpf.Web.csproj": "6.0.0"
+  "src/Wpf/MyNet.Wpf.Web/MyNet.Wpf.Web.csproj": "6.0.0",
+  "src/Avalonia/MyNet.Avalonia/MyNet.Avalonia.csproj": "1.0.0",
+  "src/Avalonia/MyNet.Avalonia.Controls/MyNet.Avalonia.Controls.csproj": "1.0.0",
+  "src/Avalonia/MyNet.Avalonia.Theme/MyNet.Avalonia.Theme.csproj": "1.0.0",
+  "src/Avalonia/MyNet.Avalonia.UI/MyNet.Avalonia.UI.csproj": "1.0.0"
 }

@@ -75,6 +75,18 @@
     },
     "src/Wpf/MyNet.Wpf.Web": {
       "package-name": "MyNet.Wpf.Web"
+  },
+    "src/Avalonia/MyNet.Avalonia": {
+      "package-name": "MyNet.Avalonia"
+    },
+    "src/Avalonia/MyNet.Avalonia.Controls": {
+      "package-name": "MyNet.Avalonia.Controls"
+    },
+    "src/Avalonia/MyNet.Avalonia.Theme": {
+      "package-name": "MyNet.Avalonia.Theme"
+    },
+    "src/Avalonia/MyNet.Avalonia.UI": {
+      "package-name": "MyNet.Avalonia.UI"
     }
   }
 }
