@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BindingProxy.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 
@@ -14,6 +17,7 @@ public class BindingProxy : Freezable
         get => GetValue(DataProperty);
         set => SetValue(DataProperty, value);
     }
+
     public static readonly DependencyProperty DataProperty =
         DependencyProperty.Register(nameof(Data), typeof(object), typeof(BindingProxy), new UIPropertyMetadata(null));
 }

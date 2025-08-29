@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RelativeCanvas.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +32,6 @@ public class RelativeCanvas : Canvas
 
             double x = 0;
             double y = 0;
-
 
             //Compute offset of the child:
             //If Left is specified, then Right is ignored
@@ -67,6 +69,7 @@ public class RelativeCanvas : Canvas
 
             child.Arrange(new Rect(new Point(x, y), child.DesiredSize));
         }
+
         return arrangeSize;
     }
 

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ApplicationIcon.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +15,6 @@ public class ApplicationIcon : Control
     static ApplicationIcon() => DefaultStyleKeyProperty.OverrideMetadata(typeof(ApplicationIcon), new FrameworkPropertyMetadata(typeof(ApplicationIcon)));
 
     #region UniformCornerRadius
-
 
     public static readonly DependencyProperty UniformCornerRadiusProperty
         = DependencyProperty.RegisterAttached(nameof(UniformCornerRadius), typeof(double), typeof(ApplicationIcon), new FrameworkPropertyMetadata(20.0D, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
@@ -27,7 +29,6 @@ public class ApplicationIcon : Control
 
     #region Data
 
-
     public static readonly DependencyProperty DataProperty
         = DependencyProperty.RegisterAttached(nameof(Data), typeof(Geometry), typeof(ApplicationIcon), new PropertyMetadata(null));
 
@@ -40,7 +41,6 @@ public class ApplicationIcon : Control
     #endregion
 
     #region IconSize
-
 
     public static readonly DependencyProperty IconSizeProperty
         = DependencyProperty.RegisterAttached(nameof(IconSize), typeof(double), typeof(ApplicationIcon), new FrameworkPropertyMetadata(100.0D));
@@ -55,7 +55,6 @@ public class ApplicationIcon : Control
 
     #region Text
 
-
     public static readonly DependencyProperty TextProperty
         = DependencyProperty.RegisterAttached(nameof(Text), typeof(string), typeof(ApplicationIcon), new PropertyMetadata(null));
 
@@ -68,7 +67,6 @@ public class ApplicationIcon : Control
     #endregion
 
     #region TextBackground
-
 
     public static readonly DependencyProperty TextBackgroundProperty
         = DependencyProperty.RegisterAttached(nameof(TextBackground), typeof(Brush), typeof(ApplicationIcon), new PropertyMetadata(null));
@@ -83,7 +81,6 @@ public class ApplicationIcon : Control
 
     #region TextForeground
 
-
     public static readonly DependencyProperty TextForegroundProperty
         = DependencyProperty.RegisterAttached(nameof(TextForeground), typeof(Brush), typeof(ApplicationIcon), new PropertyMetadata(null));
 
@@ -96,7 +93,6 @@ public class ApplicationIcon : Control
     #endregion
 
     #region ShowText
-
 
     public static readonly DependencyProperty ShowTextProperty
         = DependencyProperty.RegisterAttached(nameof(ShowText), typeof(bool), typeof(ApplicationIcon), new PropertyMetadata(true));
@@ -111,7 +107,6 @@ public class ApplicationIcon : Control
 
     #region OffsetX
 
-
     public static readonly DependencyProperty OffsetXProperty
         = DependencyProperty.RegisterAttached(nameof(OffsetX), typeof(double), typeof(ApplicationIcon), new FrameworkPropertyMetadata(15.0D, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
@@ -125,7 +120,6 @@ public class ApplicationIcon : Control
 
     #region OffsetY
 
-
     public static readonly DependencyProperty OffsetYProperty
         = DependencyProperty.RegisterAttached(nameof(OffsetY), typeof(double), typeof(ApplicationIcon), new FrameworkPropertyMetadata(15.0D, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
@@ -138,7 +132,6 @@ public class ApplicationIcon : Control
     #endregion
 
     #region TextSize
-
 
     public static readonly DependencyProperty TextSizeProperty
         = DependencyProperty.RegisterAttached(nameof(TextSize), typeof(double), typeof(ApplicationIcon), new FrameworkPropertyMetadata(100.0D));

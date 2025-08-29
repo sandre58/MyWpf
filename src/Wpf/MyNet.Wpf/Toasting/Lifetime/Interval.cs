@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Interval.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Threading;
@@ -10,7 +13,7 @@ public class Interval : IInterval
 {
     private DispatcherTimer? _timer;
 
-    public bool IsRunning => _timer != null && _timer.IsEnabled;
+    public bool IsRunning => _timer is { IsEnabled: true };
 
     public void Invoke(TimeSpan frequency, Action action, Dispatcher dispatcher)
     {

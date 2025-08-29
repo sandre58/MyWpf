@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="HSVToGradientBrushConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -11,7 +14,7 @@ using MyNet.Wpf.Media;
 
 namespace MyNet.Wpf.Converters;
 
-public class HSVToGradientBrushConverter : IMultiValueConverter
+public sealed class HSVToGradientBrushConverter : IMultiValueConverter
 {
     private enum Mode
     {
@@ -59,5 +62,4 @@ public class HSVToGradientBrushConverter : IMultiValueConverter
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => [.. targetTypes.Select(t => Binding.DoNothing)];
-
 }

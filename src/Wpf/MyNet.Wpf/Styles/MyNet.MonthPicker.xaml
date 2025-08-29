@@ -3,7 +3,6 @@
                     xmlns:c="clr-namespace:MyNet.Wpf.Converters"
                     xmlns:cmd="clr-namespace:MyNet.Wpf.Commands"
                     xmlns:ctrl="clr-namespace:MyNet.Wpf.Controls"
-                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:me="clr-namespace:MyNet.Wpf.MarkupExtensions"
                     xmlns:p="clr-namespace:MyNet.Wpf.Parameters">
 

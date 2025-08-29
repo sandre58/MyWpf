@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="SliderValueLabelPositionConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -21,7 +24,7 @@ internal class SliderValueLabelPositionConverter : IValueConverter
             const double margin = 4.0;
             return orientation switch
             {
-                Orientation.Horizontal => -width * 0.5 + halfGripWidth,
+                Orientation.Horizontal => (-width * 0.5) + halfGripWidth,
                 Orientation.Vertical => -width - margin,
                 _ => throw new NotImplementedException()
             };

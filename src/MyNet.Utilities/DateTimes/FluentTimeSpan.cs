@@ -196,7 +196,7 @@ public readonly struct FluentTimeSpan :
 
     public int CompareTo(object value) => value is TimeSpan timeSpan
         ? ((TimeSpan)this).CompareTo(timeSpan)
-        : throw new ArgumentException("Value must be a TimeSpan", nameof(value));
+        : throw new ArgumentException(@"Value must be a TimeSpan", nameof(value));
 
     public int CompareTo(FluentTimeSpan other) => ((TimeSpan)this).CompareTo(other);
 

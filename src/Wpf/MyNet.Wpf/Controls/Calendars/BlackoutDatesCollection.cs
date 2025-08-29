@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BlackoutDatesCollection.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -33,14 +36,14 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     public void AddDatesInPast() => Add(new DateRange(DateTime.MinValue, DateTime.Today.AddDays(-1)));
 
     /// <summary>
-    /// Checks if a DateTime is in the Collection
+    /// Checks if a DateTime is in the Collection.
     /// </summary>
     /// <param name="date"></param>
     /// <returns></returns>
     public bool Contains(DateTime date) => null != GetContainingDateRange(date);
 
     /// <summary>
-    /// Checks if a Range is in the collection
+    /// Checks if a Range is in the collection.
     /// </summary>
     /// <param name="start"></param>
     /// <param name="end"></param>
@@ -75,8 +78,8 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     /// <summary>
     /// Returns true if any day in the given DateTime range is contained in the BlackOutDays.
     /// </summary>
-    /// <param name="range">SchedulerDateRange that is searched in BlackOutDays</param>
-    /// <returns>true if at least one day in the range is included in the BlackOutDays</returns>
+    /// <param name="range">SchedulerDateRange that is searched in BlackOutDays.</param>
+    /// <returns>true if at least one day in the range is included in the BlackOutDays.</returns>
     public bool ContainsAny(DateRange range) => this.Any(x => x.ContainsAny(range));
 
     /// <summary>
@@ -220,7 +223,7 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     #region Private Methods
 
     /// <summary>
-    /// Registers for change notification on date ranges
+    /// Registers for change notification on date ranges.
     /// </summary>
     /// <param name="item"></param>
     private void RegisterItem(DateRange? item)
@@ -233,7 +236,7 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     }
 
     /// <summary>
-    /// Un registers for change notification on date ranges
+    /// Un registers for change notification on date ranges.
     /// </summary>
     private void UnRegisterItem(DateRange? item)
     {
@@ -245,7 +248,7 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     }
 
     /// <summary>
-    /// Reject date range changes that would make the blackout dates collection invalid
+    /// Reject date range changes that would make the blackout dates collection invalid.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -254,7 +257,7 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     protected virtual void OnItemChanging(DateRange? item, DateTime start, DateTime end) { }
 
     /// <summary>
-    /// Update the Scheduler view to reflect the new blackout dates
+    /// Update the Scheduler view to reflect the new blackout dates.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -264,18 +267,18 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
     protected virtual void OnItemPropertyChanged(DateRange? item, string? propertyName) { }
 
     /// <summary>
-    /// Tests to see if a date range is not already selected
+    /// Tests to see if a date range is not already selected.
     /// </summary>
-    /// <param name="item">date range to test</param>
-    /// <returns>True if no selected day falls in the given date range</returns>
+    /// <param name="item">date range to test.</param>
+    /// <returns>True if no selected day falls in the given date range.</returns>
     private bool IsValid(DateRange item) => IsValid(item.Start, item.End);
 
     /// <summary>
-    /// Tests to see if a date range is not already selected
+    /// Tests to see if a date range is not already selected.
     /// </summary>
-    /// <param name="start">First day of date range to test</param>
-    /// <param name="end">Last day of date range to test</param>
-    /// <returns>True if no selected day falls between start and end</returns>
+    /// <param name="start">First day of date range to test.</param>
+    /// <param name="end">Last day of date range to test.</param>
+    /// <returns>True if no selected day falls between start and end.</returns>
     private bool IsValid(DateTime start, DateTime end) => _owner.SelectedDates.OfType<DateTime>().All(x => !x.InRange(start, end));
 
     private bool IsValidThread() => Thread.CurrentThread == _dispatcherThread;
@@ -296,6 +299,7 @@ public class BlackoutDatesCollection(CalendarBase owner) : OptimizedObservableCo
                 return this[i];
             }
         }
+
         return null;
     }
 

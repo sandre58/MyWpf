@@ -59,8 +59,6 @@ public class EditableWrapper<T>(T item) : EditableObject, ICloneable, ISettable,
                 case EditableWrapper<T> newWrapper:
                     settable.SetFrom(newWrapper.Item);
                     break;
-                default:
-                    break;
             }
         }
         else
@@ -72,8 +70,6 @@ public class EditableWrapper<T>(T item) : EditableObject, ICloneable, ISettable,
                     break;
                 case EditableWrapper<T> newWrapper:
                     Item?.DeepSet(newWrapper.Item);
-                    break;
-                default:
                     break;
             }
         }

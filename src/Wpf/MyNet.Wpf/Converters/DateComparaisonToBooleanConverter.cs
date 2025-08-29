@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateComparaisonToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -32,7 +35,7 @@ public sealed class DateComparaisonToBooleanConverter : IValueConverter, IMultiV
 
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => DoConvert(value, parameter, null, Comparaison);
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values == null || values.Length < 2 ? Binding.DoNothing : DoConvert(values[0], values[1], values.Length > 2 ? values[2] : null, Comparaison);
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values is not { Length: >= 2 } ? Binding.DoNothing : DoConvert(values[0], values[1], values.Length > 2 ? values[2] : null, Comparaison);
 
     public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => Binding.DoNothing;
 
@@ -55,9 +58,9 @@ public sealed class DateComparaisonToBooleanConverter : IValueConverter, IMultiV
             var firstCulture = firstValue is string ? CultureInfo.CurrentCulture : CultureInfo.InvariantCulture;
             var secondCulture = secondValue is string ? CultureInfo.CurrentCulture : CultureInfo.InvariantCulture;
             var thirdCulture = thirdValue is string ? CultureInfo.CurrentCulture : CultureInfo.InvariantCulture;
-            var value1 = (firstValue as DateTime?).GetValueOrDefault(System.Convert.ToDateTime(firstValue, firstCulture));
-            var value2 = (secondValue as DateTime?).GetValueOrDefault(System.Convert.ToDateTime(secondValue, secondCulture));
-            var value3 = (thirdValue as DateTime?).GetValueOrDefault(System.Convert.ToDateTime(thirdValue, thirdCulture));
+            var value1 = (firstValue as DateTime?) ?? System.Convert.ToDateTime(firstValue, firstCulture);
+            var value2 = (secondValue as DateTime?) ?? System.Convert.ToDateTime(secondValue, secondCulture);
+            var value3 = (thirdValue as DateTime?) ?? System.Convert.ToDateTime(thirdValue, thirdCulture);
 
             return operation switch
             {
@@ -65,7 +68,7 @@ public sealed class DateComparaisonToBooleanConverter : IValueConverter, IMultiV
                 DateComparaisonForConverter.IsGreaterThan => value1 > value2,
                 DateComparaisonForConverter.IsLessThan => value1 < value2,
                 DateComparaisonForConverter.IsBetween => value1 >= value2 && value1 <= value3,
-                _ => Binding.DoNothing,
+                _ => Binding.DoNothing
             };
         }
         catch (Exception)

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AppCommands.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -19,9 +22,11 @@ public static class AppCommands
 {
     public static ICommand CopyInClipboardCommand { get; } = CommandsManager.Create<object>(x =>
     {
+        if (x is null) return;
+
         try
         {
-            Clipboard.SetDataObject(x?.ToString());
+            Clipboard.SetDataObject(x.ToString().OrEmpty());
             ToasterManager.ShowInformation(MessageResources.CopyInClipBoardSuccess);
         }
         catch (Exception)
@@ -43,18 +48,17 @@ public static class AppCommands
         }
     });
 
-
     public static ICommand ComboBoxDownCommand => CommandsManager.Create<object>(ComboBoxDown, CanComboBoxDown);
 
     private static void ComboBoxDown(object? obj)
     {
-        if (obj is ComboBox cb && cb.SelectedIndex > 0)
+        if (obj is ComboBox { SelectedIndex: > 0 } cb)
         {
             cb.SelectedIndex -= 1;
         }
     }
 
-    private static bool CanComboBoxDown(object? obj) => obj is ComboBox cb && cb.SelectedIndex > 0;
+    private static bool CanComboBoxDown(object? obj) => obj is ComboBox { SelectedIndex: > 0 };
 
     public static ICommand ComboBoxUpCommand => CommandsManager.Create<object>(ComboBoxUp, CanComboBoxUp);
 
@@ -90,21 +94,21 @@ public static class AppCommands
 
     private static void AddToSelectedDate(object? obj, Func<DateTime, DateTime> newDate)
     {
-        if (obj is DatePicker dt && dt.SelectedDate.HasValue)
+        if (obj is DatePicker { SelectedDate: not null } dt)
             dt.SelectedDate = newDate(dt.SelectedDate.Value);
-        if (obj is TimePicker tp && tp.SelectedTime.HasValue)
+        if (obj is TimePicker { SelectedTime: not null } tp)
             tp.SelectedTime = newDate(tp.SelectedTime.Value);
-        if (obj is MonthPicker mp && mp.SelectedMonth.HasValue)
+        if (obj is MonthPicker { SelectedMonth: not null } mp)
             mp.SelectedMonth = newDate(mp.SelectedMonth.Value);
     }
 
     private static bool CanNextDate(object? obj, Func<DateTime, DateTime> newDate) =>
-        obj is DatePicker dt && dt.SelectedDate.HasValue && (!dt.DisplayDateEnd.HasValue || newDate(dt.SelectedDate.Value) < dt.DisplayDateEnd)
-        || obj is TimePicker tp && tp.SelectedTime.HasValue && newDate(tp.SelectedTime.Value).TimeOfDay < tp.SelectedTime.Value.EndOfDay().TimeOfDay
-        || obj is MonthPicker mp && mp.SelectedMonth.HasValue;
+        (obj is DatePicker { SelectedDate: not null } dt && (!dt.DisplayDateEnd.HasValue || newDate(dt.SelectedDate.Value) < dt.DisplayDateEnd))
+        || (obj is TimePicker { SelectedTime: not null } tp && newDate(tp.SelectedTime.Value).TimeOfDay < tp.SelectedTime.Value.EndOfDay().TimeOfDay)
+        || obj is MonthPicker { SelectedMonth: not null };
 
     private static bool CanPreviousDate(object? obj, Func<DateTime, DateTime> newDate) =>
-        obj is DatePicker dt && dt.SelectedDate.HasValue && (!dt.DisplayDateStart.HasValue || newDate(dt.SelectedDate.Value) > dt.DisplayDateStart)
-        || obj is TimePicker tp && tp.SelectedTime.HasValue && newDate(tp.SelectedTime.Value).TimeOfDay >= tp.SelectedTime.Value.BeginningOfDay().TimeOfDay
-        || obj is MonthPicker mp && mp.SelectedMonth.HasValue;
+        (obj is DatePicker { SelectedDate: not null } dt && (!dt.DisplayDateStart.HasValue || newDate(dt.SelectedDate.Value) > dt.DisplayDateStart))
+        || (obj is TimePicker { SelectedTime: not null } tp && newDate(tp.SelectedTime.Value).TimeOfDay >= tp.SelectedTime.Value.BeginningOfDay().TimeOfDay)
+        || obj is MonthPicker { SelectedMonth: not null };
 }

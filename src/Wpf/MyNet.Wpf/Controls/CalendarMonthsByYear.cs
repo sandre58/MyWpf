@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarMonthsByYear.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -21,7 +24,7 @@ public class CalendarMonthsByYear : CalendarBase
 
     protected override bool MustBeRebuild(DateTime oldDate, DateTime newDate) => !oldDate.SameYear(newDate);
 
-    protected override IEnumerable<(DateTime date, int row, int column)> GetDisplayDates()
+    protected override IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates()
     {
         var start = DisplayDateInternal.BeginningOfYear();
         var end = DisplayDateInternal.EndOfYear();
@@ -31,7 +34,7 @@ public class CalendarMonthsByYear : CalendarBase
 
     protected internal override bool IsInactive(DateTime date) => !date.SameYear(DisplayDateInternal);
 
-    protected override IEnumerable<(int row, int column, int rowSpan, int columnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
+    protected override IEnumerable<(int Row, int Column, int RowSpan, int ColumnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
         => allDisplayedDates.GroupBy(x => x.row).Select(x => (x.Key, x.Min(y => y.column), 1, x.Count()));
 
     public override DateTime GetNextDate(DateTime date) => date.AddYears(1);

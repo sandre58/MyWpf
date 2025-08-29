@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AppointmentsPanel.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -86,10 +89,10 @@ public class AppointmentsPanel : SimpleStackPanel
         var offsetFromStartDate = ApplyCoef(double.IsInfinity(calendarItemSize.Height) ? 0 : calendarItemSize.Height, item.Date);
         var offsetFromEndDate = ApplyCoef(double.IsInfinity(calendarItemSize.Height) ? 0 : calendarItemSize.Height, item.EndDate, true);
 
-        var y = calendarItemSize.Height * item.Row + Owner.AppointmentsMargin.Top + offsetFromStartDate;
-        var height = Math.Max(1, calendarItemSize.Height * item.RowsCount - Owner.AppointmentsMargin.Top - Owner.AppointmentsMargin.Bottom - offsetFromStartDate - offsetFromEndDate);
+        var y = (calendarItemSize.Height * item.Row) + Owner.AppointmentsMargin.Top + offsetFromStartDate;
+        var height = Math.Max(1, (calendarItemSize.Height * item.RowsCount) - Owner.AppointmentsMargin.Top - Owner.AppointmentsMargin.Bottom - offsetFromStartDate - offsetFromEndDate);
 
-        var x = calendarItemSize.Width * item.Column + Owner.AppointmentsMargin.Left;
+        var x = (calendarItemSize.Width * item.Column) + Owner.AppointmentsMargin.Left;
         var width = Math.Max(1, calendarItemSize.Width - Owner.AppointmentsMargin.Right - Owner.AppointmentsMargin.Left);
 
         // 1 => By accurate date
@@ -165,10 +168,10 @@ public class AppointmentsPanel : SimpleStackPanel
         var offsetFromStartDate = ApplyCoef(double.IsInfinity(calendarItemSize.Width) ? 0 : calendarItemSize.Width, item.Date);
         var offsetFromEndDate = ApplyCoef(double.IsInfinity(calendarItemSize.Width) ? 0 : calendarItemSize.Width, item.EndDate, true);
 
-        var x = calendarItemSize.Width * item.Column + Owner.AppointmentsMargin.Left + offsetFromStartDate;
-        var width = Math.Max(1, calendarItemSize.Width * item.ColumnsCount - Owner.AppointmentsMargin.Left - Owner.AppointmentsMargin.Right - offsetFromStartDate - offsetFromEndDate);
+        var x = (calendarItemSize.Width * item.Column) + Owner.AppointmentsMargin.Left + offsetFromStartDate;
+        var width = Math.Max(1, (calendarItemSize.Width * item.ColumnsCount) - Owner.AppointmentsMargin.Left - Owner.AppointmentsMargin.Right - offsetFromStartDate - offsetFromEndDate);
 
-        var y = calendarItemSize.Width * item.Column + Owner.AppointmentsMargin.Top;
+        var y = (calendarItemSize.Width * item.Column) + Owner.AppointmentsMargin.Top;
         var height = Math.Max(1, calendarItemSize.Height - Owner.AppointmentsMargin.Bottom - Owner.AppointmentsMargin.Top);
 
         // 1 => By accurate date
@@ -243,7 +246,7 @@ public class AppointmentsPanel : SimpleStackPanel
         {
             TimeUnit.Hour => date.Minute / 60.0,
             TimeUnit.Day => date.TimeOfDay.TotalMinutes / 1440,
-            _ => 0,
+            _ => 0
         };
 
     #endregion Protected Methods

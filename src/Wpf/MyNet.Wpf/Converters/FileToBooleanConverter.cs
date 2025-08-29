@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FileToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -10,9 +13,9 @@ using MyNet.Utilities;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed
+/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed.
 /// </summary>
-public class FileToBooleanConverter
+public sealed class FileToBooleanConverter
     : IValueConverter
 {
     private readonly bool _existsValue;

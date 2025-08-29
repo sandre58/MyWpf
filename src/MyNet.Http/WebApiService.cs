@@ -15,7 +15,6 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using MyNet.Utilities;
-using Newtonsoft.Json.Linq;
 
 namespace MyNet.Http;
 
@@ -41,7 +40,7 @@ public sealed class WebApiService : IDisposable
         _timeout = timeout != default ? timeout : TimeSpan.FromMilliseconds(Timeout.Infinite);
         var handler = new TimeoutHandler
         {
-            InnerHandler = new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip }
+            InnerHandler = new HttpClientHandler { AutomaticDecompression = System.Net.DecompressionMethods.GZip }
         };
 
         _client = new HttpClient(handler)
@@ -196,7 +195,8 @@ public sealed class WebApiService : IDisposable
         using var linkedCancellationToken = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, cancellationToken);
         tokenSource.CancelAfter(_timeout);
 
-        using var request = new HttpRequestMessage(method, uri) { Content = content };
+        using var request = new HttpRequestMessage(method, uri);
+        request.Content = content;
         request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(CultureInfo.CurrentCulture.Name));
         using var response = await _client.SendAsync(request, HttpCompletionOption.ResponseContentRead, linkedCancellationToken.Token).ConfigureAwait(false);
 
@@ -219,15 +219,13 @@ public sealed class WebApiService : IDisposable
         using var linkedCancellationToken = CancellationTokenSource.CreateLinkedTokenSource(tokenSource.Token, cancellationToken);
         tokenSource.CancelAfter(_timeout);
 
-        using var request = new HttpRequestMessage(method, uri)
-        {
-            Content = content
-        };
+        using var request = new HttpRequestMessage(method, uri);
+        request.Content = content;
 
         request.Headers.AcceptLanguage.Add(new StringWithQualityHeaderValue(CultureInfo.CurrentCulture.Name));
         using var response = await _client.SendAsync(request, HttpCompletionOption.ResponseContentRead, linkedCancellationToken.Token).ConfigureAwait(false);
         return response.IsSuccessStatusCode
-            ? await response.Content.ReadAsAsync<T>().ConfigureAwait(false)
+            ? await response.Content.ReadAsAsync<T>(linkedCancellationToken.Token).ConfigureAwait(false)
             : throw await GetExceptionAsync(response).ConfigureAwait(false);
     }
 

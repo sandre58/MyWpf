@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarItem.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -41,7 +44,7 @@ public class CalendarItem : Control
         TimeUnit.Week => new ImmutablePeriod(Date, Date.AddDays(7).AddMilliseconds(-1)),
         TimeUnit.Month => new ImmutablePeriod(Date, Date.AddMonths(1).AddMilliseconds(-1)),
         TimeUnit.Year => new ImmutablePeriod(Date, Date.AddYears(1).AddMilliseconds(-1)),
-        _ => throw new InvalidOperationException(),
+        _ => throw new InvalidOperationException()
     };
 
     public CalendarBase Owner { get; }
@@ -88,7 +91,9 @@ public class CalendarItem : Control
         DataContext = date;
 
         if (Date.IsBefore(Owner.MinimumDateInternal) || Date.IsAfter(Owner.MaximumDateInternal))
+        {
             IsEnabled = false;
+        }
         else
         {
             IsEnabled = true;
@@ -145,7 +150,7 @@ public class CalendarItem : Control
         new FrameworkPropertyMetadata(false));
 
     /// <summary>
-    /// True if the SchedulerDay represents today
+    /// True if the SchedulerDay represents today.
     /// </summary>
     public object Content
     {
@@ -164,7 +169,7 @@ public class CalendarItem : Control
         new FrameworkPropertyMetadata(null));
 
     /// <summary>
-    /// True if the SchedulerDay represents today
+    /// True if the SchedulerDay represents today.
     /// </summary>
     public DataTemplate ContentTemplate
     {
@@ -183,12 +188,12 @@ public class CalendarItem : Control
             new FrameworkPropertyMetadata(false));
 
     /// <summary>
-    /// Dependency property field for IsToday property
+    /// Dependency property field for IsToday property.
     /// </summary>
     public static readonly DependencyProperty IsNowProperty = IsNowPropertyKey.DependencyProperty;
 
     /// <summary>
-    /// True if the SchedulerDay represents today
+    /// True if the SchedulerDay represents today.
     /// </summary>
     public bool IsNow => (bool)GetValue(IsNowProperty);
 
@@ -203,12 +208,12 @@ public class CalendarItem : Control
             new FrameworkPropertyMetadata(false));
 
     /// <summary>
-    /// Dependency property field for IsToday property
+    /// Dependency property field for IsToday property.
     /// </summary>
     public static readonly DependencyProperty IsTodayProperty = IsTodayPropertyKey.DependencyProperty;
 
     /// <summary>
-    /// True if the SchedulerDay represents today
+    /// True if the SchedulerDay represents today.
     /// </summary>
     public bool IsToday => (bool)GetValue(IsTodayProperty);
 
@@ -265,7 +270,7 @@ public class CalendarItem : Control
         new FrameworkPropertyMetadata(false));
 
     /// <summary>
-    /// Dependency property field for IsInactive property
+    /// Dependency property field for IsInactive property.
     /// </summary>
     public static readonly DependencyProperty IsInactiveProperty = IsInactivePropertyKey.DependencyProperty;
 
@@ -273,7 +278,7 @@ public class CalendarItem : Control
     /// True if the SchedulerButton represents
     ///     a month that falls outside the current year
     ///     or
-    ///     a year that falls outside the current decade
+    ///     a year that falls outside the current decade.
     /// </summary>
     public bool IsInactive
     {
@@ -292,12 +297,12 @@ public class CalendarItem : Control
         new FrameworkPropertyMetadata(false, OnIsSelectedChanged));
 
     /// <summary>
-    /// Dependency property field for IsSelected property
+    /// Dependency property field for IsSelected property.
     /// </summary>
     public static readonly DependencyProperty IsSelectedProperty = IsSelectedPropertyKey.DependencyProperty;
 
     /// <summary>
-    /// True if the CalendarItem is selected
+    /// True if the CalendarItem is selected.
     /// </summary>
     public bool IsSelected => (bool)GetValue(IsSelectedProperty);
 
@@ -320,12 +325,12 @@ public class CalendarItem : Control
             new FrameworkPropertyMetadata(false));
 
     /// <summary>
-    /// Dependency property field for IsBlackedOut property
+    /// Dependency property field for IsBlackedOut property.
     /// </summary>
     public static readonly DependencyProperty IsBlackedOutProperty = IsBlackedOutPropertyKey.DependencyProperty;
 
     /// <summary>
-    /// True if the CalendarItem represents a blackout date
+    /// True if the CalendarItem represents a blackout date.
     /// </summary>
     public bool IsBlackedOut => (bool)GetValue(IsBlackedOutProperty);
 
@@ -361,6 +366,7 @@ public class CalendarItem : Control
             addButton.Click -= AddButton_Click;
             addButton.Click += AddButton_Click;
         }
+
         base.OnApplyTemplate();
         UpdateVisualState(false);
     }
@@ -392,8 +398,8 @@ public class CalendarItem : Control
             : VisualStateManager.GoToState(this, "Unselected", useTransitions);
     }
 
-    protected bool IsMatch(IAppointment appointment) => Period.Start < appointment.StartDate && Period.End > appointment.EndDate
-                                                || appointment.StartDate < Period.Start && appointment.EndDate > Period.End
+    protected bool IsMatch(IAppointment appointment) => (Period.Start < appointment.StartDate && Period.End > appointment.EndDate)
+                                                || (appointment.StartDate < Period.Start && appointment.EndDate > Period.End)
                                                 || Period.Contains(appointment.StartDate)
                                                 || Period.Contains(appointment.EndDate);
 
@@ -404,7 +410,7 @@ public class CalendarItem : Control
             {
                 TimeUnit.Hour => Date.AddMinutes((int)(itemMousePosition.Y * 60 / ActualHeight)),
                 TimeUnit.Day => Date.AddMinutes((int)(itemMousePosition.Y * 1440 / ActualHeight)),
-                _ => Date,
+                _ => Date
             };
 
     public Point GetRelativePositionFromDate(DateTime date)
@@ -417,7 +423,7 @@ public class CalendarItem : Control
             {
                 TimeUnit.Hour => new(0.0, (date - Date).TotalMinutes * height / 60),
                 TimeUnit.Day => new(0.0, (date - Date).TotalMinutes * height / 1440),
-                _ => new Point(0, 0),
+                _ => new Point(0, 0)
             };
     }
 }

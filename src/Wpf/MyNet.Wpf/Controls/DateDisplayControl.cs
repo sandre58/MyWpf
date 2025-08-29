@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateDisplayControl.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -28,18 +31,20 @@ internal class DateDisplayControl : Control
     private static object DisplayDateCoerceValue(DependencyObject d, object baseValue)
     {
         if (d is FrameworkElement element &&
-            element.Language.GetSpecificCulture() is CultureInfo culture &&
+            element.Language.GetSpecificCulture() is { } culture &&
             baseValue is DateTime displayDate)
         {
             if (displayDate < culture.Calendar.MinSupportedDateTime)
             {
                 return culture.Calendar.MinSupportedDateTime;
             }
+
             if (displayDate > culture.Calendar.MaxSupportedDateTime)
             {
                 return culture.Calendar.MaxSupportedDateTime;
             }
         }
+
         return baseValue;
     }
 
@@ -146,9 +151,6 @@ internal class DateDisplayControl : Control
     {
         var calendarControl = this.GetVisualAncestry().OfType<System.Windows.Controls.Calendar>().FirstOrDefault();
 
-        if (calendarControl != null)
-        {
-            calendarControl.DisplayDate = displayDate;
-        }
+        calendarControl?.DisplayDate = displayDate;
     }
 }

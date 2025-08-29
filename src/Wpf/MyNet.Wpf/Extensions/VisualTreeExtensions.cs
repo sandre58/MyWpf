@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="VisualTreeExtensions.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -44,12 +47,11 @@ public static class VisualTreeExtensions
         while (leaf is not null)
         {
             yield return leaf;
-            leaf = leaf is Visual || leaf is Visual3D
+            leaf = leaf is Visual or Visual3D
                 ? VisualTreeHelper.GetParent(leaf)
                 : LogicalTreeHelper.GetParent(leaf);
         }
     }
-
 
     public static T? FindVisualChild<T>(this DependencyObject dependencyObject, string name = "") where T : FrameworkElement
     {
@@ -69,8 +71,8 @@ public static class VisualTreeExtensions
                 return result;
             }
         }
-        return null;
 
+        return null;
     }
 
     /// <summary>
@@ -95,6 +97,7 @@ public static class VisualTreeExtensions
             var nextParent = VisualTreeHelper.GetParent(parent);
             return nextParent != null ? parent.FindTopLevelParent() : parent;
         }
+
         return null;
     }
 
@@ -134,12 +137,9 @@ public static class VisualTreeExtensions
             else // Otherwise walk tree
             {
                 curr = curr.FindVisualParent<FrameworkElement>();
-
             }
-
         }
 
         return success;
     }
-
 }

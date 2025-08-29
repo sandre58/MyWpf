@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reactive.Concurrency;
 using DynamicData;
@@ -44,11 +45,11 @@ public class SelectableCollection<T> : ExtendedWrapperCollection<T, SelectedWrap
     /// <summary>
     /// Gets the collection of selected items.
     /// </summary>
+    [SuppressMessage("ReSharper", "LoopCanBeConvertedToQuery", Justification = "Avoid LINQ Select allocation in hot path")]
     public IEnumerable<T> SelectedItems
     {
         get
         {
-            // Avoid LINQ Select allocation in hot path
             foreach (var wrapper in _selectedWrappers)
                 yield return wrapper.Item;
         }
@@ -157,7 +158,7 @@ public class SelectableCollection<T> : ExtendedWrapperCollection<T, SelectedWrap
         {
             if (SelectionMode == SelectionMode.Single && value)
             {
-                var first = this.Cast<T>().FirstOrDefault();
+                var first = this.FirstOrDefault();
                 if (first is not null)
                     ChangeSelectState(first, true);
             }
@@ -215,8 +216,6 @@ public class SelectableCollection<T> : ExtendedWrapperCollection<T, SelectedWrap
 
     private void UpdateSelection(SelectedWrapper<T> wrapper)
     {
-        // Désélection automatique déjà gérée dans ChangeSelectState
-        // Cette méthode devient inutile en mode Single
         if (SelectionMode != SelectionMode.Single || !wrapper.IsSelected)
             return;
     }

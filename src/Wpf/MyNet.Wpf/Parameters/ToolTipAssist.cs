@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ToolTipAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -39,7 +42,7 @@ public static class ToolTipAssist
         {
             Content = GetContent(target),
             ContentTemplate = GetContentTemplate(target),
-            Placement = placementMode.HasValue ? PlacementMode.Custom : PlacementMode.Mouse,
+            Placement = placementMode.HasValue ? PlacementMode.Custom : PlacementMode.Mouse
         };
         target.ToolTip = tooltip;
         HeaderAssist.SetHeader(tooltip, GetHeader(target));
@@ -78,8 +81,7 @@ public static class ToolTipAssist
 
     private static void OnHeaderChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not FrameworkElement target) return;
-        if (target.ToolTip is not ToolTip tooltip) return;
+        if (d is not FrameworkElement { ToolTip: ToolTip tooltip }) return;
 
         HeaderAssist.SetHeader(tooltip, e.NewValue);
     }
@@ -100,8 +102,7 @@ public static class ToolTipAssist
 
     private static void OnHeaderTemplateChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not FrameworkElement target) return;
-        if (target.ToolTip is not ToolTip tooltip) return;
+        if (d is not FrameworkElement { ToolTip: ToolTip tooltip }) return;
 
         HeaderAssist.SetHeaderTemplate(tooltip, (DataTemplate)e.NewValue);
     }
@@ -155,11 +156,11 @@ public static class ToolTipAssist
                 y = targetSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.BottomAndAlignRightEdges:
-                x = 0 - popupSizeTransformed.Width + targetSizeTransformed.Width + offsetX + useOffsetIfRtl(popupSizeTransformed.Width - targetSizeTransformed.Width * 2);
+                x = 0 - popupSizeTransformed.Width + targetSizeTransformed.Width + offsetX + useOffsetIfRtl(popupSizeTransformed.Width - (targetSizeTransformed.Width * 2));
                 y = targetSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.BottomAndAlignCentres:
-                x = (targetSizeTransformed.Width - popupSizeTransformed.Width) / 2 + offsetX - useOffsetIfRtl(targetSizeTransformed.Width);
+                x = ((targetSizeTransformed.Width - popupSizeTransformed.Width) / 2) + offsetX - useOffsetIfRtl(targetSizeTransformed.Width);
                 y = targetSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.TopAndAlignLeftEdges:
@@ -167,11 +168,11 @@ public static class ToolTipAssist
                 y = 0 - popupSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.TopAndAlignRightEdges:
-                x = 0 - popupSizeTransformed.Width + targetSizeTransformed.Width + offsetX + useOffsetIfRtl(popupSizeTransformed.Width - targetSizeTransformed.Width * 2);
+                x = 0 - popupSizeTransformed.Width + targetSizeTransformed.Width + offsetX + useOffsetIfRtl(popupSizeTransformed.Width - (targetSizeTransformed.Width * 2));
                 y = 0 - popupSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.TopAndAlignCentres:
-                x = (targetSizeTransformed.Width - popupSizeTransformed.Width) / 2 + offsetX - useOffsetIfRtl(targetSizeTransformed.Width);
+                x = ((targetSizeTransformed.Width - popupSizeTransformed.Width) / 2) + offsetX - useOffsetIfRtl(targetSizeTransformed.Width);
                 y = 0 - popupSizeTransformed.Height + offsetY;
                 break;
             case PopupBoxPlacementMode.LeftAndAlignTopEdges:
@@ -184,19 +185,19 @@ public static class ToolTipAssist
                 break;
             case PopupBoxPlacementMode.LeftAndAlignMiddles:
                 x = 0 - popupSizeTransformed.Width + offsetX + useOffsetIfRtl(popupSizeTransformed.Width);
-                y = 0 - (popupSizeTransformed.Height - targetSizeTransformed.Height) / 2 + offsetY;
+                y = 0 - ((popupSizeTransformed.Height - targetSizeTransformed.Height) / 2) + offsetY;
                 break;
             case PopupBoxPlacementMode.RightAndAlignTopEdges:
-                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + targetSizeTransformed.Width * 2);
+                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + (targetSizeTransformed.Width * 2));
                 y = 0 + offsetY;
                 break;
             case PopupBoxPlacementMode.RightAndAlignBottomEdges:
-                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + targetSizeTransformed.Width * 2);
+                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + (targetSizeTransformed.Width * 2));
                 y = 0 - (popupSizeTransformed.Height - targetSizeTransformed.Height) + offsetY;
                 break;
             case PopupBoxPlacementMode.RightAndAlignMiddles:
-                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + targetSizeTransformed.Width * 2);
-                y = 0 - (popupSizeTransformed.Height - targetSizeTransformed.Height) / 2 + offsetY;
+                x = targetSizeTransformed.Width + offsetX - useOffsetIfRtl(popupSizeTransformed.Width + (targetSizeTransformed.Width * 2));
+                y = 0 - ((popupSizeTransformed.Height - targetSizeTransformed.Height) / 2) + offsetY;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(placementMode));

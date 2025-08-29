@@ -10,5 +10,10 @@
   "src/MyNet.Utilities.Geography.Extensions/MyNet.Utilities.Geography.Extensions.csproj": "8.0.0",
   "src/MyNet.Utilities.Localization.Extensions/MyNet.Utilities.Localization.Extensions.csproj": "8.0.0",
   "src/MyNet.Utilities.Logging.NLog/MyNet.Utilities.Logging.NLog.csproj": "8.0.0",
-  "src/MyNet.Utilities.Mail.MailKit/MyNet.Utilities.Mail.MailKit.csproj": "8.0.0"
+  "src/MyNet.Utilities.Mail.MailKit/MyNet.Utilities.Mail.MailKit.csproj": "8.0.0",
+  "src/Wpf/MyNet.Wpf/MyNet.Wpf.csproj": "6.0.5",
+  "src/Wpf/MyNet.Wpf.DragAndDrop/MyNet.Wpf.DragAndDrop.csproj": "6.0.0",
+  "src/Wpf/MyNet.Wpf.LiveCharts/MyNet.Wpf.LiveCharts.csproj": "6.0.0",
+  "src/Wpf/MyNet.Wpf.Presentation/MyNet.Wpf.Presentation.csproj": "6.0.0",
+  "src/Wpf/MyNet.Wpf.Web/MyNet.Wpf.Web.csproj": "6.0.0"
 }

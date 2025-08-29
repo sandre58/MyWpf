@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DpiHelper.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Reflection;
@@ -22,7 +25,6 @@ public static class DpiHelper
             ?? throw new InvalidOperationException($"Could not find DpiX property on {nameof(SystemParameters)}");
         var dpiYProperty = typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static)
             ?? throw new InvalidOperationException($"Could not find Dpi property on {nameof(SystemParameters)}");
-
 
         DpiX = (int)dpiXProperty.GetValue(null, null)!;
         DpiY = (int)dpiYProperty.GetValue(null, null)!;

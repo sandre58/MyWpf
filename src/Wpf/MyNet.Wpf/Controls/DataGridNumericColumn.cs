@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataGridNumericColumn.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.ComponentModel;
 using System.Windows;
@@ -101,10 +104,10 @@ public class DataGridNumericColumn : DataGridTextColumn
                                       new FrameworkPropertyMetadata(string.Empty));
 
     /// <summary>
-    /// Gets or sets the formatting for the displaying <see cref="Value" />
+    /// Gets or sets the formatting for the displaying <see cref="Value" />.
     /// </summary>
     /// <remarks>
-    /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings"></see>
+    /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings"></see>.
     /// </remarks>
     [Category("Common")]
     public string StringFormat

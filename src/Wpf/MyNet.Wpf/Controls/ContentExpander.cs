@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ContentExpander.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -166,7 +169,7 @@ public class ContentExpander : Expander
         SetCurrentValue(property, size);
     }
 
-    private void OnToggleButtonClick(object sender, RoutedEventArgs e) => IsExpanded = _toggleButton != null && _toggleButton.IsChecked.HasValue && _toggleButton.IsChecked.Value;
+    private void OnToggleButtonClick(object sender, RoutedEventArgs e) => IsExpanded = _toggleButton is { IsChecked: not null } && _toggleButton.IsChecked.Value;
 
     #endregion
 }

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ToastItem.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Reflection;
@@ -8,7 +11,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using MyNet.UI.Toasting.Settings;
 using MyNet.Wpf.Controls.Toasts;
-using MyNet.Wpf.Helpers;
 using MyNet.Wpf.Toasting;
 
 namespace MyNet.Wpf.Controls;
@@ -40,17 +42,15 @@ public class ToastItem : UserControl
         if (Toast is null) return;
 
         var options = Toast.Settings;
-        if (options != null && options.FreezeOnMouseEnter)
+        if (options is { FreezeOnMouseEnter: true })
         {
             if (Toast.CanClose)
             {
                 Toast.CanClose = false;
-                if (_closeButton != null)
-                {
-                    _closeButton.Visibility = Visibility.Visible;
-                }
+                _closeButton?.Visibility = Visibility.Visible;
             }
         }
+
         base.OnMouseEnter(e);
     }
 
@@ -59,13 +59,13 @@ public class ToastItem : UserControl
         if (Toast is null) return;
 
         var opts = Toast.Settings;
-        if (opts != null && opts.FreezeOnMouseEnter)
+        if (opts is { FreezeOnMouseEnter: true })
         {
             Toast.CanClose = true;
 
-            if (_closeButton is not null)
-                _closeButton.Visibility = Toast?.Settings.ClosingStrategy is ToastClosingStrategy.Both or ToastClosingStrategy.CloseButton ? Visibility.Visible : Visibility.Collapsed;
+            _closeButton?.Visibility = Toast?.Settings.ClosingStrategy is ToastClosingStrategy.Both or ToastClosingStrategy.CloseButton ? Visibility.Visible : Visibility.Collapsed;
         }
+
         base.OnMouseLeave(e);
     }
 
@@ -77,10 +77,12 @@ public class ToastItem : UserControl
         {
             _closeButton.Click -= OnCloseButtonClick;
         }
+
         if (Toast is not null)
         {
             Toast.CloseRequest -= Toast_CloseRequest;
         }
+
         Loaded -= OnLoaded;
     }
 

@@ -36,8 +36,7 @@
     </Target>
 
     <!-- Generate HTML coverage report after tests -->
-    <Target Name="GenerateCoverageReport"
-        AfterTargets="VSTest">
+    <Target Name="GenerateCoverageReport" AfterTargets="VSTest">
 
         <!-- Only run if coverage file exists -->
         <ItemGroup>
@@ -52,5 +51,14 @@
                    -reports:@(CoverageFiles) 
                    -targetdir:$(CoverageOutputDir)
                    -reporttypes:$(CoverageReportFormats)" />
+    </Target>
+    
+    <!-- Target to display the main properties of each project -->
+    <Target Name="ShowProjectProperties" AfterTargets="Build">
+        <Message Text="========== $(MSBuildProjectName) ==========" Importance="High" />
+        <Message Text="IsTestProject=$(IsTestProject)" Importance="High" />
+        <Message Text="IsDemoProject=$(IsDemoProject)" Importance="High" />
+        <Message Text="IsPackable=$(IsPackable)" Importance="High" />
+        <Message Text="EnableAnalyzers=$(EnableAnalyzers)" Importance="High" />
     </Target>
 </Project>

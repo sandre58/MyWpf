@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AutoSuggestBox.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -78,6 +81,7 @@ public class AutoSuggestBox : TextBox
         get => (double)GetValue(MaxPopUpHeightProperty);
         set => SetValue(MaxPopUpHeightProperty, value);
     }
+
     public double PopupWidth
     {
         get => (double)GetValue(PopUpWidthProperty);
@@ -159,10 +163,9 @@ public class AutoSuggestBox : TextBox
         set => SetValue(SelectedItemProperty, value);
     }
 
-
     private static void OnIsEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is AutoSuggestBox autoSuggestBox && !autoSuggestBox.IsEnabled)
+        if (d is AutoSuggestBox { IsEnabled: false } autoSuggestBox)
         {
             autoSuggestBox.IsDropDownOpen = false;
         }
@@ -170,7 +173,7 @@ public class AutoSuggestBox : TextBox
 
     public static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is AutoSuggestBox autoSuggestBox && !autoSuggestBox._isUpdatingText)
+        if (d is AutoSuggestBox { _isUpdatingText: false } autoSuggestBox)
         {
             autoSuggestBox._isUpdatingText = true;
             autoSuggestBox.Text = autoSuggestBox.GetDisplayText(e.NewValue);
@@ -180,7 +183,7 @@ public class AutoSuggestBox : TextBox
 
     private void ScrollToSelectedItem()
     {
-        if (_itemsSelector is ListBox listBox && listBox.SelectedItem != null)
+        if (_itemsSelector is ListBox { SelectedItem: not null } listBox)
             listBox.ScrollIntoView(listBox.SelectedItem);
     }
 
@@ -196,6 +199,7 @@ public class AutoSuggestBox : TextBox
             popup.Opened += OnPopupOpened;
             popup.Closed += OnPopupClosed;
         }
+
         if (_itemsSelector != null)
         {
             var source = new CollectionViewSource() { Source = _suggestions };
@@ -203,6 +207,7 @@ public class AutoSuggestBox : TextBox
             {
                 source.GroupDescriptions.Add(new PropertyGroupDescription() { PropertyName = GroupMemberPath });
             }
+
             _itemsSelector.GroupStyle.Set(GroupStyle);
             _itemsSelector.ItemsSource = source.View;
             _selectionAdapter = new SelectionAdapter(_itemsSelector);
@@ -264,7 +269,7 @@ public class AutoSuggestBox : TextBox
             if (IsDropDownOpen)
                 _selectionAdapter.HandleKeyDown(e);
             else
-                IsDropDownOpen = e.Key == Key.Down || e.Key == Key.Up;
+                IsDropDownOpen = e.Key is Key.Down or Key.Up;
         }
     }
 
@@ -336,7 +341,6 @@ public class AutoSuggestBox : TextBox
         var args = new SelectionAdapter.PreSelectionAdapterFinishArgs(action, cause);
         PreSelectionAdapterFinish?.Invoke(this, args);
         return args.Handled;
-
     }
 
     private void OnSelectionAdapterCommit(SelectionAdapter.EventCause cause)
@@ -501,6 +505,7 @@ public class SelectionAdapter
             default:
                 return;
         }
+
         key.Handled = true;
     }
 

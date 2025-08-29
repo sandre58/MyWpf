@@ -77,7 +77,8 @@ public static class TimeSpanHumanizeExtensions
         return CreateTimePartsWithNoTimeValue(noTimeValueCultureFormatted);
     }
 
-    [SuppressMessage("Roslynator", "RCS1196:Call extension method as instance method", Justification = "Ambiguity with multiple Linq extensions.")]
+    [SuppressMessage("Roslyn", "RCS1196:Call extension method as instance method", Justification = "Ambiguity with multiple Linq extensions.")]
+    [SuppressMessage("ReSharper", "InvokeAsExtensionMethod", Justification = "Ambiguity with multiple Linq extensions.")]
     private static IEnumerable<TimeUnit> GetEnumTypesForTimeUnit()
     {
         var enumTypeEnumerator = Enum.GetValues<TimeUnit>();

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ListViewLayoutBehavior.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -152,6 +155,7 @@ public sealed class ListViewLayoutBehavior : Behavior<ListView>, IDisposable
             Resize();
             AssociatedObject.SizeChanged += OnSizeChanged;
         }
+
         _timer = new Timer(x => UI.Threading.Scheduler.UiOrCurrent.Schedule(resizeAndEnableSize), null, Delay, RefreshTime);
     }
 
@@ -237,9 +241,10 @@ public sealed class ListViewLayoutBehavior : Behavior<ListView>, IDisposable
         double totalWidth = 0;
         foreach (var layout in ColumnLayouts?.OfType<GridViewColumnLayout>() ?? [])
         {
-            if (layout is GridViewColumnLayout columnLayout && columnLayout.IsStatic && columnLayout.IsVisible)
+            if (layout is { IsStatic: true, IsVisible: true } columnLayout)
                 totalWidth += columnLayout.StaticWidth > 0 ? columnLayout.StaticWidth : columnLayout.Column.ActualWidth;
         }
+
         return totalWidth;
     }
 

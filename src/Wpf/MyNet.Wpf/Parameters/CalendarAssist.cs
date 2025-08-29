@@ -1,8 +1,10 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
-using System.Windows.Media;
 
 namespace MyNet.Wpf.Parameters;
 
@@ -11,6 +13,7 @@ public enum CalendarOrientation
     Vertical,
     Horizontal
 }
+
 public static class CalendarAssist
 {
     #region Header Visibility

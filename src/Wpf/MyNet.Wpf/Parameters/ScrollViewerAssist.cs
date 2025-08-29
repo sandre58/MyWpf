@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ScrollViewerAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Linq;
@@ -137,8 +140,9 @@ public static class ScrollViewerAssist
                     case wM_MOUSEHWHEEL:
                         int tilt = (short)(wParam.ToInt64() >> 16 & 0xFFFF);
                         onMouseTilt(tilt);
-                        return (IntPtr)1;
+                        return 1;
                 }
+
                 return IntPtr.Zero;
             }
 

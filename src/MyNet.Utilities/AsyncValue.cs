@@ -10,5 +10,5 @@ namespace MyNet.Utilities;
 
 public class AsyncValue<T>(Func<T> provideValue)
 {
-    public T Value { get => field ??= provideValue(); private set; } = default!;
+    public T Value { get => field ??= provideValue(); } = default!;
 }

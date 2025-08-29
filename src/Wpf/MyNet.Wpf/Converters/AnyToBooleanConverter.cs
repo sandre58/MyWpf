@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AnyToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -10,7 +13,7 @@ using System.Windows.Data;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed
+/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed.
 /// </summary>
 public class AnyToBooleanConverter(bool anyValue = true)
             : IValueConverter

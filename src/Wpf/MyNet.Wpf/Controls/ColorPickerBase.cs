@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorPickerBase.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -128,7 +131,7 @@ public class ColorPickerBase : Control
     }
 
     /// <summary>
-    /// Gets or sets a default selected <see cref="Color"/>
+    /// Gets or sets a default selected <see cref="Color"/>.
     /// </summary>
     public Color? DefaultColor
     {
@@ -166,7 +169,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata((byte)255, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnRGBAColorChanged));
 
     /// <summary>
-    /// Gets or sets the Alpha-Channel
+    /// Gets or sets the Alpha-Channel.
     /// </summary>
     public byte A
     {
@@ -186,7 +189,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnRGBAColorChanged));
 
     /// <summary>
-    /// Gets or sets the Red-Channel
+    /// Gets or sets the Red-Channel.
     /// </summary>
     public byte R
     {
@@ -196,7 +199,7 @@ public class ColorPickerBase : Control
 
     protected static void OnRGBAColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
-        if (dependencyObject is ColorPickerBase colorPicker && !colorPicker._colorIsUpdating)
+        if (dependencyObject is ColorPickerBase { _colorIsUpdating: false } colorPicker)
         {
             colorPicker.SetCurrentValue(SelectedColorProperty, Color.FromArgb(colorPicker.A, colorPicker.R, colorPicker.G, colorPicker.B));
         }
@@ -214,7 +217,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnRGBAColorChanged));
 
     /// <summary>
-    /// Gets or sets the Green-Channel
+    /// Gets or sets the Green-Channel.
     /// </summary>
     public byte G
     {
@@ -234,7 +237,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata((byte)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnRGBAColorChanged));
 
     /// <summary>
-    /// Gets or sets the Blue-Channel
+    /// Gets or sets the Blue-Channel.
     /// </summary>
     public byte B
     {
@@ -254,7 +257,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnHSVColorChanged));
 
     /// <summary>
-    /// Gets or sets the Hue-Channel
+    /// Gets or sets the Hue-Channel.
     /// </summary>
     public double Hue
     {
@@ -264,7 +267,7 @@ public class ColorPickerBase : Control
 
     private static void OnHSVColorChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
     {
-        if (dependencyObject is ColorPickerBase colorPicker && !colorPicker._colorIsUpdating)
+        if (dependencyObject is ColorPickerBase { _colorIsUpdating: false } colorPicker)
         {
             var hsv = new HSVColor(colorPicker.A / 255d, colorPicker.Hue, colorPicker.Saturation, colorPicker.Value);
 
@@ -292,7 +295,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnHSVColorChanged));
 
     /// <summary>
-    /// Gets or sets the Saturation-Channel
+    /// Gets or sets the Saturation-Channel.
     /// </summary>
     public double Saturation
     {
@@ -312,7 +315,7 @@ public class ColorPickerBase : Control
                                       new FrameworkPropertyMetadata(0d, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnHSVColorChanged));
 
     /// <summary>
-    /// Gets or sets the Value-Channel
+    /// Gets or sets the Value-Channel.
     /// </summary>
     public double Value
     {
@@ -374,7 +377,7 @@ public class ColorPickerBase : Control
         {
             SetCurrentValue(SelectedColorProperty, null);
         }
-        else if (colorName.ToColor() is Color color)
+        else if (colorName.ToColor() is { } color)
         {
             if (SelectedColor != color)
             {
@@ -450,13 +453,17 @@ public class ColorPickerBase : Control
     protected virtual void UpdateColorName(Color? color)
     {
         if (DisplayNameMode == ColorDisplayNameMode.Hexa)
+        {
             SetCurrentValue(ColorNameProperty, color?.ToHex());
+        }
         else
         {
             var name = color?.ToName();
 
             if (DisplayNameMode == ColorDisplayNameMode.Name)
+            {
                 SetCurrentValue(ColorNameProperty, name);
+            }
             else
             {
                 var hexa = color?.ToHex();

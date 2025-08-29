@@ -3,7 +3,6 @@
                     xmlns:c="clr-namespace:MyNet.Wpf.Converters"
                     xmlns:ctrl="clr-namespace:MyNet.Wpf.Controls"
                     xmlns:me="clr-namespace:MyNet.Wpf.MarkupExtensions"
-                    xmlns:media="clr-namespace:MyNet.Wpf.Media"
                     xmlns:p="clr-namespace:MyNet.Wpf.Parameters">
 
     <ResourceDictionary.MergedDictionaries>

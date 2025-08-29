@@ -1,9 +1,12 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="IndicatorVisualStateGroupNames.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace MyNet.Wpf.Controls.VisualStates;
 
-internal class IndicatorVisualStateGroupNames
+internal sealed class IndicatorVisualStateGroupNames
 {
     private static IndicatorVisualStateGroupNames? _internalActiveStates;
     private static IndicatorVisualStateGroupNames? _sizeStates;

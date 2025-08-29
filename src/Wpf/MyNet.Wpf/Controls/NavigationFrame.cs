@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NavigationFrame.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -28,7 +31,8 @@ public class NavigationFrame : Frame
     /// <summary>
     /// Initialzies a new instance of the Frame class.
     /// </summary>
-    public NavigationFrame() : base()
+    public NavigationFrame()
+        : base()
     {
         InheritanceBehavior = InheritanceBehavior.Default;
         JournalOwnership = JournalOwnership.OwnsJournal;

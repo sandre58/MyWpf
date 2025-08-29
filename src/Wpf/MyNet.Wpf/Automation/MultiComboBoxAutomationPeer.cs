@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MultiComboBoxAutomationPeer.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -70,11 +73,13 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
                 if (owner.IsEditable)
                 {
                     var tb = owner.EditableTextBoxSite;
-                    if (tb == null || !tb.IsKeyboardFocused)
+                    if (tb is not { IsKeyboardFocused: true })
                         throw new InvalidOperationException();
                 }
                 else
+                {
                     throw new InvalidOperationException();
+                }
             }
         }
         else
@@ -86,10 +91,10 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
     #region Value
 
     /// <summary>
-    /// Request to set the value that this UI element is representing
+    /// Request to set the value that this UI element is representing.
     /// </summary>
     /// <param name="value"></param>
-    /// <returns>true if the UI element was successfully set to the specified value</returns>
+    /// <returns>true if the UI element was successfully set to the specified value.</returns>
     void IValueProvider.SetValue(string value)
     {
         ArgumentNullException.ThrowIfNull(value);
@@ -106,7 +111,7 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
     string IValueProvider.Value => ((MultiComboBox)Owner).Text;
 
     ///<summary>Indicates that the value can only be read, not modified.
-    ///returns True if the control is read-only</summary>
+    ///returns True if the control is read-only.</summary>
     bool IValueProvider.IsReadOnly
     {
         get
@@ -193,7 +198,7 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
     /// <summary>
     /// Blocking method that returns after the element has been expanded.
     /// </summary>
-    /// <returns>true if the node was successfully expanded</returns>
+    /// <returns>true if the node was successfully expanded.</returns>
     void IExpandCollapseProvider.Expand()
     {
         if (!IsEnabled())
@@ -206,7 +211,7 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
     /// <summary>
     /// Blocking method that returns after the element has been collapsed.
     /// </summary>
-    /// <returns>true if the node was successfully collapsed</returns>
+    /// <returns>true if the node was successfully collapsed.</returns>
     void IExpandCollapseProvider.Collapse()
     {
         if (!IsEnabled())
@@ -216,7 +221,7 @@ public class MultiComboBoxAutomationPeer(MultiComboBox multiComboBox) : Selector
         owner.SetCurrentValue(MultiComboBox.IsDropDownOpenProperty, false);
     }
 
-    ///<summary>indicates an element's current Collapsed or Expanded state</summary>
+    ///<summary>indicates an element's current Collapsed or Expanded state.</summary>
     ExpandCollapseState IExpandCollapseProvider.ExpandCollapseState
     {
         get

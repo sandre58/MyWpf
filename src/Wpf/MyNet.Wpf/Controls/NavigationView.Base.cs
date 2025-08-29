@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NavigationView.Base.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -61,6 +64,7 @@ public partial class NavigationView : HeaderedItemsControl, ISuggestionProvider
             if (!Equals(_navigationViewContentPresenter?.Content, view))
                 UpdateContent(view, NavigationService.CurrentContext.Page);
         }
+
         UpdateNavigationControls();
     }
 
@@ -78,6 +82,7 @@ public partial class NavigationView : HeaderedItemsControl, ISuggestionProvider
             GoBack();
             e.Handled = true;
         }
+
         if (e.ChangedButton is MouseButton.XButton2)
         {
             GoForward();
@@ -135,7 +140,7 @@ public partial class NavigationView : HeaderedItemsControl, ISuggestionProvider
     }
 
     private static NavigationViewItem? GetParentOfChild(List<NavigationViewItem> items, NavigationViewItem child)
-        => items.Contains(child) ? null : items.Find(x => x.GetNavigationViewItems().Contains(child)) is NavigationViewItem navigationViewItem ? navigationViewItem : GetParentOfChild([.. items.SelectMany(x => x.GetNavigationViewItems())], child);
+        => items.Contains(child) ? null : items.Find(x => x.GetNavigationViewItems().Contains(child)) is { } navigationViewItem ? navigationViewItem : GetParentOfChild([.. items.SelectMany(x => x.GetNavigationViewItems())], child);
 
     protected override DependencyObject GetContainerForItemOverride() => new NavigationViewItem();
 
@@ -172,6 +177,7 @@ public partial class NavigationView : HeaderedItemsControl, ISuggestionProvider
 
             result.AddRange(GetAllTargetableItems(item.GetNavigationViewItems()));
         }
+
         return result;
     }
 

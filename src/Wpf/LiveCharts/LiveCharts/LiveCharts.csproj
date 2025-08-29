@@ -1,8 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <EnableNETAnalyzers>false</EnableNETAnalyzers>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-
 </Project>

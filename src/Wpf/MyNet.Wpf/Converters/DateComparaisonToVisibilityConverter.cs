@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateComparaisonToVisibilityConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -54,7 +57,7 @@ public sealed class DateComparaisonToVisibilityConverter : IValueConverter, IMul
 
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => DoConvert(value, parameter, null, Comparaison, _trueVisibility, _falseVisibility);
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values == null || values.Length < 2
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values is not { Length: >= 2 }
             ? Binding.DoNothing
             : DoConvert(values[0], values[1], values.Length > 2 ? values[2] : null, Comparaison, _trueVisibility, _falseVisibility);
 

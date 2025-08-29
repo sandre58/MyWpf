@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RGBAToGradientBrushConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -10,7 +13,7 @@ using System.Windows.Media;
 
 namespace MyNet.Wpf.Converters;
 
-public class RGBAToGradientBrushConverter : IMultiValueConverter
+public sealed class RGBAToGradientBrushConverter : IMultiValueConverter
 {
     private enum Mode
     {
@@ -78,8 +81,6 @@ public class RGBAToGradientBrushConverter : IMultiValueConverter
                 brush.GradientStops.Add(new GradientStop(Color.FromArgb(0, v1, v2, v3), _orientation == Orientation.Horizontal ? 0 : 1));
                 brush.GradientStops.Add(new GradientStop(Color.FromArgb(255, v1, v2, v3), _orientation == Orientation.Horizontal ? 1 : 0));
                 break;
-            default:
-                break;
         }
 
         brush.Freeze();
@@ -87,5 +88,4 @@ public class RGBAToGradientBrushConverter : IMultiValueConverter
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => [.. targetTypes.Select(t => Binding.DoNothing)];
-
 }

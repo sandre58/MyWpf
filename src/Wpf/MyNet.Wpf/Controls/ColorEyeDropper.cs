@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorEyeDropper.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -30,7 +33,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
     /// <summary>
     ///     The DependencyProperty for the Content property.
     ///     Flags:              None
-    ///     Default Value:      null
+    ///     Default Value:      null.
     /// </summary>
     public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(
@@ -52,7 +55,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
     }
 
     /// <summary>
-    ///     Called when ContentProperty is invalidated on "d."
+    ///     Called when ContentProperty is invalidated on "d.".
     /// </summary>
     private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -91,7 +94,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
     ///     The DependencyProperty for the HasContent property.
     ///     Flags:              None
     ///     Other:              Read-Only
-    ///     Default Value:      false
+    ///     Default Value:      false.
     /// </summary>
     public static readonly DependencyProperty HasContentProperty =
             HasContentPropertyKey.DependencyProperty;
@@ -99,7 +102,8 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
     /// <summary>
     ///     True if Content is non-null, false otherwise.
     /// </summary>
-    [Browsable(false), ReadOnly(true)]
+    [Browsable(false)]
+    [ReadOnly(true)]
     public bool HasContent => (bool)GetValue(HasContentProperty);
 
     /// <summary>Identifies the <see cref="PreviewImageOuterPixelCount"/> dependency property.</summary>
@@ -126,7 +130,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
                                       new PropertyMetadata(null));
 
     /// <summary>
-    /// Gets or sets the Cursor for Selecting Color Mode
+    /// Gets or sets the Cursor for Selecting Color Mode.
     /// </summary>
     public Cursor? EyeDropperCursor
     {
@@ -154,7 +158,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
     {
         _previewPopup?.Move(mousePos, new Point(16, 16));
 
-        if (_currentTask?.Status == DispatcherOperationStatus.Executing || _currentTask?.Status == DispatcherOperationStatus.Pending)
+        if (_currentTask?.Status is DispatcherOperationStatus.Executing or DispatcherOperationStatus.Pending)
         {
             _currentTask.Abort();
         }
@@ -165,7 +169,7 @@ public class ColorEyeDropper : ColorPickerBase, IAddChild
             var outerPixelCount = PreviewImageOuterPixelCount;
             var posX = (int)Math.Round(mousePos.X - outerPixelCount);
             var posY = (int)Math.Round(mousePos.Y - outerPixelCount);
-            var region = new Int32Rect(posX, posY, 2 * outerPixelCount + 1, 2 * outerPixelCount + 1);
+            var region = new Int32Rect(posX, posY, (2 * outerPixelCount) + 1, (2 * outerPixelCount) + 1);
             var previewImage = EyeDropperHelper.CaptureRegion(region);
             var previewBrush = new SolidColorBrush(EyeDropperHelper.GetPixelColor(mousePos));
             previewBrush.Freeze();
@@ -256,7 +260,7 @@ public class ColorEyePreviewData : DependencyObject
     public static readonly DependencyProperty PreviewImageProperty = PreviewImagePropertyKey.DependencyProperty;
 
     /// <summary>
-    /// Gets the preview image while the cursor is moving
+    /// Gets the preview image while the cursor is moving.
     /// </summary>
     public ImageSource? PreviewImage => (ImageSource?)GetValue(PreviewImageProperty);
 
@@ -271,7 +275,7 @@ public class ColorEyePreviewData : DependencyObject
     public static readonly DependencyProperty PreviewBrushProperty = PreviewBrushPropertyKey.DependencyProperty;
 
     /// <summary>
-    /// Gets the preview brush while the cursor is moving
+    /// Gets the preview brush while the cursor is moving.
     /// </summary>
     public Brush PreviewBrush => (Brush)GetValue(PreviewBrushProperty);
 }

@@ -426,8 +426,7 @@ public class Messenger : IMessenger
         foreach (var item in listClone)
         {
             if (item.Action is IExecuteWithObject executeAction
-                && item.Action.IsAlive
-                && item.Action.Target != null
+                && item.Action is { IsAlive: true, Target: not null }
                 && (messageTargetType == null
                     || item.Action.Target.GetType() == messageTargetType
                     || messageTargetType.IsInstanceOfType(item.Action.Target))
@@ -442,8 +441,7 @@ public class Messenger : IMessenger
     private static void UnregisterFromLists(object? recipient, Dictionary<Type, List<WeakActionAndToken>>? lists)
     {
         if (recipient == null
-            || lists == null
-            || lists.Count == 0)
+            || lists is not { Count: not 0 })
         {
             return;
         }
@@ -466,8 +464,7 @@ public class Messenger : IMessenger
         var messageType = typeof(TMessage);
 
         if (recipient == null
-            || lists == null
-            || lists.Count == 0
+            || lists is not { Count: not 0 }
             || !lists.TryGetValue(messageType, out var value))
         {
             return;

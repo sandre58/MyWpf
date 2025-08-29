@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RatingBar.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -38,6 +41,7 @@ public class RatingBar : Control
                 Value = parameter;
                 return;
             }
+
             Value = GetValueAtMousePosition((RatingBarButton)executedRoutedEventArgs.OriginalSource);
         }
     }
@@ -94,7 +98,7 @@ public class RatingBar : Control
         => Math.Max(double.Epsilon, Math.Min(1.0, (double)baseValue));
 
     /// <summary>
-    /// Gets or sets the value increments. Set to a value between 0.0 and 1.0 (both exclusive) to enable fractional values. Default value is 1.0 (i.e. fractional values disabled)
+    /// Gets or sets the value increments. Set to a value between 0.0 and 1.0 (both exclusive) to enable fractional values. Default value is 1.0 (i.e. fractional values disabled).
     /// </summary>
     public double ValueIncrements
     {
@@ -126,6 +130,7 @@ public class RatingBar : Control
                 value = Math.Ceiling(value);
             return ratingBar.CoerceToValidIncrement(value);
         }
+
         return (double)ratingBar.Min;
     }
 
@@ -267,6 +272,7 @@ public class RatingBar : Control
         {
             ratingBarButton.MouseMove -= RatingBarButton_MouseMove;
         }
+
         _ratingButtonsInternal.Clear();
 
         var start = IsFractionalValueEnabled ? Min + 1 : Min;
@@ -278,7 +284,7 @@ public class RatingBar : Control
                 ContentTemplate = ValueItemTemplate,
                 ContentTemplateSelector = ValueItemTemplateSelector,
                 Style = ValueItemContainerButtonStyle,
-                Value = i,
+                Value = i
             };
             ratingBarButton.MouseMove += RatingBarButton_MouseMove;
             _ratingButtonsInternal.Add(ratingBarButton);

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CommandsAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +29,7 @@ public static class CommandsAssist
     {
         if (target is Control control)
         {
-            if (e.NewValue != null && e.OldValue == null)
+            if (e is { NewValue: not null, OldValue: null })
                 control.MouseDoubleClick += OnDoubleClick;
             else if (e.NewValue == null && e.OldValue != null)
                 control.MouseDoubleClick -= OnDoubleClick;
@@ -53,7 +56,7 @@ public static class CommandsAssist
     {
         if (target is Control control)
         {
-            if (e.NewValue != null && e.OldValue == null)
+            if (e is { NewValue: not null, OldValue: null })
                 control.MouseLeftButtonUp += OnClick;
             else if (e.NewValue == null && e.OldValue != null)
                 control.MouseLeftButtonUp -= OnClick;
@@ -61,7 +64,6 @@ public static class CommandsAssist
     }
 
     private static void OnClick(object? sender, RoutedEventArgs e) => ExecuteCommand(sender, ClickCommandProperty);
-
 
     private static void ExecuteCommand(object? sender, DependencyProperty dpCommand)
     {
@@ -91,7 +93,7 @@ public static class CommandsAssist
     {
         if (target is Control control)
         {
-            if (e.NewValue != null && e.OldValue == null)
+            if (e is { NewValue: not null, OldValue: null })
                 control.PreviewKeyDown += OnPreviewKeyDown;
             else if (e.NewValue == null && e.OldValue != null)
                 control.PreviewKeyDown -= OnPreviewKeyDown;

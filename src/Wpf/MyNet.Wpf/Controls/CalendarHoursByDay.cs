@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarHoursByDay.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -103,7 +106,7 @@ public class CalendarHoursByDay : CalendarBase
     protected override IEnumerable<object> GetRowHeaders()
         => DateTimeHelper.Range(DateTime.Today.BeginningOfDay(), DateTime.Today.EndOfDay(), 1, TimeUnit.Hour).Where(x => x.IsBetween(DateTime.Today.At(DisplayTimeStart), DateTime.Today.At(DisplayTimeEnd))).Select(x => x.TimeOfDay).OfType<object>().ToList();
 
-    protected override IEnumerable<(DateTime date, int row, int column)> GetDisplayDates()
+    protected override IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates()
     {
         var start = DisplayDateInternal.DiscardTime();
         var end = DisplayDateInternal.AddDays(DisplayDaysCount - 1).DiscardTime();

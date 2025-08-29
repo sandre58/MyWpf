@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="PointValueConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -12,8 +15,11 @@ public class PointValueConverter : IMultiValueConverter
 {
     public static readonly PointValueConverter Default = new();
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values?.Length == 2 && values[0] != null && values[1] != null && double.TryParse(values[0].ToString(), out var x) &&
-                double.TryParse(values[1].ToString(), out var y)
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values is
+                                                                                                      [
+                                                                                                          not null, not null
+                                                                                                      ] && double.TryParse(values[0].ToString(), out var x) &&
+                                                                                                      double.TryParse(values[1].ToString(), out var y)
             ? new Point(x, y)
             : (object)new Point();
 

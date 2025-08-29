@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="WpfCommand.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Input;
@@ -50,7 +53,8 @@ public class WpfCommand : RelayCommand
     /// be kept as a hard reference, which might cause a memory leak. You should only set this
     /// parameter to true if the action is causing a closures.</param>
     /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-    public WpfCommand(Action execute, Func<bool>? canExecute, bool keepTargetAlive = false) : base(execute, canExecute)
+    public WpfCommand(Action execute, Func<bool>? canExecute, bool keepTargetAlive = false)
+        : base(execute, canExecute)
     {
         ArgumentNullException.ThrowIfNull(execute);
 
@@ -127,8 +131,8 @@ public class WpfCommand : RelayCommand
     /// <param name="parameter">This parameter will always be ignored.</param>
     /// <returns>true if this command can be executed; otherwise, false.</returns>
     public override bool CanExecute(object? parameter) => _canExecute == null
-            || (_canExecute.IsStatic || _canExecute.IsAlive)
-                && _canExecute.Execute();
+            || ((_canExecute.IsStatic || _canExecute.IsAlive)
+                && _canExecute.Execute());
 
     /// <summary>
     /// Defines the method to be called when the command is invoked. 
@@ -187,7 +191,8 @@ public class WpfCommand<T> : RelayCommand<T>
     /// be kept as a hard reference, which might cause a memory leak. You should only set this
     /// parameter to true if the action is causing a closure.</param>
     /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-    public WpfCommand(Action<T?> execute, Func<T?, bool>? canExecute, bool keepTargetAlive = false) : base(execute, canExecute)
+    public WpfCommand(Action<T?> execute, Func<T?, bool>? canExecute, bool keepTargetAlive = false)
+        : base(execute, canExecute)
     {
         ArgumentNullException.ThrowIfNull(execute);
 
@@ -230,7 +235,7 @@ public class WpfCommand<T> : RelayCommand<T>
     /// Defines the method that determines whether the command can execute in its current state.
     /// </summary>
     /// <param name="parameter">Data used by the command. If the command does not require data 
-    /// to be passed, this object can be set to a null reference</param>
+    /// to be passed, this object can be set to a null reference.</param>
     /// <returns>true if this command can be executed; otherwise, false.</returns>
     public override bool CanExecute(object? parameter)
     {
@@ -260,7 +265,7 @@ public class WpfCommand<T> : RelayCommand<T>
     /// Defines the method to be called when the command is invoked. 
     /// </summary>
     /// <param name="parameter">Data used by the command. If the command does not require data 
-    /// to be passed, this object can be set to a null reference</param>
+    /// to be passed, this object can be set to a null reference.</param>
     public override void Execute(object? parameter)
     {
         var val = parameter;

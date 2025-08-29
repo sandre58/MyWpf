@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CountToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -8,9 +11,9 @@ using System.Windows.Data;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed
+/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed.
 /// </summary>
-public class CountToBooleanConverter
+public sealed class CountToBooleanConverter
     : IValueConverter
 {
     private readonly ComparaisonToBooleanConverter _converter;
@@ -27,6 +30,7 @@ public class CountToBooleanConverter
         _converter = converter;
         _parameter = parameter;
     }
+
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => _converter.Convert(value, targetType, _parameter, culture);
 
     public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => _converter.ConvertBack(value, targetType, _parameter, culture);

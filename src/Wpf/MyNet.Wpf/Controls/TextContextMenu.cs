@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TextContextMenu.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using MaterialDesignThemes.Wpf;
 using MyNet.Wpf.Extensions;
@@ -29,7 +32,7 @@ public class TextContextMenu : ContextMenu
         _spellCheckingMenuItem = new MenuItem
         {
             Visibility = Visibility.Collapsed,
-            Icon = new PackIcon { Kind = PackIconKind.Spellcheck },
+            Icon = new PackIcon { Kind = PackIconKind.Spellcheck }
         };
         _spellCheckingMenuItem.SetTranslatableResourceBinding(HeaderedItemsControl.HeaderProperty, "SpellChecking");
 
@@ -59,7 +62,7 @@ public class TextContextMenu : ContextMenu
         var item = new MenuItem
         {
             Command = command,
-            Icon = new PackIcon { Kind = kind },
+            Icon = new PackIcon { Kind = kind }
         };
         item.SetTranslatableResourceBinding(HeaderedItemsControl.HeaderProperty, command.Name);
 
@@ -114,7 +117,6 @@ public class TextContextMenu : ContextMenu
                     };
                     _ = _spellCheckingMenuItem.Items.Add(menuItem);
                 }
-
             }
             else
             {
@@ -144,5 +146,4 @@ public class TextContextMenu : ContextMenu
             _spellCheckingMenuItem.Visibility = Visibility.Collapsed;
         }
     }
-
 }

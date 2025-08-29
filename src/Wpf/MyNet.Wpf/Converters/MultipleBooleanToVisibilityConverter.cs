@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MultipleBooleanToVisibilityConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -8,12 +11,12 @@ using System.Windows.Data;
 
 namespace MyNet.Wpf.Converters;
 
-public class MultipleBooleanToVisibilityConverter : IMultiValueConverter
+public sealed class MultipleBooleanToVisibilityConverter : IMultiValueConverter
 {
     private enum Operator
     {
         And,
-        Or,
+        Or
     }
 
     private readonly Operator _operator;
@@ -47,6 +50,7 @@ public class MultipleBooleanToVisibilityConverter : IMultiValueConverter
                 return _falseVisibility;
             }
         }
+
         return (_operator == Operator.And) ? Visibility.Visible : _falseVisibility;
     }
 

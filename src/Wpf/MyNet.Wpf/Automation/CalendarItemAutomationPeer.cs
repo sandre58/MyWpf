@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarItemAutomationPeer.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +18,7 @@ using MyNet.Wpf.Controls;
 namespace MyNet.Wpf.Automation;
 
 /// <summary>
-/// AutomationPeer for SchedulerDay and SchedulerButton
+/// AutomationPeer for SchedulerDay and SchedulerButton.
 /// </summary>
 public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemProvider, ITableItemProvider, IInvokeProvider, IVirtualizedItemProvider
 {
@@ -254,6 +257,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
         {
             return wrapperPeer.GetOrientation();
         }
+
         ThrowElementNotAvailableException();
 
         return AutomationOrientation.None;
@@ -278,21 +282,26 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
                     {
                         result = this;
                     }
+
                     break;
                 }
+
             case PatternInterface.TableItem:
                 {
                     if (owningButton != null)
                     {
                         result = this;
                     }
+
                     break;
                 }
+
             case PatternInterface.SelectionItem:
                 {
                     result = this;
                     break;
                 }
+
             case PatternInterface.VirtualizedItem:
                 if (VirtualizedItemPatternIdentifiers.Pattern != null)
                 {
@@ -305,6 +314,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
                         return this;
                     }
                 }
+
                 break;
         }
 
@@ -318,6 +328,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
         {
             return wrapperPeer.HasKeyboardFocus();
         }
+
         ThrowElementNotAvailableException();
 
         return false;
@@ -330,6 +341,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
         {
             return wrapperPeer.IsContentElement();
         }
+
         ThrowElementNotAvailableException();
 
         return true;
@@ -342,6 +354,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
         {
             return wrapperPeer.IsControlElement();
         }
+
         ThrowElementNotAvailableException();
 
         return true;
@@ -572,7 +585,7 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
     /// <summary>
     /// Gets the table item's column headers.
     /// </summary>
-    /// <returns>The table item's column headers</returns>
+    /// <returns>The table item's column headers.</returns>
     IRawElementProviderSimple[] ITableItemProvider.GetColumnHeaderItems()
     {
         if (OwningButton != null && Owner != null && OwningSchedulerProvider != null)
@@ -585,13 +598,14 @@ public sealed class CalendarItemAutomationPeer : AutomationPeer, ISelectionItemP
                 return [headers[column]];
             }
         }
+
         return [];
     }
 
     /// <summary>
     /// Get's the table item's row headers.
     /// </summary>
-    /// <returns>The table item's row headers</returns>
+    /// <returns>The table item's row headers.</returns>
     IRawElementProviderSimple[] ITableItemProvider.GetRowHeaderItems() => [];
 
     #endregion ITableItemProvider

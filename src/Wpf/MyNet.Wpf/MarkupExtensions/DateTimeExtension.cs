@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateTimeExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Data;
@@ -9,9 +12,11 @@ namespace MyNet.Wpf.MarkupExtensions;
 
 public class DateTimeExtension : AbstractGlobalizationExtension
 {
-    public DateTimeExtension() : base(true, true) { }
+    public DateTimeExtension()
+        : base(true, true) { }
 
-    public DateTimeExtension(string path) : this() => Path = new PropertyPath(path);
+    public DateTimeExtension(string path)
+        : this() => Path = new PropertyPath(path);
 
     public DateTimeConversion Conversion { get; set; } = DateTimeConversion.None;
 

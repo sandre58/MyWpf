@@ -1,11 +1,14 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BytesToImageConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
-using MyNet.Wpf.Extensions;
 using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using MyNet.Wpf.Extensions;
 
 namespace MyNet.Wpf.Converters;
 
@@ -36,7 +39,7 @@ public class BytesToImageConverter : IValueConverter
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is byte[] bytes ? bytes.ToBitmap() : null;
 
     /// <summary>
-    /// Converts ImageSource to byte[]
+    /// Converts ImageSource to byte[].
     /// </summary>
     /// <returns>
     /// A converted value. If the method returns null, the valid null value is used.

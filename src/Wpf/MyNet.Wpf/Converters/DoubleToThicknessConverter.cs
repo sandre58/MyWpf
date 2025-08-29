@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DoubleToThicknessConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -8,7 +11,7 @@ using System.Windows.Data;
 
 namespace MyNet.Wpf.Converters;
 
-public class DoubleToThicknessConverter : IValueConverter
+public sealed class DoubleToThicknessConverter : IValueConverter
 {
     private enum Mode
     {
@@ -24,7 +27,7 @@ public class DoubleToThicknessConverter : IValueConverter
 
         Horizontal,
 
-        Vertical,
+        Vertical
     }
 
     public static readonly DoubleToThicknessConverter All = new(Mode.All);

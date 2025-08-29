@@ -65,7 +65,7 @@ public class GoogleLocationService(string apikey, bool useHttps) : ILocationServ
 
         doc.Load(string.Format(CultureInfo.InvariantCulture, ApiUrlRegionFromLatLong, latitude, longitude) + "&key=" + apikey);
         var element = doc.SelectSingleNode("//GeocodeResponse/status");
-        if (element == null || element.InnerText == Constants.ApiResponses.ZeroResults)
+        if (element is not { InnerText: not Constants.ApiResponses.ZeroResults })
         {
             return null;
         }
@@ -106,8 +106,6 @@ public class GoogleLocationService(string apikey, bool useHttps) : ILocationServ
                 case "postal_code":
                     addressPostalCode = longName;
                     break;
-                default:
-                    break;
             }
         }
 
@@ -130,8 +128,6 @@ public class GoogleLocationService(string apikey, bool useHttps) : ILocationServ
                 throw new QueryLimitExceededException("QueryLimit exceeded, check your dashboard");
             case Constants.ApiResponses.RequestDenied:
                 throw new RequestDeniedException("Request denied, it's likely you need to enable the necessary Google maps APIs");
-            default:
-                break;
         }
 
         var els = doc.Descendants("result").Descendants("geometry").Descendants("location").FirstOrDefault();
@@ -162,8 +158,6 @@ public class GoogleLocationService(string apikey, bool useHttps) : ILocationServ
                 throw new QueryLimitExceededException("QueryLimit exceeded, check your dashboard");
             case Constants.ApiResponses.RequestDenied:
                 throw new RequestDeniedException("Request denied, it's likely you need to enable the necessary Google maps APIs");
-            default:
-                break;
         }
 
         var results = doc.Descendants("result").Descendants("formatted_address").ToArray();
@@ -232,7 +226,7 @@ public class GoogleLocationService(string apikey, bool useHttps) : ILocationServ
             return direction;
         }
 
-        if (status == null || status.Value == "OK")
+        if (status is not { Value: not "OK" })
             throw new InvalidOperationException("Unable to get Directions from Google");
         direction.StatusCode = Directions.Status.Failed;
         return direction;

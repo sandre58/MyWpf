@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ImagePicker.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -211,7 +214,7 @@ public class ImagePicker : Control
         = DependencyProperty.Register(nameof(SelectedImageTemplate), typeof(DataTemplate), typeof(ImagePicker), new PropertyMetadata(null));
 
     /// <summary>
-    /// Gets or sets the <see cref="DataTemplate"/> for the <see cref="ImagePicker.SelectedImage"/>
+    /// Gets or sets the <see cref="DataTemplate"/> for the <see cref="ImagePicker.SelectedImage"/>.
     /// </summary>
     public DataTemplate? SelectedImageTemplate
     {
@@ -261,7 +264,7 @@ public class ImagePicker : Control
             Multiselect = false,
             InitialDirectory = string.Empty,
             Filters = FileExtensionInfoProvider.AllImages.GetFileFilters(x => x.Translate())
-        });
+        }).ConfigureAwait(false);
 
         if (result.IsTrue() && !string.IsNullOrEmpty(filename))
             SetCurrentValue(ImagePathProperty, filename);

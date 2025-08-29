@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ImageExtensions.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.IO;
 using System.Windows.Media.Imaging;
@@ -24,12 +27,12 @@ public static class ImageExtensions
                 image.UriSource = null;
                 image.StreamSource = mem;
                 image.EndInit();
-
             }
 
             image.Freeze();
             return image;
         }
+
         return null;
     }
 
@@ -43,6 +46,7 @@ public static class ImageExtensions
             encoder.Save(ms);
             data = ms.ToArray();
         }
+
         return data;
     }
 

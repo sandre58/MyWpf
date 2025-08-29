@@ -46,7 +46,7 @@ public static class ProfileMapper<TProfile>
 
         // Update
         var toUpdate = destinationList.Where(x => sourceList.Exists(y => predicate(y, x))).ToList();
-        toUpdate.ForEach(x => x.UpdateFrom(sourceList.First(y => y!.Equals(x))));
+        toUpdate.ForEach(x => x.UpdateFrom(sourceList.First(y => y.Equals(x))));
 
         // Add
         var toAdd = sourceList.Where(x => !destinationList.Exists(y => predicate(x, y))).ToList();

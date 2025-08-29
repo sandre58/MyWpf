@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="SelectedDatesCollection.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -88,7 +91,6 @@ public sealed class SelectedDatesCollection(CalendarBase owner) : OptimizedObser
 
             base.ClearItems();
         }
-
     }
 
     internal void ClearRangeInternal(DateTime start, DateTime end)

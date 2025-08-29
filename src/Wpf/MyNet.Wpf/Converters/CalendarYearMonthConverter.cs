@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarYearMonthConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -24,6 +27,7 @@ internal sealed class CalendarYearMonthConverter : IMultiValueConverter
             else if (value is XmlLanguage language)
                 culture = language.GetSpecificCulture();
         }
+
         return ticks == long.MaxValue ? null : new DateTime(ticks).ToString(culture.DateTimeFormat.YearMonthPattern, culture).ToTitle();
     }
 

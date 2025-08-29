@@ -1,15 +1,17 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ClockLineConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Markup;
 using MaterialDesignThemes.Wpf;
 
 namespace MyNet.Wpf.Converters;
 
-internal class ClockLineConverter : IValueConverter
+internal sealed class ClockLineConverter : IValueConverter
 {
     public static readonly ClockLineConverter Hours = new(ClockDisplayMode.Hours);
     public static readonly ClockLineConverter Minutes = new(ClockDisplayMode.Minutes);

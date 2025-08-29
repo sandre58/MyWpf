@@ -612,16 +612,6 @@ public class RandomGeneratorTests
     }
 
     [Fact]
-    public void Bool_ReturnsTrueOrFalse()
-    {
-        // Act
-        var result = RandomGenerator.Bool();
-
-        // Assert
-        Assert.True(result || !result);
-    }
-
-    [Fact]
     public void PhoneNumber_ReturnsValidPhoneNumber()
     {
         // Act
@@ -759,7 +749,7 @@ public class RandomGeneratorTests
 
         // Assert
         Assert.NotEqual(inputList, shuffledList);
-        Assert.Equal(inputList.OrderBy(x => x), shuffledList.OrderBy(x => x));
+        Assert.Equal(inputList.Order(), shuffledList.Order());
     }
 
     [Fact]

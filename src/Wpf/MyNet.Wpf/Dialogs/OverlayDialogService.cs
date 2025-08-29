@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="OverlayDialogService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Reactive.Concurrency;
 using System.Threading.Tasks;
@@ -55,8 +58,10 @@ public class OverlayDialogService : DialogService
             }
 
             foreach (var previous in _container.Children)
+            {
                 if (previous is FrameworkElement frameworkElement)
                     frameworkElement.IsEnabled = false;
+            }
 
             _ = _container.Children.Add(control);
         }
@@ -98,7 +103,7 @@ public class OverlayDialogService : DialogService
 
     private void OnControlOpened(object sender, RoutedEventArgs e)
     {
-        if ((sender as OverlayDialogControl)!.DataContext is IDialogViewModel dialogViewModel && dialogViewModel.LoadWhenDialogOpening)
+        if ((sender as OverlayDialogControl)!.DataContext is IDialogViewModel { LoadWhenDialogOpening: true } dialogViewModel)
             dialogViewModel.Load();
     }
 
@@ -107,11 +112,14 @@ public class OverlayDialogService : DialogService
         (sender as OverlayDialogControl)!.Opened -= OnControlOpened;
         (sender as OverlayDialogControl)!.Closed -= OnControlClosedAsync;
 
-
         if (_container is not null)
+        {
             foreach (var previous in _container.Children)
+            {
                 if (previous is FrameworkElement frameworkElement)
                     frameworkElement.IsEnabled = true;
+            }
+        }
 
         // Wait animation is completed
         await Task.Delay(400).ConfigureAwait(false);

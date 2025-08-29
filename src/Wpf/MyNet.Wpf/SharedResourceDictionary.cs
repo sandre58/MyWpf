@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="SharedResourceDictionary.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -16,17 +19,17 @@ namespace MyNet.Wpf;
 public class SharedResourceDictionary : ResourceDictionary
 {
     /// <summary>
-    /// Internal cache of loaded dictionaries 
+    /// Internal cache of loaded dictionaries. 
     /// </summary>
     private static readonly Dictionary<Uri, ResourceDictionary> SharedDictionaries = [];
 
     /// <summary>
-    /// Local member of the source uri
+    /// Local member of the source uri.
     /// </summary>
     private Uri? _sourceUri;
 
     /// <summary>
-    /// Indicates if source is only used in design mode
+    /// Indicates if source is only used in design mode.
     /// </summary>
     public bool DesignMode { get; set; }
 
@@ -60,8 +63,10 @@ public class SharedResourceDictionary : ResourceDictionary
                     SharedDictionaries.Add(value, this);
             }
             else
+            {
                 // If the dictionary is already loaded, get it from the cache
                 MergedDictionaries.Add(val);
+            }
         }
     }
 }

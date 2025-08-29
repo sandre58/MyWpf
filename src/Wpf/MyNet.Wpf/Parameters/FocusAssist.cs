@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FocusAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Linq;
 using System.Windows;
@@ -10,7 +13,7 @@ using System.Windows.Media;
 namespace MyNet.Wpf.Parameters;
 
 /// <summary>
-/// Set focus on attached element when target element is loaded
+/// Set focus on attached element when target element is loaded.
 /// </summary>
 public static class FocusAssist
 {
@@ -64,7 +67,7 @@ public static class FocusAssist
 
     private static void SetFocusOrAddEvents(FrameworkElement control)
     {
-        if (control.IsVisible && control.IsEnabled && control.IsLoaded)
+        if (control is { IsVisible: true, IsEnabled: true, IsLoaded: true })
             SetFocus(control);
         else
             AddFocusEvents(control);
@@ -132,7 +135,7 @@ public static class FocusAssist
                 return result;
             }
         }
-        return null;
 
+        return null;
     }
 }

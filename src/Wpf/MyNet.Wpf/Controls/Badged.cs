@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Badged.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -95,7 +98,7 @@ public class Badged : ContentControl
     {
         var instance = (Badged)d;
 
-        instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || e.NewValue != null && e.NewValue is not string;
+        instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || e.NewValue is { } and not string;
 
         var args = new RoutedPropertyChangedEventArgs<object?>(
             e.OldValue,
@@ -112,6 +115,7 @@ public class Badged : ContentControl
         get => (Storyboard?)GetValue(BadgeChangedStoryboardProperty);
         set => SetValue(BadgeChangedStoryboardProperty, value);
     }
+
     public static readonly DependencyProperty BadgeChangedStoryboardProperty
         = DependencyProperty.Register(nameof(BadgeChangedStoryboard), typeof(Storyboard), typeof(Badged), new PropertyMetadata(default(Storyboard)));
     #endregion
@@ -122,6 +126,7 @@ public class Badged : ContentControl
         get => (CornerRadius)GetValue(CornerRadiusProperty);
         set => SetValue(CornerRadiusProperty, value);
     }
+
     public static readonly DependencyProperty CornerRadiusProperty
         = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Badged), new PropertyMetadata(DefaultCornerRadius));
     #endregion
@@ -216,8 +221,8 @@ public class Badged : ContentControl
             containerDesiredSize = new Size(_badgeContainer.ActualWidth, _badgeContainer.ActualHeight);
         }
 
-        var h = 0 - containerDesiredSize.Width / 2;
-        var v = 0 - containerDesiredSize.Height / 2;
+        var h = 0 - (containerDesiredSize.Width / 2);
+        var v = 0 - (containerDesiredSize.Height / 2);
         _badgeContainer.Margin = new Thickness(h + BadgeMargin.Left, v + BadgeMargin.Top, BadgeMargin.Right, BadgeMargin.Bottom);
 
         return result;

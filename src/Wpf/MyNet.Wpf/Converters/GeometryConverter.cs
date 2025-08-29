@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="GeometryConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -9,7 +12,7 @@ using System.Windows.Media;
 
 namespace MyNet.Wpf.Converters;
 
-public class GeometryConverter : IMultiValueConverter
+public sealed class GeometryConverter : IMultiValueConverter
 {
     private enum Mode
     {
@@ -54,8 +57,6 @@ public class GeometryConverter : IMultiValueConverter
                     break;
                 case Mode.Ellipse:
                     geometry = new EllipseGeometry(new Point(width / 2.0, height / 2.0), width / 2.0, height / 2.0);
-                    break;
-                default:
                     break;
             }
 

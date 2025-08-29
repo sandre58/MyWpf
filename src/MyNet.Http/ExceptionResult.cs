@@ -58,18 +58,15 @@ public sealed class ExceptionResult : ISerializable
                 var errors = new List<HttpError>();
                 foreach (var item in jsonErrors)
                 {
-                    if (item.Value?.ToString() is not null)
+                    if (item.Value?.ToString() is null)
+                        continue;
+                    var str = item.Value switch
                     {
-                        var str = item.Value.ToString();
-                        switch (item.Value)
-                        {
-                            case JArray array:
-                                str = array.First?.ToString();
-                                break;
-                        }
+                        JArray array => array.First?.ToString(),
+                        _ => item.Value.ToString()
+                    };
 
-                        errors.Add(new HttpError(str ?? string.Empty));
-                    }
+                    errors.Add(new HttpError(str ?? string.Empty));
                 }
 
                 Exception = new MultipleHttpException(title?.Value?.ToString() ?? string.Empty, errors);

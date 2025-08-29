@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="SlideTransition.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Media;
@@ -31,17 +34,17 @@ public class SlideTransition : Transition
         {
             Duration = Duration,
             DecelerationRatio = DecelerationRatio,
-            From = Direction == TransitionSlideDirection.Left || Direction == TransitionSlideDirection.Bottom ? -50
+            From = Direction is TransitionSlideDirection.Left or TransitionSlideDirection.Bottom ? -50
             : 30,
-            To = 0,
+            To = 0
         };
 
         if (frameworkElement.RenderTransform is not TranslateTransform)
-            frameworkElement!.RenderTransform = new TranslateTransform(0, 0);
+            frameworkElement.RenderTransform = new TranslateTransform(0, 0);
 
         if (!frameworkElement.RenderTransformOrigin.Equals(new Point(0.5, 0.5)))
-            frameworkElement!.RenderTransformOrigin = new Point(0.5, 0.5);
+            frameworkElement.RenderTransformOrigin = new Point(0.5, 0.5);
 
-        frameworkElement.RenderTransform.BeginAnimation(Direction == TransitionSlideDirection.Top || Direction == TransitionSlideDirection.Bottom ? TranslateTransform.YProperty : TranslateTransform.XProperty, translateDoubleAnimation);
+        frameworkElement.RenderTransform.BeginAnimation(Direction is TransitionSlideDirection.Top or TransitionSlideDirection.Bottom ? TranslateTransform.YProperty : TranslateTransform.XProperty, translateDoubleAnimation);
     }
 }

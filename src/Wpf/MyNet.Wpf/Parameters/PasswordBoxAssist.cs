@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="PasswordBoxAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -55,12 +58,13 @@ public static class PasswordBoxAssist
             {
                 targetPasswordBox.Password = (string)e.NewValue;
             }
+
             targetPasswordBox.PasswordChanged += PasswordBoxPasswordChanged;
         }
     }
 
     /// <summary>
-    /// Handle the 'PasswordChanged'-event on the PasswordBox
+    /// Handle the 'PasswordChanged'-event on the PasswordBox.
     /// </summary>
     private static void PasswordBoxPasswordChanged(object sender, RoutedEventArgs e)
     {

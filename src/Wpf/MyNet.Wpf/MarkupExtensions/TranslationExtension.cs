@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TranslationExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows.Data;
 using MyNet.Wpf.Converters;
@@ -10,9 +13,11 @@ namespace MyNet.Wpf.MarkupExtensions;
 
 public class TranslationExtension : AbstractGlobalizationExtension
 {
-    public TranslationExtension() : base(true, false) { }
+    public TranslationExtension()
+        : base(true, false) { }
 
-    public TranslationExtension(string path) : this() => Path = new PropertyPath(path);
+    public TranslationExtension(string path)
+        : this() => Path = new PropertyPath(path);
 
     protected override Binding CreateBinding() => new();
 

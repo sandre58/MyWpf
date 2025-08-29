@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using MyNet.UI.ViewModels;
+using MyNet.UI.ViewModels.Display;
 using MyNet.Wpf.Controls;
 using MyNet.Wpf.Helpers;
 

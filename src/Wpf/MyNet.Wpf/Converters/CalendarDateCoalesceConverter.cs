@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarDateCoalesceConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -13,7 +16,7 @@ namespace MyNet.Wpf.Converters;
 /// <remarks>
 /// Expected items, in the following order:
 ///     1) DateTime Calendar.DisplayDate
-///     2) DateTime? Calendar.SelectedDate
+///     2) DateTime? Calendar.SelectedDate.
 /// </remarks>
 internal class CalendarDateCoalesceConverter : IMultiValueConverter
 {

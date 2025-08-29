@@ -21,8 +21,6 @@ namespace MyNet.UI.Services;
 /// <param name="recentFilesService">The service managing recent files.</param>
 public sealed class RecentFilesManager(RecentFilesService recentFilesService)
 {
-    private readonly RecentFilesService _recentFilesService = recentFilesService;
-
     /// <summary>
     /// Adds a file to the recent files list and sends a notification.
     /// </summary>
@@ -32,7 +30,7 @@ public sealed class RecentFilesManager(RecentFilesService recentFilesService)
     {
         using (LogManager.MeasureTime($"Add recent File : {name} | {path}", TraceLevel.Debug))
         {
-            _ = _recentFilesService.Add(name, path);
+            _ = recentFilesService.Add(name, path);
             Messenger.Default?.Send(new RecentFilesChangedMessage());
         }
     }
@@ -43,7 +41,7 @@ public sealed class RecentFilesManager(RecentFilesService recentFilesService)
     /// <param name="file">The path of the file to remove.</param>
     public void Remove(string file)
     {
-        _recentFilesService.Remove(file);
+        recentFilesService.Remove(file);
         Messenger.Default?.Send(new RecentFilesChangedMessage());
         LogManager.Debug($"Recent file removed : {file}");
     }
@@ -53,5 +51,5 @@ public sealed class RecentFilesManager(RecentFilesService recentFilesService)
     /// </summary>
     /// <param name="file">The path of the file to update.</param>
     /// <param name="isPinned">True to pin the file; false to unpin.</param>
-    public void Update(string file, bool isPinned) => _recentFilesService.Update(file, isPinned);
+    public void Update(string file, bool isPinned) => recentFilesService.Update(file, isPinned);
 }

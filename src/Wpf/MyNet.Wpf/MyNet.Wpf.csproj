@@ -6,7 +6,6 @@
         <Description>This library is a comprehensive class library designed to simplify the implementation of common GUI functionalities in .NET applications.</Description>
         <PackageTags>My;UI;Wpf;Controls;Xaml;Notifications;Theming;Dialog;ViewModels;Toasting;Presentation;Navigation;Locators</PackageTags>
         <UseWindowsForms>true</UseWindowsForms>
-        <UseWPF>true</UseWPF>
     </PropertyGroup>
 
     <ItemGroup>

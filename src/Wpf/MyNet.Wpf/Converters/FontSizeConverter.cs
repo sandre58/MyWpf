@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FontSizeConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -8,9 +11,9 @@ using System.Windows.Data;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed
+/// Converts a null value to Visibility.Visible and any other value to Visibility.Collapsed.
 /// </summary>
-public class FontSizeConverter
+public sealed class FontSizeConverter
     : IValueConverter
 {
     public static readonly FontSizeConverter Default = new();

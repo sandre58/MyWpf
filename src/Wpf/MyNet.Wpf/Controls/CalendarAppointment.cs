@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarAppointment.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -13,7 +16,8 @@ public class CalendarAppointment : ListBoxItem
 {
     #region Constructors
 
-    public CalendarAppointment() : base()
+    public CalendarAppointment()
+        : base()
     {
         var d = DependencyPropertyDescriptor.FromProperty(IsKeyboardFocusedProperty, typeof(CalendarAppointment));
         d.AddValueChanged(this, OnVisualStatePropertyChanged);

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CountBasedLifetimeSupervisor.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Diagnostics;
@@ -54,8 +57,7 @@ public sealed class CountBasedLifetimeSupervisor(MaximumToastCount maximumNotifi
 
     private void RequestCloseToast(CloseToastEventArgs e) => CloseToastRequested?.Invoke(this, e);
 
-
-    private bool _disposed = false;
+    private bool _disposed;
     public void Dispose()
     {
         if (_disposed)

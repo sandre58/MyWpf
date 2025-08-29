@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="EqualityToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +13,7 @@ using System.Windows.Data;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a boolean value to a font weight (false: normal, true: bold)
+/// Converts a boolean value to a font weight (false: normal, true: bold).
 /// </summary>
 public class EqualityToBooleanConverter
     : IValueConverter, IMultiValueConverter
@@ -28,7 +31,7 @@ public class EqualityToBooleanConverter
     /// A converted value. If the method returns null, the valid null value is used.
     /// </returns>
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        => parameter != null && value?.ToString() is string str && str.Equals(parameter.ToString(), StringComparison.OrdinalIgnoreCase);
+        => parameter != null && value?.ToString() is { } str && str.Equals(parameter.ToString(), StringComparison.OrdinalIgnoreCase);
 
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         => values is IEnumerable<object> list && list.Distinct().Count() == 1;

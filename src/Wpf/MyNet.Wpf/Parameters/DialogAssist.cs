@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DialogAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -38,7 +41,7 @@ public static class DialogAssist
 
     private static void OnAssociatedControlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Grid container || e.NewValue is not UIElement associatedControl || GetAttachService(container) is not OverlayDialogService service)
+        if (d is not Grid container || e.NewValue is not UIElement associatedControl || GetAttachService(container) is not { } service)
         {
             return;
         }

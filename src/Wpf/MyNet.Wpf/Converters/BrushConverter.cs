@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BrushConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -9,7 +12,7 @@ using MyNet.Wpf.Extensions;
 
 namespace MyNet.Wpf.Converters;
 
-public class BrushConverter : IValueConverter
+public sealed class BrushConverter : IValueConverter
 {
     private enum Mode
     {
@@ -36,7 +39,7 @@ public class BrushConverter : IValueConverter
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is not SolidColorBrush && value is not Color && value is not string) return Binding.DoNothing;
+        if (value is not SolidColorBrush and not Color and not string) return Binding.DoNothing;
 
         var color = value is SolidColorBrush b ? b.Color : value is Color c ? c : value.ToString().ToColor() ?? Colors.White;
         var opacity = value is SolidColorBrush brush ? brush.Opacity : 1.0D;
@@ -54,8 +57,6 @@ public class BrushConverter : IValueConverter
                 break;
             case Mode.Lighten:
                 color = color.Lighten(parameter is not null ? System.Convert.ToInt32(parameter, CultureInfo.InvariantCulture) : 1);
-                break;
-            default:
                 break;
         }
 

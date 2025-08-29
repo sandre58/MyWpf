@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorPicker.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -11,7 +14,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using DynamicData.Binding;
 using MyNet.Wpf.Resources;
 using MyNet.Utilities;
 
@@ -137,7 +139,8 @@ public class ColorPicker : ColorPickerBase
     /// <summary>
     /// Gets or sets the width of the DropDown.
     /// </summary>
-    [Bindable(true), Category("Layout")]
+    [Bindable(true)]
+    [Category("Layout")]
     [TypeConverter(typeof(LengthConverter))]
     public double DropDownWidth
     {
@@ -154,9 +157,11 @@ public class ColorPicker : ColorPickerBase
         = DependencyProperty.Register(nameof(IsDropDownOpen), typeof(bool), typeof(ColorPicker), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsDropDownOpenChanged));
 
     /// <summary>
-    /// Whether or not the "popup" for this control is currently open
+    /// Whether or not the "popup" for this control is currently open.
     /// </summary>
-    [Bindable(true), Browsable(false), Category("Appearance")]
+    [Bindable(true)]
+    [Browsable(false)]
+    [Category("Appearance")]
     public bool IsDropDownOpen
     {
         get => (bool)GetValue(IsDropDownOpenProperty);
@@ -172,7 +177,7 @@ public class ColorPicker : ColorPickerBase
         = DependencyProperty.Register(nameof(SelectedColorTemplate), typeof(DataTemplate), typeof(ColorPicker), new PropertyMetadata(null));
 
     /// <summary>
-    /// Gets or sets the <see cref="DataTemplate"/> for the <see cref="ColorPickerBase.SelectedColor"/>
+    /// Gets or sets the <see cref="DataTemplate"/> for the <see cref="ColorPickerBase.SelectedColor"/>.
     /// </summary>
     public DataTemplate? SelectedColorTemplate
     {
@@ -189,7 +194,7 @@ public class ColorPicker : ColorPickerBase
         = DependencyProperty.Register(nameof(AddToRecentColorsTrigger), typeof(AddToRecentColorsTrigger), typeof(ColorPicker), new PropertyMetadata(AddToRecentColorsTrigger.ColorPickerClosed));
 
     /// <summary>
-    /// Gets or sets when to add the <see cref="ColorPickerBase.SelectedColor"/> to the <see cref="RecentColorPaletteItemsSource"/>
+    /// Gets or sets when to add the <see cref="ColorPickerBase.SelectedColor"/> to the <see cref="RecentColorPaletteItemsSource"/>.
     /// </summary>
     public AddToRecentColorsTrigger AddToRecentColorsTrigger
     {
@@ -367,7 +372,7 @@ public class ColorPicker : ColorPickerBase
         DependencyProperty.Register(nameof(CloseOnSelectedColorChanged), typeof(bool), typeof(ColorPicker), new PropertyMetadata(false));
 
     /// <summary>
-    /// Gets or sets whether the DropDown should close after a color was selected from a <see cref="ColorPalette"/>. The default is <see langword="false" />
+    /// Gets or sets whether the DropDown should close after a color was selected from a <see cref="ColorPalette"/>. The default is <see langword="false" />.
     /// </summary>
     public bool CloseOnSelectedColorChanged
     {
@@ -564,8 +569,6 @@ public class ColorPicker : ColorPickerBase
             case Key.Escape:
                 TogglePopUp();
                 break;
-            default:
-                break;
         }
     }
 
@@ -595,7 +598,7 @@ public class ColorPicker : ColorPickerBase
 
     private void PopUp_PreviewMouseLeftButtonDown(object? sender, MouseButtonEventArgs e)
     {
-        if (sender is Popup popup && !popup.StaysOpen && _dropDownButton != null && _dropDownButton.InputHitTest(e.GetPosition(_dropDownButton)) != null)
+        if (sender is Popup { StaysOpen: false } && _dropDownButton != null && _dropDownButton.InputHitTest(e.GetPosition(_dropDownButton)) != null)
         {
             // This popup is being closed by a mouse press on the drop down button
             // The following mouse release will cause the closed popup to immediately reopen.
@@ -717,7 +720,7 @@ public class ColorPicker : ColorPickerBase
         {
             colorPicker.RaiseEvent(new RoutedEventArgs(DropDownClosedEvent));
 
-            if (colorPicker.AddToRecentColorsTrigger == AddToRecentColorsTrigger.ColorPickerClosed && colorPicker.SelectedColor.HasValue)
+            if (colorPicker is { AddToRecentColorsTrigger: AddToRecentColorsTrigger.ColorPickerClosed, SelectedColor: not null })
             {
                 colorPicker._colorCanvas?.AddToRecentColors(colorPicker.SelectedColor.Value);
             }

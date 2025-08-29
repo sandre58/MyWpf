@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="GdiPrimaryScreenLayoutProvider.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -41,6 +44,7 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
             _dpiRatioX = gfx.DpiX / 96F;
             _dpiRatioY = gfx.DpiY / 96F;
         }
+
         _offsetX = offsetX;
         _offsetY = offsetY;
         Width = width;
@@ -57,7 +61,7 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
         Corner.BottomRight => GetPositionForBottomRightCorner(actualPopupWidth, actualPopupHeight),
         Corner.BottomLeft => GetPositionForBottomLeftCorner(actualPopupHeight),
         Corner.BottomCenter => GetPositionForBottomCenterCorner(actualPopupWidth, actualPopupHeight),
-        _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth)),
+        _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth))
     };
 
     public double GetHeight() => ScreenHeight;
@@ -66,7 +70,7 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
     {
         Corner.TopRight or Corner.TopLeft => EjectDirection.ToBottom,
         Corner.BottomRight or Corner.BottomLeft or Corner.BottomCenter => EjectDirection.ToTop,
-        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null),
+        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null)
     };
 
     private Point GetPositionForBottomLeftCorner(double actualPopupHeight)
@@ -106,7 +110,6 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
 
         return new Point(pointX, pointY);
     }
-
 
     private Point GetPositionForBottomRightCorner(double actualPopupWidth, double actualPopupHeight)
     {
@@ -165,7 +168,6 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
         return new Point(pointX, pointY);
     }
 
-
     private static WindowsTaskBarLocation GetTaskBarLocation() => SystemParameters.WorkArea.Left > 0
             ? WindowsTaskBarLocation.Left
             : SystemParameters.WorkArea.Top > 0
@@ -174,7 +176,6 @@ public sealed class GdiPrimaryScreenLayoutProvider : ILayoutProvider
             SystemParameters.WorkArea.Width < SystemParameters.PrimaryScreenWidth
             ? WindowsTaskBarLocation.Right
             : WindowsTaskBarLocation.Bottom;
-
 
     public void Dispose()
     {

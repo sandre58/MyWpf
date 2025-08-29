@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NativeMethods.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Runtime.InteropServices;
@@ -15,7 +18,7 @@ public static class NativeMethods
     public static readonly IntPtr HwndBottom = new(1);
 
     /// <summary>
-    /// SetWindowPos options
+    /// SetWindowPos options.
     /// </summary>
     [Flags]
     internal enum SWP
@@ -33,7 +36,7 @@ public static class NativeMethods
         NOSIZE = 0x0001,
         NOZORDER = 0x0004,
         SHOWWINDOW = 0x0040,
-        TOPMOST = NOACTIVATE | NOOWNERZORDER | NOSIZE | NOMOVE | NOREDRAW | NOSENDCHANGING,
+        TOPMOST = NOACTIVATE | NOOWNERZORDER | NOSIZE | NOMOVE | NOREDRAW | NOSENDCHANGING
     }
 
     internal static int LOWORD(int i) => (short)(i & 0xFFFF);
@@ -86,7 +89,7 @@ public static class NativeMethods
             Left = Math.Min(rect1.Left, rect2.Left),
             Top = Math.Min(rect1.Top, rect2.Top),
             Right = Math.Max(rect1.Right, rect2.Right),
-            Bottom = Math.Max(rect1.Bottom, rect2.Bottom),
+            Bottom = Math.Max(rect1.Bottom, rect2.Bottom)
         };
 
         public override readonly bool Equals(object? obj)
@@ -149,12 +152,12 @@ public static class NativeMethods
     [Flags]
     public enum ExtendedWindowStyles
     {
-        WS_EX_TOOLWINDOW = 0x00000080,
+        WS_EX_TOOLWINDOW = 0x00000080
     }
 
     public enum GetWindowLongFields
     {
-        GWL_EXSTYLE = (-20),
+        GWL_EXSTYLE = (-20)
     }
 
     public static IntPtr GetWindowLongWrapper(IntPtr hWnd, int nIndex)

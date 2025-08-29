@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NavigationViewItem.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -46,28 +49,32 @@ public class NavigationViewItem : HeaderedItemsControl
 
     public NavigationView? NavigationView { get; private set; }
 
-    [Browsable(false), ReadOnly(true)]
+    [Browsable(false)]
+    [ReadOnly(true)]
     public bool IsActive
     {
         get => (bool)GetValue(IsActiveProperty);
         set => SetValue(IsActiveProperty, value);
     }
 
-    [Browsable(false), ReadOnly(true)]
+    [Browsable(false)]
+    [ReadOnly(true)]
     public bool IsExpanded
     {
         get => (bool)GetValue(IsExpandedProperty);
         set => SetValue(IsExpandedProperty, value);
     }
 
-    [Bindable(true), Category("Appearance")]
+    [Bindable(true)]
+    [Category("Appearance")]
     public object? Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
 
-    [Bindable(true), Category("Appearance")]
+    [Bindable(true)]
+    [Category("Appearance")]
     public Brush IconForeground
     {
         get => (Brush)GetValue(IconForegroundProperty);
@@ -281,7 +288,7 @@ public class NavigationViewItem : HeaderedItemsControl
             var view = ViewManager.Get(TargetViewType);
             switch (view)
             {
-                case FrameworkElement frameworkElement when frameworkElement.DataContext is INavigationPage navigationPage:
+                case FrameworkElement { DataContext: INavigationPage navigationPage }:
                     TargetPage = navigationPage;
                     break;
                 case INavigationPage navigationView:

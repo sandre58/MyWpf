@@ -14,7 +14,7 @@
         <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
         <LangVersion>preview</LangVersion>
         <NeutralLanguage>fr</NeutralLanguage>
-        <Nullable>enable</Nullable>
+        <Nullable Condition="'$(Nullable)' == ''">enable</Nullable>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
         <!-- Output builds -->
@@ -26,7 +26,7 @@
     <PropertyGroup>
         <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
         <IsDemoProject>$(MSBuildProjectName.EndsWith('Demo'))</IsDemoProject>
-        <IsPackable>'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'</IsPackable>
+        <IsPackable Condition="'$(IsDemoProject)' != 'true' And '$(IsTestProject)' != 'true'">true</IsPackable>
     </PropertyGroup>
     
     <!-- Imports -->

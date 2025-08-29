@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RatingForegroundConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -18,11 +21,10 @@ internal class RatingForegroundConverter : IMultiValueConverter
 
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (values?.Length == 4
-            && values[0] is SolidColorBrush brush
-            && values[1] is Orientation orientation
-            && values[2] is double value
-            && values[3] is int buttonValue)
+        if (values is
+            [
+                SolidColorBrush brush, Orientation orientation, double value, int buttonValue
+            ])
         {
             if (value >= buttonValue)
                 return brush;

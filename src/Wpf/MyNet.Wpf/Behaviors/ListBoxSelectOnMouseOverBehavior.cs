@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ListBoxSelectOnMouseOverBehavior.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -96,7 +99,7 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
     {
         StopSelection();
 
-        if (GetScrollViewer() is ScrollViewer scrollViewer)
+        if (GetScrollViewer() is { } scrollViewer)
             scrollViewer.ScrollChanged -= OnScrollChanged;
 
         AssociatedObject.PreviewMouseLeftButtonDown -= OnPreviewMouseLeftButtonDown;
@@ -123,7 +126,7 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
 
     private void OnMouseMove(object sender, MouseEventArgs e)
     {
-        if (_mouseCaptured && GetScrollContent() is ScrollContentPresenter scrollContent)
+        if (_mouseCaptured && GetScrollContent() is { } scrollContent)
         {
             var mouse = e.GetPosition(scrollContent);
             _selectionEnd = mouse;
@@ -137,12 +140,15 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
 
     private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        if (e.OriginalSource is DependencyObject d && (d is ButtonBase || d.FindVisualParent<ButtonBase>() is not null)
-            || e.OriginalSource is DependencyObject d1 && (d1 is ScrollBar || d1.FindVisualParent<ScrollBar>() is not null)
-            || e.OriginalSource is DependencyObject d2 && (d2 is MenuItem || d2.FindVisualParent<MenuItem>() is not null)
+        if ((e.OriginalSource is DependencyObject d && (d is ButtonBase || d.FindVisualParent<ButtonBase>() is not null))
+            || (e.OriginalSource is DependencyObject d1 && (d1 is ScrollBar || d1.FindVisualParent<ScrollBar>() is not null))
+            || (e.OriginalSource is DependencyObject d2 && (d2 is MenuItem || d2.FindVisualParent<MenuItem>() is not null))
             || e.RightButton == MouseButtonState.Pressed
-            || GetScrollContent() is not ScrollContentPresenter scrollContent
-            ) return;
+            || GetScrollContent() is not { } scrollContent
+            )
+        {
+            return;
+        }
 
         // Check that the mouse is inside the scroll content (could be on the scroll bars for example).
         var mouse = e.GetPosition(scrollContent);
@@ -156,8 +162,7 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
     private void StopSelection()
     {
         // Hide the selection rectangle and stop the auto scrolling.
-        if (_selectionAdorner is not null)
-            _selectionAdorner.IsEnabled = false;
+        _selectionAdorner?.IsEnabled = false;
         _selectionStart = null;
         _selectionEnd = null;
         _autoScroll.Stop();
@@ -184,13 +189,12 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
 
         UpdateSelection();
 
-        if (_selectionAdorner is not null)
-            _selectionAdorner.IsEnabled = ShowSelectionArea;
+        _selectionAdorner?.IsEnabled = ShowSelectionArea;
     }
 
     private void UpdateSelection()
     {
-        if (GetScrollContent() is not ScrollContentPresenter scrollContent) return;
+        if (GetScrollContent() is not { } scrollContent) return;
 
         // Update adorner
         var newSelectionArea = ComputeSelectionArea(_selectionStart, _selectionEnd);
@@ -226,7 +230,7 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
         _previousSelectionArea = newSelectionArea;
     }
 
-    private bool IsOnScrollContent(Point mouse) => GetScrollContent() is ScrollContentPresenter scrollContent && mouse.X >= 0 && mouse.X < scrollContent.ActualWidth && mouse.Y >= 0 && mouse.Y < scrollContent.ActualHeight;
+    private bool IsOnScrollContent(Point mouse) => GetScrollContent() is { } scrollContent && mouse.X >= 0 && mouse.X < scrollContent.ActualWidth && mouse.Y >= 0 && mouse.Y < scrollContent.ActualHeight;
 
     private static Rect ComputeSelectionArea(Point? startPoint, Point? endPoint)
     {
@@ -239,12 +243,14 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
             return new Rect(x, y, width, height);
         }
         else
+        {
             return new Rect(0, 0, 0, 0);
+        }
     }
 
     private void Scroll()
     {
-        if (GetScrollContent() is not ScrollContentPresenter scrollContent || GetScrollViewer() is not ScrollViewer scrollViewer || _selectionEnd is null) return;
+        if (GetScrollContent() is not { } scrollContent || GetScrollViewer() is not { } scrollViewer || _selectionEnd is null) return;
 
         var position = _selectionEnd.Value;
         var scrolled = false;
@@ -283,12 +289,12 @@ public class ListBoxSelectOnMouseOverBehavior : Behavior<ListBox>
         return 400 - (int)(SystemParameters.KeyboardSpeed * ratio);
     }
 
-
     private sealed class SelectionAdorner : Adorner
     {
         private Rect _area;
 
-        public SelectionAdorner(UIElement parent) : base(parent)
+        public SelectionAdorner(UIElement parent)
+            : base(parent)
         {
             BorderBrush = SystemColors.HighlightBrush;
             Background = BorderBrush.Clone();

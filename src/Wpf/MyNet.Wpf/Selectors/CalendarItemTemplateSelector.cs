@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarItemTemplateSelector.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +22,7 @@ public class CalendarItemTemplateSelector : DataTemplateSelector
             Utilities.Units.TimeUnit.Day => DayTemplate,
             Utilities.Units.TimeUnit.Month => MonthTemplate,
             Utilities.Units.TimeUnit.Year => YearTemplate,
-            _ => base.SelectTemplate(item, container),
+            _ => base.SelectTemplate(item, container)
         };
     }
 

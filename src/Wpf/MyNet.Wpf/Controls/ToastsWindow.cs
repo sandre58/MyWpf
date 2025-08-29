@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ToastsWindow.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -95,7 +98,7 @@ internal class ToastsWindow : Window
         var exStyle = (int)NativeMethods.GetWindowLongWrapper(wndHelper.Handle, (int)NativeMethods.GetWindowLongFields.GWL_EXSTYLE);
 
         exStyle |= (int)NativeMethods.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
-        _ = NativeMethods.SetWindowLong(wndHelper.Handle, (int)NativeMethods.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
+        _ = NativeMethods.SetWindowLong(wndHelper.Handle, (int)NativeMethods.GetWindowLongFields.GWL_EXSTYLE, exStyle);
     }
 
     private void NotificationsWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;

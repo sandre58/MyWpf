@@ -1,9 +1,11 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarDaysByYear.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -45,9 +47,8 @@ public class CalendarDaysByYear : CalendarBase
     private static void OnDisplayBoundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var c = d as CalendarDaysByYear;
-        Debug.Assert(c != null);
 
-        c.Rebuild();
+        c?.Rebuild();
     }
 
     #endregion DisplayEndMonth
@@ -88,13 +89,13 @@ public class CalendarDaysByYear : CalendarBase
         return DateTimeHelper.Range(start, end, 1, TimeUnit.Month).OfType<object>().ToList();
     }
 
-    protected override IEnumerable<(DateTime date, int row, int column)> GetDisplayDates()
+    protected override IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates()
     {
         var start = DisplayDateInternal.Month == DisplayStartMonth ? DisplayDateInternal.BeginningOfMonth() : DisplayDateInternal.Previous(1, DisplayStartMonth).DiscardTime();
         var end = DisplayDateInternal.Month == DisplayEndMonth ? DisplayDateInternal.EndOfMonth() : DisplayDateInternal.Next(28, DisplayEndMonth).EndOfMonth().DiscardTime();
 
         var columnHeaders = DateTimeHelper.Range(start, end, 1, TimeUnit.Month).ToList();
-        var rowHeaders = EnumerableHelper.Range(1, 31, 1).ToList();
+        var rowHeaders = EnumerableHelper.Range(1, 31).ToList();
 
         return columnHeaders.SelectMany((x, columnIndex) => rowHeaders.Where(y => y <= x.EndOfMonth().Day)
                                                                            .Select((y, rowIndex) => (new DateTime(x.Year, x.Month, y, 0, 0, 0, x.Kind), rowIndex, columnIndex)))

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ListSortDirectionIndicator.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.ComponentModel;
 using System.Windows;
@@ -25,7 +28,6 @@ public class ListSortDirectionIndicator : Control
 
         GotoVisualState(true, ListSortDirection);
     }
-
 
     public static readonly DependencyProperty ListSortDirectionProperty = DependencyProperty.Register(
         nameof(ListSortDirection), typeof(ListSortDirection?), typeof(ListSortDirectionIndicator), new PropertyMetadata(default(ListSortDirection?), ListSortDirectionPropertyChangedCallback));

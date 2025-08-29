@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorToGradientBrushConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -9,7 +12,7 @@ using MyNet.Wpf.Extensions;
 
 namespace MyNet.Wpf.Converters;
 
-public class ColorToGradientBrushConverter : IValueConverter
+public sealed class ColorToGradientBrushConverter : IValueConverter
 {
     private enum Mode
     {
@@ -25,10 +28,9 @@ public class ColorToGradientBrushConverter : IValueConverter
 
     private ColorToGradientBrushConverter(Mode mode) => _mode = mode;
 
-
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is not SolidColorBrush && value is not Color && value is not string) return Binding.DoNothing;
+        if (value is not SolidColorBrush and not Color and not string) return Binding.DoNothing;
 
         var color = value is SolidColorBrush b ? b.Color : value is Color c ? c : value is string s ? s.ToColor().GetValueOrDefault() : Colors.White;
 

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarDaysByMonth.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -31,7 +34,7 @@ public class CalendarDaysByMonth : CalendarBase
         DayOfWeek getDayOfWeek(int index) => (DayOfWeek)((index + (int)FirstDayOfWeek) % DateTimeHelper.NumberOfDaysInWeek());
     }
 
-    protected override IEnumerable<(DateTime date, int row, int column)> GetDisplayDates()
+    protected override IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates()
     {
         var columnHeaders = EnumerableHelper.Range(0, DateTimeHelper.NumberOfDaysInWeek() - 1, 1).Select(getDayOfWeek).OfType<object>().ToList();
         var firstDayOfMonth = DisplayDateInternal.BeginningOfMonth();
@@ -53,7 +56,7 @@ public class CalendarDaysByMonth : CalendarBase
 
     protected internal override bool IsInactive(DateTime date) => !date.SameMonth(DisplayDateInternal);
 
-    protected override IEnumerable<(int row, int column, int rowSpan, int columnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
+    protected override IEnumerable<(int Row, int Column, int RowSpan, int ColumnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
         => allDisplayedDates.GroupBy(x => x.row).Select(x => (x.Key, x.Min(y => y.column), 1, x.Count()));
 
     public override DateTime GetNextDate(DateTime date) => date.AddMonths(1);

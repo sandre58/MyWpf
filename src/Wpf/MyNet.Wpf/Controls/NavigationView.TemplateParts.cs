@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NavigationView.TemplateParts.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +26,8 @@ public partial class NavigationView
 
     private NavigationFrame? _navigationViewContentPresenter;
     private Button? _toggleButton;
-    protected AutoSuggestBox? _autoSuggestBox;
-    protected Button? _autoSuggestButton;
+    private AutoSuggestBox? _autoSuggestBox;
+    private Button? _autoSuggestButton;
     private Button? _previousButton;
     private Button? _nextButton;
 

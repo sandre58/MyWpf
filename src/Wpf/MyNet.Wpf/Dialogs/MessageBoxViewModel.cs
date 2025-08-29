@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MessageBoxViewModel.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Runtime.CompilerServices;
 using MyNet.Observable;
@@ -35,10 +38,6 @@ public class MessageBoxViewModel : LocalizableObject, IMessageBox
 
     #region Constructors
 
-    /// <inheritdoc />
-    /// <summary>
-    /// Initialise a new instance of <see cref="MessageBoxViewModel" />.
-    /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:Use primary constructor", Justification = "Used by Fody")]
     public MessageBoxViewModel(string message,
                                string? title = null,
@@ -55,18 +54,9 @@ public class MessageBoxViewModel : LocalizableObject, IMessageBox
 
     #endregion
 
-    /// <summary>
-    /// Determines whether the specified object is equal to the current object.
-    /// </summary>
-    /// <param name="obj">The object to compare with the current object.</param>
-    /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
     public override bool Equals(object? obj) => obj is MessageBoxViewModel other && Equals(Message, other.Message);
 
-    /// <summary>
-    /// Serves as the default hash function.
-    /// </summary>
-    /// <returns>A hash code for the current object.</returns>
-    public override int GetHashCode() => Message?.GetHashCode() ?? RuntimeHelpers.GetHashCode(this);
+    public override int GetHashCode() => Message?.GetHashCode(System.StringComparison.InvariantCultureIgnoreCase) ?? RuntimeHelpers.GetHashCode(this);
 
     public override string? ToString() => Message;
 }

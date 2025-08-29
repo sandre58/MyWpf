@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TextFieldAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -152,7 +155,6 @@ public static class TextFieldAssist
     public static void SetCharacterCounterIsVisible(DependencyObject obj, bool value)
         => obj.SetValue(CharacterCounterIsVisibleProperty, value);
 
-
     private static void CharacterCounterVisibilityChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)
     {
         if (element is PasswordBox passwordBox)
@@ -224,7 +226,6 @@ public static class TextFieldAssist
             e.Handled = true;
         }
     }
-
 
     private static void Clear(object source)
     {
@@ -373,12 +374,12 @@ DependencyProperty.RegisterAttached(
             return string.Empty;
         }
 
-        value = value!.Trim();
+        value = value.Trim();
         return mask switch
         {
             MaskType.Integer or MaskType.PositiveInteger or MaskType.Time => int.TryParse(value, out _) ? value : string.Empty,
             MaskType.Decimal or MaskType.PositiveDecimal => double.TryParse(value, out _) ? value : string.Empty,
-            _ => value,
+            _ => value
         };
     }
 
@@ -522,8 +523,7 @@ DependencyProperty.RegisterAttached(
             textBox.ApplyTemplate();
         }
 
-        if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer scrollViewer
-            && scrollViewer.Content is FrameworkElement frameworkElement)
+        if (textBox.Template.FindName("PART_ContentHost", textBox) is ScrollViewer { Content: FrameworkElement frameworkElement })
         {
             frameworkElement.Margin = margin;
         }

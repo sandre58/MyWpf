@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarPanel.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Linq;
@@ -76,7 +79,7 @@ public class CalendarPanel : Panel
     /// Specifies the number of rows in the grid
     /// A value of 0 indicates that the row count should be dynamically 
     /// computed based on the number of columns (if specified) and the 
-    /// number of non-collapsed children in the grid
+    /// number of non-collapsed children in the grid.
     /// </summary>
     public int Rows
     {
@@ -110,8 +113,8 @@ public class CalendarPanel : Panel
     /// (e.g. for a 2 x 4 grid, the desired size for the UniformGrid would be
     /// maxChildDesiredWidth*2 x maxChildDesiredHeight*4).
     /// </summary>
-    /// <param name="availableSize">Constraint</param>
-    /// <returns>Desired size</returns>
+    /// <param name="availableSize">Constraint.</param>
+    /// <returns>Desired size.</returns>
     protected override Size MeasureOverride(Size availableSize)
     {
         var childConstraint = new Size(availableSize.Width / Columns, availableSize.Height / Rows);
@@ -145,9 +148,9 @@ public class CalendarPanel : Panel
     /// Arrange the children of this UniformGrid by distributing space evenly 
     /// among all of the children, making each child the size equal to a cell's
     /// portion of the given arrangeSize (e.g. for a 2 x 4 grid, the child size
-    /// would be arrangeSize*0.5 x arrangeSize*0.25)
+    /// would be arrangeSize*0.5 x arrangeSize*0.25).
     /// </summary>
-    /// <param name="finalSize">Arrange size</param>
+    /// <param name="finalSize">Arrange size.</param>
     protected override Size ArrangeOverride(Size finalSize)
     {
         var childBounds = new Rect(0, 0, finalSize.Width / Columns, finalSize.Height / Rows);
@@ -225,7 +228,7 @@ public class CalendarPanel : Panel
         /// <summary>
         /// UpdateRenderBounds.
         /// </summary>
-        /// <param name="boundsSize">Size of render bounds</param>
+        /// <param name="boundsSize">Size of render bounds.</param>
         internal void UpdateRenderBounds(Size boundsSize)
         {
             using var drawingContext = RenderOpen();

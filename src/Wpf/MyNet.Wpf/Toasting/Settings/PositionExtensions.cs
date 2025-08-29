@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="PositionExtensions.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 
@@ -11,6 +14,6 @@ public static class PositionExtensions
     {
         var pt = element.PointToScreen(new Point(0, 0));
         var source = PresentationSource.FromVisual(element);
-        return source.CompositionTarget.TransformFromDevice.Transform(pt);
+        return source!.CompositionTarget!.TransformFromDevice.Transform(pt);
     }
 }

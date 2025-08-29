@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataGridTextColumn.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -138,7 +141,7 @@ public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn
 
     protected override void RefreshCellContent(FrameworkElement element, string propertyName)
     {
-        if (element is DataGridCell cell && cell.Content is FrameworkElement textElement)
+        if (element is DataGridCell { Content: FrameworkElement textElement })
         {
             switch (propertyName)
             {

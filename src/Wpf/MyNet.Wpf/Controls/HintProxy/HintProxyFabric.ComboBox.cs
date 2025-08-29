@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="HintProxyFabric.ComboBox.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -33,7 +36,7 @@ public class ComboBoxHintProxy : IHintProxy
 
     public virtual bool IsEmpty() => string.IsNullOrEmpty(_comboBox.Text);
 
-    public bool IsFocused() => _comboBox.IsEditable && _comboBox.IsKeyboardFocusWithin;
+    public bool IsFocused() => _comboBox is { IsEditable: true, IsKeyboardFocusWithin: true };
 
     public event EventHandler? ContentChanged;
 

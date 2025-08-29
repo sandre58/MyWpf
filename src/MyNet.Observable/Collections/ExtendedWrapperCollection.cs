@@ -80,11 +80,11 @@ public class ExtendedWrapperCollection<T, TWrapper> : ExtendedCollection<T>
 
     protected TWrapper GetOrCreate(T item)
     {
-        if (!_cache.TryGetValue(item, out var wrapper))
-        {
-            wrapper = _createWrapper(item);
-            _cache[item] = wrapper;
-        }
+        if (_cache.TryGetValue(item, out var wrapper))
+            return wrapper;
+
+        wrapper = _createWrapper(item);
+        _cache[item] = wrapper;
 
         return wrapper;
     }

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ExpanderRotateAngleConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -19,6 +22,7 @@ internal class ExpanderRotateAngleConverter : IValueConverter
         {
             factor = 1.0;
         }
+
         return value switch
         {
             ExpandDirection.Left => 90 * factor,

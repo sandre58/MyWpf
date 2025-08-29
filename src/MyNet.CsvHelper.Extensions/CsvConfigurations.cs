@@ -30,7 +30,7 @@ public static class CsvConfigurations
             MissingFieldFound = args =>
             {
                 // Get by index.
-                if (args.HeaderNames == null || args.HeaderNames.Length == 0)
+                if (args.HeaderNames is not { Length: not 0 })
                 {
                     LogManager.Warning($"Field at index '{args.Index}' does not exist.");
                     return;

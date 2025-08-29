@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="WindowLayoutProvider.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -64,7 +67,7 @@ public sealed class WindowLayoutProvider : ILayoutProvider
             Corner.BottomRight => GetPositionForBottomRightCorner(parentPosition, actualPopupWidth, actualPopupHeight),
             Corner.BottomLeft => GetPositionForBottomLeftCorner(parentPosition, actualPopupHeight),
             Corner.BottomCenter => GetPositionForBottomCenter(parentPosition, actualPopupWidth, actualPopupHeight),
-            _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth)),
+            _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth))
         };
     }
 
@@ -86,16 +89,16 @@ public sealed class WindowLayoutProvider : ILayoutProvider
     {
         Corner.TopRight or Corner.TopLeft or Corner.TopCenter => EjectDirection.ToBottom,
         Corner.BottomRight or Corner.BottomLeft or Corner.BottomCenter => EjectDirection.ToTop,
-        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null),
+        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null)
     };
 
     private Point GetPositionForBottomLeftCorner(Point parentPosition, double actualPopupHeight) => new(parentPosition.X + _offsetX, parentPosition.Y + GetHeight() - actualPopupHeight - _offsetY);
 
     private Point GetPositionForBottomRightCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight) => new(parentPosition.X + GetWindowWidth() - _offsetX - actualPopupWidth, parentPosition.Y + GetHeight() - actualPopupHeight - _offsetY);
 
-    private Point GetPositionForBottomCenter(Point parentPosition, double actualPopupWidth, double actualPopupHeight) => new(parentPosition.X + (GetWindowWidth() - actualPopupWidth) / 2, parentPosition.Y + GetHeight() - actualPopupHeight - _offsetY);
+    private Point GetPositionForBottomCenter(Point parentPosition, double actualPopupWidth, double actualPopupHeight) => new(parentPosition.X + ((GetWindowWidth() - actualPopupWidth) / 2), parentPosition.Y + GetHeight() - actualPopupHeight - _offsetY);
 
-    private Point GetPositionForTopCenter(Point parentPosition, double actualPopupWidth) => new(parentPosition.X + (GetWindowWidth() - actualPopupWidth) / 2, parentPosition.Y + _offsetY);
+    private Point GetPositionForTopCenter(Point parentPosition, double actualPopupWidth) => new(parentPosition.X + ((GetWindowWidth() - actualPopupWidth) / 2), parentPosition.Y + _offsetY);
     private Point GetPositionForTopLeftCorner(Point parentPosition) => new(parentPosition.X + _offsetX, parentPosition.Y + _offsetY);
 
     private Point GetPositionForTopRightCorner(Point parentPosition, double actualPopupWidth) => new(parentPosition.X + GetWindowWidth() - _offsetX - actualPopupWidth, parentPosition.Y + _offsetY);

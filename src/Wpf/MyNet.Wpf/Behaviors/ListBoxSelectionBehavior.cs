@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ListBoxSelectionBehavior.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections;
 using System.Collections.Specialized;
@@ -118,7 +121,7 @@ public class ListBoxSelectionBehavior : Behavior<ListBox>
     // Propagate selected items from model to view
     private void SelectItems()
     {
-        if (AssociatedObject == null || AssociatedObject.SelectionMode == SelectionMode.Single || _updatingListBoxSelectedItems) return;
+        if (AssociatedObject is not { SelectionMode: not SelectionMode.Single } || _updatingListBoxSelectedItems) return;
 
         AssociatedObject.SelectionChanged -= OnListBoxSelectionChanged;
         AssociatedObject.SelectedItems.Clear();
@@ -129,6 +132,7 @@ public class ListBoxSelectionBehavior : Behavior<ListBox>
                 _ = AssociatedObject.SelectedItems.Add(item);
             }
         }
+
         AssociatedObject.SelectionChanged += OnListBoxSelectionChanged;
     }
 

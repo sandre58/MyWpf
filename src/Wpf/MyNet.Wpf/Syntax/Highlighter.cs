@@ -1,8 +1,10 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Highlighter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Linq;
-using System.Reactive.Joins;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Documents;

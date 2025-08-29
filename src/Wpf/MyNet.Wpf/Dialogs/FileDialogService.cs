@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FileDialogService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Threading.Tasks;
 using Microsoft.Win32;
@@ -60,7 +63,7 @@ public class FileDialogService : IFileDialogService
         {
             InitialDirectory = settings.InitialDirectory,
             Title = settings.Title,
-            FolderName = settings.Folder,
+            FolderName = settings.Folder
         };
 
         var dialogResult = openFolderDialog.ShowDialog();

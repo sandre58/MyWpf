@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BrushBinding.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Data;
@@ -9,7 +12,8 @@ namespace MyNet.Wpf.MarkupExtensions;
 
 public class BrushBinding : Binding
 {
-    public BrushBinding(string path) : base(path) { }
+    public BrushBinding(string path)
+        : base(path) { }
 
     public BrushBinding() { }
 

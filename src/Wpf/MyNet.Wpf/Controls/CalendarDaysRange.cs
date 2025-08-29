@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarDaysRange.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -7,10 +10,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using MyNet.Observable;
 using MyNet.Utilities;
 using MyNet.Utilities.DateTimes;
 using MyNet.Utilities.Helpers;
-using MyNet.Observable;
 using MyNet.Utilities.Units;
 
 namespace MyNet.Wpf.Controls;
@@ -47,7 +50,7 @@ public class CalendarDaysRange : CalendarBase
 
     protected override bool MustBeRebuild(DateTime oldDate, DateTime newDate) => !oldDate.SameDay(newDate);
 
-    protected override IEnumerable<(DateTime date, int row, int column)> GetDisplayDates()
+    protected override IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates()
     {
         if (DisplayDateInternal == DateTime.MinValue) return [];
 
@@ -56,7 +59,7 @@ public class CalendarDaysRange : CalendarBase
         return Enumerable.Range(0, DisplayDaysCount).Select(x => (start.AddDays(x), 0, x)).ToList();
     }
 
-    protected override IEnumerable<(int row, int column, int rowSpan, int columnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
+    protected override IEnumerable<(int Row, int Column, int RowSpan, int ColumnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
         => allDisplayedDates.GroupBy(x => x.row).Select(x => (x.Key, x.Min(y => y.column), 1, x.Count()));
 
     public override DateTime GetNextDate(DateTime date) => date.AddDays(1);

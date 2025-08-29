@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BusyAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +29,7 @@ public static class BusyAssist
 
         service.SetContainer(container);
 
-        if (GetStyle(container) is Style style)
+        if (GetStyle(container) is { } style)
         {
             service.BusyView.SetValue(FrameworkElement.StyleProperty, style);
             service.BusyView.SetValue(BusyControl.AssociatedControlProperty, GetAssociatedControl(container) ?? container);
@@ -42,7 +45,7 @@ public static class BusyAssist
 
     private static void OnStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Grid container || e.NewValue is not Style style || GetAttachService(container) is not BusyService service)
+        if (d is not Grid container || e.NewValue is not Style style || GetAttachService(container) is not { } service)
         {
             return;
         }
@@ -61,7 +64,7 @@ public static class BusyAssist
 
     private static void OnAssociatedControlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Grid container || e.NewValue is not UIElement associatedControl || GetAttachService(container) is not BusyService service)
+        if (d is not Grid container || e.NewValue is not UIElement associatedControl || GetAttachService(container) is not { } service)
         {
             return;
         }

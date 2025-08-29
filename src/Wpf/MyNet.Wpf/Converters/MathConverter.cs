@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MathConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +14,7 @@ using MyNet.Utilities;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// The math operations which can be used at the <see cref="MathConverter"/>
+/// The math operations which can be used at the <see cref="MathConverter"/>.
 /// </summary>
 public enum MathOperation
 {
@@ -54,7 +57,7 @@ public class MathConverter(MathOperation operation) : IValueConverter, IMultiVal
 
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => DoConvert([value, parameter], Operation);
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values == null || values.Length < 2 ? Binding.DoNothing : DoConvert(values, Operation);
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values is not { Length: >= 2 } ? Binding.DoNothing : DoConvert(values, Operation);
 
     public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => Binding.DoNothing;
 
@@ -76,7 +79,7 @@ public class MathConverter(MathOperation operation) : IValueConverter, IMultiVal
                 MathOperation.PercentToValue => validValues.Aggregate((x, y) => x * y / 100.00),
                 MathOperation.Pow => validValues.Aggregate(Math.Pow),
                 MathOperation.Modulo => validValues.Aggregate((x, y) => x % y),
-                _ => Binding.DoNothing,
+                _ => Binding.DoNothing
             };
         }
         catch (Exception)

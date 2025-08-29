@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ToastList.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Concurrent;
@@ -9,7 +12,7 @@ namespace MyNet.Wpf.Toasting.Lifetime;
 
 internal class ToastList : ConcurrentDictionary<int, ToastMetadata>
 {
-    private int _id = 0;
+    private int _id;
 
     internal ToastMetadata Add(Toast toast)
     {

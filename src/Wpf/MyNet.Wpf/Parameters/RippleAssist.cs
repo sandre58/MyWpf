@@ -1,7 +1,9 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RippleAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
-using System;
 using System.Windows;
 using System.Windows.Media;
 
@@ -51,20 +53,20 @@ public static class RippleAssist
     #region IsDisabled
 
     /// <summary>
-    /// Set to <c>True</c> to disable ripple effect
+    /// Set to <c>True</c> to disable ripple effect.
     /// </summary>
     public static readonly DependencyProperty IsDisabledProperty = DependencyProperty.RegisterAttached(
         "IsDisabled", typeof(bool), typeof(RippleAssist), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
     /// <summary>
-    /// Set to <c>True</c> to disable ripple effect
+    /// Set to <c>True</c> to disable ripple effect.
     /// </summary>
     /// <param name="element"></param>
     /// <param name="value"></param>
     public static void SetIsDisabled(DependencyObject element, bool value) => element.SetValue(IsDisabledProperty, value);
 
     /// <summary>
-    /// Set to <c>True</c> to disable ripple effect
+    /// Set to <c>True</c> to disable ripple effect.
     /// </summary>
     /// <param name="element"></param>        
     public static bool GetIsDisabled(DependencyObject element) => (bool)element.GetValue(IsDisabledProperty);

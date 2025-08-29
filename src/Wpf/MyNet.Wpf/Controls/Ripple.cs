@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Ripple.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System;
@@ -52,6 +55,7 @@ public class Ripple : ContentControl
                 {
                     scaleXKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
                 }
+
                 if (ripple.Template.FindName("MousePressedToNormalScaleYKeyFrame", ripple) is EasingDoubleKeyFrame scaleYKeyFrame)
                 {
                     scaleYKeyFrame.KeyTime = KeyTime.FromTimeSpan(newTime);
@@ -60,6 +64,7 @@ public class Ripple : ContentControl
 
             VisualStateManager.GoToState(ripple, TemplateStateNormal, true);
         }
+
         PressedInstances.Clear();
     }
 
@@ -101,21 +106,21 @@ public class Ripple : ContentControl
                     .Transform(new Point(0, 0));
 
                 RippleX = FlowDirection == FlowDirection.RightToLeft
-                    ? position.X - innerContent.ActualWidth / 2 - RippleSize / 2
-                    : position.X + innerContent.ActualWidth / 2 - RippleSize / 2;
-                RippleY = position.Y + innerContent.ActualHeight / 2 - RippleSize / 2;
+                    ? position.X - (innerContent.ActualWidth / 2) - (RippleSize / 2)
+                    : position.X + (innerContent.ActualWidth / 2) - (RippleSize / 2);
+                RippleY = position.Y + (innerContent.ActualHeight / 2) - (RippleSize / 2);
             }
             else
             {
-                RippleX = ActualWidth / 2 - RippleSize / 2;
-                RippleY = ActualHeight / 2 - RippleSize / 2;
+                RippleX = (ActualWidth / 2) - (RippleSize / 2);
+                RippleY = (ActualHeight / 2) - (RippleSize / 2);
             }
         }
         else
         {
             var point = e.GetPosition(this);
-            RippleX = point.X - RippleSize / 2;
-            RippleY = point.Y - RippleSize / 2;
+            RippleX = point.X - (RippleSize / 2);
+            RippleY = point.Y - (RippleSize / 2);
         }
 
         if (!RippleAssist.GetIsDisabled(this))
@@ -172,7 +177,7 @@ public class Ripple : ContentControl
 
     /// <summary>
     ///   The DependencyProperty for the RecognizesAccessKey property. 
-    ///   Default Value: false 
+    ///   Default Value: false. 
     /// </summary> 
     public static readonly DependencyProperty RecognizesAccessKeyProperty =
         DependencyProperty.Register(
@@ -180,7 +185,7 @@ public class Ripple : ContentControl
             new PropertyMetadata(default(bool)));
 
     /// <summary> 
-    ///   Determine if Ripple should use AccessText in its style
+    ///   Determine if Ripple should use AccessText in its style.
     /// </summary> 
     public bool RecognizesAccessKey
     {

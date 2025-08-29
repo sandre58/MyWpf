@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NavigationView.Properties.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -55,7 +58,6 @@ public partial class NavigationView
     {
         get => (bool)GetValue(ExpandOnlyActiveItemProperty);
         set => SetValue(ExpandOnlyActiveItemProperty, value);
-
     }
 
     public ObservableCollection<object> FooterMenuItems
@@ -130,7 +132,8 @@ public partial class NavigationView
         set => SetValue(PaneFooterProperty, value);
     }
 
-    [Bindable(true), Category("Appearance")]
+    [Bindable(true)]
+    [Category("Appearance")]
     public int TransitionDuration
     {
         get => (int)GetValue(TransitionDurationProperty);
@@ -172,6 +175,7 @@ public partial class NavigationView
         get => (Thickness)GetValue(FrameBorderThicknessProperty);
         set => SetValue(FrameBorderThicknessProperty, value);
     }
+
     public Brush HeaderForeground
     {
         get => (Brush)GetValue(HeaderForegroundProperty);
@@ -206,7 +210,9 @@ public partial class NavigationView
             return;
 
         if (navigationView.IsPaneOpen)
+        {
             navigationView.OnPaneOpened();
+        }
         else
         {
             navigationView.GetAllNavigationViewItems().ForEach(x => x.Collapse());

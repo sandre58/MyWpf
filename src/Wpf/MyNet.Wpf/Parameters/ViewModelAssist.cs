@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ViewModelAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.ComponentModel;
 using System.Windows;
@@ -30,10 +33,10 @@ public static class ViewModelAssist
     }
 
     /// <summary>
-    /// Sets the DataContext of a View
+    /// Sets the DataContext of a View.
     /// </summary>
-    /// <param name="view">The View to set the DataContext on</param>
-    /// <param name="viewModel">The object to use as the DataContext for the View</param>
+    /// <param name="view">The View to set the DataContext on.</param>
+    /// <param name="viewModel">The object to use as the DataContext for the View.</param>
     private static void Bind(object view, object? viewModel)
     {
         if (view is FrameworkElement element)

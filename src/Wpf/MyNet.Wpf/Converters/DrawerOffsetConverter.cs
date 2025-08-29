@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DrawerOffsetConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -24,7 +27,7 @@ internal class DrawerOffsetConverter : IValueConverter
             Dock.Top => new Thickness(0, 0 - d, 0, 0),
             Dock.Bottom => new Thickness(0, 0, 0, 0 - d),
             Dock.Right => new Thickness(0, 0, 0 - d, 0),
-            _ => (object)new Thickness(0 - d, 0, 0, 0),
+            _ => (object)new Thickness(0 - d, 0, 0, 0)
         };
     }
 

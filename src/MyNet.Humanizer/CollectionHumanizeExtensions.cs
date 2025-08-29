@@ -57,8 +57,6 @@ public static class CollectionHumanizeExtensions
                 return string.Empty;
             case 1:
                 return itemsArray[0];
-            default:
-                break;
         }
 
         var itemsBeforeLast = itemsArray.Take(count - 1);

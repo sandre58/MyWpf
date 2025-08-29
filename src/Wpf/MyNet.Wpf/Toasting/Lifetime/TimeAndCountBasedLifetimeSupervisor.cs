@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TimeAndCountBasedLifetimeSupervisor.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -67,14 +70,14 @@ public sealed class TimeAndCountBasedLifetimeSupervisor(TimeSpan toastLifetime, 
             removedToast.Toast.CloseRequest -= Toast_CloseRequest;
         }
 
-        if (_toastPending != null && _toastPending.Count != 0)
+        if (_toastPending is { Count: not 0 })
         {
             var not = _toastPending.Dequeue();
             PushToast(not);
         }
     }
 
-    private bool _disposed = false;
+    private bool _disposed;
     public void Dispose()
     {
         if (_disposed)

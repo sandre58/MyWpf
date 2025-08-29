@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarBase.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections;
@@ -19,7 +22,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Threading;
 using MyNet.Observable;
 using MyNet.Observable.Deferrers;
 using MyNet.UI.Collections;
@@ -119,7 +121,7 @@ public abstract class CalendarBase : ListBox
     protected CalendarBase()
     {
         _build = new(async x => await Dispatcher.BeginInvoke(() => Build(x)));
-        _refreshAppointments = new(async x => await Dispatcher.Invoke(() => BusyService).WaitAsync<IndeterminateBusy>(async _ => await RefreshAppointmentsAsync(x).ConfigureAwait(false)));
+        _refreshAppointments = new(async x => await Dispatcher.Invoke(() => BusyService).WaitAsync<IndeterminateBusy>(async _ => await RefreshAppointmentsAsync(x).ConfigureAwait(false)).ConfigureAwait(false));
         BlackoutDates = new BlackoutDatesCollection(this);
         SelectedDatesInternal = new Calendars.SelectedDatesCollection(this);
         SetCurrentValue(DisplayDateProperty, DateTime.Now);
@@ -348,7 +350,7 @@ public abstract class CalendarBase : ListBox
 
     private async void OnAppointmentsCollectionChangedCallbackAsync(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
+        if (e is { Action: NotifyCollectionChangedAction.Remove, OldItems: not null })
         {
             foreach (var item in e.OldItems.OfType<INotifyPropertyChanged>())
             {
@@ -356,7 +358,7 @@ public abstract class CalendarBase : ListBox
             }
         }
 
-        if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+        if (e is { Action: NotifyCollectionChangedAction.Add, NewItems: not null })
         {
             foreach (var item in e.NewItems.OfType<INotifyPropertyChanged>())
             {
@@ -370,21 +372,23 @@ public abstract class CalendarBase : ListBox
         if (e.Action == NotifyCollectionChangedAction.Reset)
         {
             if (sender is IEnumerable enumerable)
+            {
                 foreach (var item in enumerable.OfType<INotifyPropertyChanged>())
                 {
                     item.PropertyChanged -= OnItemPropertyChangedCallbackAsync;
                     item.PropertyChanged += OnItemPropertyChangedCallbackAsync;
                 }
+            }
 
             RefreshAppointments();
         }
         else
         {
-            await Dispatcher.Invoke(() => BusyService).WaitAsync<IndeterminateBusy>(async _ =>
+            await Dispatcher.InvokeAsync(() => BusyService).Result.WaitAsync<IndeterminateBusy>(async _ =>
             {
                 try
                 {
-                    if (e.Action == NotifyCollectionChangedAction.Remove && e.OldItems != null)
+                    if (e is { Action: NotifyCollectionChangedAction.Remove, OldItems: not null })
                     {
                         foreach (var item in e.OldItems)
                         {
@@ -392,7 +396,7 @@ public abstract class CalendarBase : ListBox
                         }
                     }
 
-                    if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+                    if (e is { Action: NotifyCollectionChangedAction.Add, NewItems: not null })
                     {
                         foreach (var item in e.NewItems.OfType<IAppointment>())
                         {
@@ -404,14 +408,14 @@ public abstract class CalendarBase : ListBox
                 {
                     // Nothing
                 }
-            });
+            }).ConfigureAwait(false);
         }
     }
 
     private async void OnItemPropertyChangedCallbackAsync(object? sender, PropertyChangedEventArgs e)
     {
         if (sender is IAppointment appointment && e.PropertyName is (nameof(IAppointment.StartDate)) /* or (nameof(IAppointment.EndDate)) */)
-            await Dispatcher.Invoke(() => BusyService).WaitAsync<IndeterminateBusy>(async _ => await SynchronizeAppointmentAsync(appointment, CancellationToken.None).ConfigureAwait(false));
+            await Dispatcher.InvokeAsync(() => BusyService).Result.WaitAsync<IndeterminateBusy>(async _ => await SynchronizeAppointmentAsync(appointment, CancellationToken.None).ConfigureAwait(false)).ConfigureAwait(false);
     }
 
     #endregion Appointments
@@ -502,7 +506,7 @@ public abstract class CalendarBase : ListBox
 
     internal DateTime CurrentDate
     {
-        get => _currentDate.GetValueOrDefault(DisplayDateInternal);
+        get => _currentDate ?? DisplayDateInternal;
         set => _currentDate = value;
     }
 
@@ -512,9 +516,9 @@ public abstract class CalendarBase : ListBox
         private set;
     }
 
-    internal DateTime MaximumDateInternal => MaximumDate.GetValueOrDefault(DateTime.MaxValue);
+    internal DateTime MaximumDateInternal => MaximumDate ?? DateTime.MaxValue;
 
-    internal DateTime MinimumDateInternal => MinimumDate.GetValueOrDefault(DateTime.MinValue);
+    internal DateTime MinimumDateInternal => MinimumDate ?? DateTime.MinValue;
 
     /// <summary>
     /// Gets or sets the date to display.
@@ -612,18 +616,18 @@ public abstract class CalendarBase : ListBox
 
         var date = (DateTime?)value;
 
-        if (date.HasValue)
-        {
-            if (c?.MinimumDate != null && date.Value < c.MinimumDate.Value)
-            {
-                value = c.MinimumDate;
-            }
+        if (!date.HasValue)
+            return value;
 
-            var maxSelectedDate = c?.SelectedDatesInternal.MaximumDate;
-            if (maxSelectedDate != null && date.Value < maxSelectedDate.Value)
-            {
-                value = maxSelectedDate;
-            }
+        if (c?.MinimumDate != null && date.Value < c.MinimumDate.Value)
+        {
+            value = c.MinimumDate;
+        }
+
+        var maxSelectedDate = c?.SelectedDatesInternal.MaximumDate;
+        if (maxSelectedDate != null && date.Value < maxSelectedDate.Value)
+        {
+            value = maxSelectedDate;
         }
 
         return value;
@@ -811,7 +815,9 @@ public abstract class CalendarBase : ListBox
                 if (IsValidDateSelection(addedDate))
                 {
                     if (!addedDate.HasValue)
+                    {
                         SelectedDatesInternal.Clear();
+                    }
                     else
                     {
                         if (!(SelectedDatesInternal.Count > 0 && SelectedDatesInternal[0] == addedDate.Value))
@@ -954,7 +960,7 @@ public abstract class CalendarBase : ListBox
         new FrameworkPropertyMetadata(new List<DateTime>()));
 
     /// <summary>
-    /// True if the CalendarItem represents a day that falls in the currently displayed month
+    /// True if the CalendarItem represents a day that falls in the currently displayed month.
     /// </summary>
     public IEnumerable SelectedDates
     {
@@ -1219,19 +1225,17 @@ public abstract class CalendarBase : ListBox
 
     protected virtual void BuildCore(CancellationToken cancellationToken)
     {
-        if (PreviousButton != null)
-            PreviousButton.IsEnabled = CanGoToPreviousDate();
-        if (NextButton != null)
-            NextButton.IsEnabled = CanGoToNextDate();
+        PreviousButton?.IsEnabled = CanGoToPreviousDate();
+        NextButton?.IsEnabled = CanGoToNextDate();
 
         var dates = GetDisplayDates().ToList();
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        SetValue(RowsCountPropertyKey, dates.MaxOrDefault(x => x.row) + 1);
-        SetValue(ColumnsCountPropertyKey, dates.MaxOrDefault(x => x.column) + 1);
-        DatesItemsControl?.SetValue(RowsCountPropertyKey, dates.MaxOrDefault(x => x.row) + 1);
-        DatesItemsControl?.SetValue(ColumnsCountPropertyKey, dates.MaxOrDefault(x => x.column) + 1);
+        SetValue(RowsCountPropertyKey, dates.MaxOrDefault(x => x.Row) + 1);
+        SetValue(ColumnsCountPropertyKey, dates.MaxOrDefault(x => x.Column) + 1);
+        DatesItemsControl?.SetValue(RowsCountPropertyKey, dates.MaxOrDefault(x => x.Row) + 1);
+        DatesItemsControl?.SetValue(ColumnsCountPropertyKey, dates.MaxOrDefault(x => x.Column) + 1);
 
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -1243,9 +1247,9 @@ public abstract class CalendarBase : ListBox
             _displayDates.Set(dates.Select(x =>
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var item = new CalendarItem(this, x.date, IntervalUnit, _appointments);
-                Grid.SetRow(item, x.row);
-                Grid.SetColumn(item, x.column);
+                var item = new CalendarItem(this, x.Date, IntervalUnit, _appointments);
+                Grid.SetRow(item, x.Row);
+                Grid.SetColumn(item, x.Column);
                 item.AddHandler(MouseDownEvent, new MouseButtonEventHandler(Cell_MouseDown), true);
                 item.AddHandler(MouseUpEvent, new MouseButtonEventHandler(Cell_MouseUp), true);
                 item.AddHandler(MouseEnterEvent, new MouseEventHandler(Cell_MouseEnter), true);
@@ -1258,16 +1262,16 @@ public abstract class CalendarBase : ListBox
             _displayDates.ForEach(x =>
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var date = dates.FirstOrDefault(y => y.row == Grid.GetRow(x) && y.column == Grid.GetColumn(x));
+                var date = dates.FirstOrDefault(y => y.Row == Grid.GetRow(x) && y.Column == Grid.GetColumn(x));
 
                 if (date != default)
-                    x.SetDate(date.date);
+                    x.SetDate(date.Date);
             });
         }
 
         cancellationToken.ThrowIfCancellationRequested();
 
-        if (GetCalendarItemFromDate(CurrentDate) is CalendarItem calendarItem)
+        if (GetCalendarItemFromDate(CurrentDate) is { } calendarItem)
             FocusItem(calendarItem);
     }
 
@@ -1299,7 +1303,7 @@ public abstract class CalendarBase : ListBox
 
     protected virtual IEnumerable<object> GetRowHeaders() => [];
 
-    protected abstract IEnumerable<(DateTime date, int row, int column)> GetDisplayDates();
+    protected abstract IEnumerable<(DateTime Date, int Row, int Column)> GetDisplayDates();
 
     public abstract TimeUnit IntervalUnit { get; }
 
@@ -1331,11 +1335,6 @@ public abstract class CalendarBase : ListBox
                     {
                         if (!SelectedDatesInternal.Remove(date))
                             SelectedDatesInternal.Add(date);
-                        break;
-                    }
-
-                default:
-                    {
                         break;
                     }
             }
@@ -1372,6 +1371,7 @@ public abstract class CalendarBase : ListBox
                     SelectedDateInternal = newDate;
                     _hoverStart = _hoverEnd = newDate;
                 }
+
                 break;
         }
 
@@ -1394,7 +1394,9 @@ public abstract class CalendarBase : ListBox
                 AutomationPeer.ListenerExists(AutomationEvents.SelectionItemPatternOnElementAddedToSelection) ||
                 AutomationPeer.ListenerExists(AutomationEvents.SelectionItemPatternOnElementRemovedFromSelection)) &&
                 UIElementAutomationPeer.FromElement(this) is Automation.CalendarAutomationPeer peer)
+            {
                 peer.RaiseSelectionEvents(datesSelectionChangedEventArgs);
+            }
 
             CoerceValue(MinimumDateProperty);
             CoerceValue(MaximumDateProperty);
@@ -1436,7 +1438,7 @@ public abstract class CalendarBase : ListBox
         var c = (CalendarBase)sender;
         if (!e.Handled && e.OriginalSource == c)
         {
-            if (c.GetCalendarItemFromDate(c.CurrentDate) is CalendarItem calendarItem)
+            if (c.GetCalendarItemFromDate(c.CurrentDate) is { } calendarItem)
                 FocusItem(calendarItem);
             e.Handled = true;
         }
@@ -1478,7 +1480,7 @@ public abstract class CalendarBase : ListBox
     private void Cell_MouseDown(object sender, MouseButtonEventArgs e)
     {
         if (sender is not CalendarItem calendarItem
-            || e.OriginalSource is DependencyObject d && (d is Button || d.FindVisualParent<Button>() is not null
+            || (e.OriginalSource is DependencyObject d && (d is Button || d.FindVisualParent<Button>() is not null
                                                        || d is ScrollBar || d.FindVisualParent<ScrollBar>() is not null
                                                        || d is CheckBox || d.FindVisualParent<CheckBox>() is not null
                                                        || d is ToggleButton || d.FindVisualParent<ToggleButton>() is not null
@@ -1487,13 +1489,16 @@ public abstract class CalendarBase : ListBox
                                                        || d is RadioButton || d.FindVisualParent<RadioButton>() is not null
                                                        || d is ComboBox || d.FindVisualParent<ComboBox>() is not null
                                                        || d is TextBox || d.FindVisualParent<TextBox>() is not null
-                                                       || d is NumericUpDown || d.FindVisualParent<NumericUpDown>() is not null)
-            || e.RightButton == MouseButtonState.Pressed && calendarItem.IsSelected
-            )
+                                                       || d is NumericUpDown || d.FindVisualParent<NumericUpDown>() is not null))
+            || (e.RightButton == MouseButtonState.Pressed && calendarItem.IsSelected))
+        {
             return;
+        }
 
         if (calendarItem.IsBlackedOut)
+        {
             _hoverStart = null;
+        }
         else
         {
             _isItemPressed = true;
@@ -1501,7 +1506,7 @@ public abstract class CalendarBase : ListBox
 
             calendarItem.MoveFocus(new TraversalRequest(FocusNavigationDirection.First));
 
-            (var ctrl, var shift) = KeyboardHelper.GetMetaKeyState();
+            (var ctrl, var shift) = KeyboardHelper.MetaKeyState;
 
             var selectedDate = calendarItem.Date;
 
@@ -1543,6 +1548,7 @@ public abstract class CalendarBase : ListBox
                                 SelectedDateInternal = selectedDate;
                             _hoverStart = _hoverEnd = selectedDate;
                         }
+
                         break;
                     }
             }
@@ -1551,7 +1557,7 @@ public abstract class CalendarBase : ListBox
 
     private void Cell_MouseEnter(object sender, MouseEventArgs e)
     {
-        if (sender is not CalendarItem calendarItem || calendarItem.IsBlackedOut) return;
+        if (sender is not CalendarItem { IsBlackedOut: not true } calendarItem) return;
 
         if (e.LeftButton == MouseButtonState.Pressed && _isItemPressed)
         {
@@ -1576,11 +1582,14 @@ public abstract class CalendarBase : ListBox
                     if (_hoverStart.HasValue)
                     {
                         if (DatesSelectionMode == CalendarSelectionMode.SingleRange)
+                        {
                             SelectedDatesInternal.ClearInternal();
+                        }
                         else if (_hoverEnd.HasValue)
                         {
                             SelectedDatesInternal.ClearRangeInternal(_hoverStart.Value, _hoverEnd.Value);
                         }
+
                         SelectedDatesInternal.AddRange(_hoverStart.Value, selectedDate);
                     }
 
@@ -1593,7 +1602,7 @@ public abstract class CalendarBase : ListBox
     private void Cell_MouseUp(object sender, MouseButtonEventArgs e)
     {
         if (sender is not CalendarItem calendarItem
-            || e.OriginalSource is DependencyObject d && (d is Button || d.FindVisualParent<Button>() is not null
+            || (e.OriginalSource is DependencyObject d && (d is Button || d.FindVisualParent<Button>() is not null
                                                        || d is ScrollBar || d.FindVisualParent<ScrollBar>() is not null
                                                        || d is CheckBox || d.FindVisualParent<CheckBox>() is not null
                                                        || d is ToggleButton || d.FindVisualParent<ToggleButton>() is not null
@@ -1602,11 +1611,11 @@ public abstract class CalendarBase : ListBox
                                                        || d is RadioButton || d.FindVisualParent<RadioButton>() is not null
                                                        || d is ComboBox || d.FindVisualParent<ComboBox>() is not null
                                                        || d is TextBox || d.FindVisualParent<TextBox>() is not null
-                                                       || d is NumericUpDown || d.FindVisualParent<NumericUpDown>() is not null)
-            || e.RightButton == MouseButtonState.Pressed && calendarItem.IsSelected
-            )
+                                                       || d is NumericUpDown || d.FindVisualParent<NumericUpDown>() is not null))
+            || (e.RightButton == MouseButtonState.Pressed && calendarItem.IsSelected))
+        {
             return;
-
+        }
 
         _isItemPressed = false;
 
@@ -1669,7 +1678,7 @@ public abstract class CalendarBase : ListBox
 
     protected virtual bool ProcessKey(KeyEventArgs e)
     {
-        (var _, var shift) = KeyboardHelper.GetMetaKeyState();
+        (var _, var shift) = KeyboardHelper.MetaKeyState;
 
         return e.Key switch
         {
@@ -1682,7 +1691,7 @@ public abstract class CalendarBase : ListBox
             Key.PageUp => ProcessPageUpKey(shift),
             Key.Home => ProcessHomeKey(shift),
             Key.End => ProcessEndKey(shift),
-            _ => false,
+            _ => false
         };
     }
 
@@ -1870,13 +1879,13 @@ public abstract class CalendarBase : ListBox
     private bool AppointmentMustBeDisplayed(IAppointment appointment)
     {
         var period = new ImmutablePeriod(Dispatcher.Invoke(() => DisplayDateStart ?? DateTime.MinValue), Dispatcher.Invoke(() => DisplayDateEnd ?? DateTime.MaxValue));
-        return period.Start < appointment.StartDate && period.End > appointment.EndDate
-               || appointment.StartDate < period.Start && appointment.EndDate > period.End
+        return (period.Start < appointment.StartDate && period.End > appointment.EndDate)
+               || (appointment.StartDate < period.Start && appointment.EndDate > period.End)
                || period.Contains(appointment.StartDate)
                || period.Contains(appointment.EndDate);
     }
 
-    protected virtual IEnumerable<(int row, int column, int rowSpan, int columnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
+    protected virtual IEnumerable<(int Row, int Column, int RowSpan, int ColumnSpan)> GetDisplayedAppointments(IAppointment appointment, IEnumerable<(ImmutablePeriod period, int row, int column)> allDisplayedDates)
         => allDisplayedDates.GroupBy(x => x.column).Select(x => (x.Min(y => y.row), x.Key, x.Count(), 1));
 
     private IEnumerable<CalendarAppointment> CreateAppointmentsWrapper(IAppointment appointment)
@@ -1884,8 +1893,8 @@ public abstract class CalendarBase : ListBox
         var availablePeriods = Dispatcher.Invoke(() => GetCalendarItems().Select(x => (x.Period, Grid.GetRow(x), Grid.GetColumn(x))).ToList());
         if (availablePeriods.Count == 0) yield break;
 
-        var dates = availablePeriods.Where(x => x.Period.Start < appointment.StartDate && x.Period.End > appointment.EndDate
-                                                || appointment.StartDate < x.Period.Start && appointment.EndDate > x.Period.End
+        var dates = availablePeriods.Where(x => (x.Period.Start < appointment.StartDate && x.Period.End > appointment.EndDate)
+                                                || (appointment.StartDate < x.Period.Start && appointment.EndDate > x.Period.End)
                                                 || x.Period.Contains(appointment.StartDate)
                                                 || x.Period.Contains(appointment.EndDate)).ToList();
 

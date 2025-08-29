@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="SliderToolTipConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -14,7 +17,10 @@ internal class SliderToolTipConverter : IMultiValueConverter
 
     public object? Convert(object?[]? values, Type? targetType, object? parameter, CultureInfo? culture)
     {
-        if (values?.Length >= 2 && values[1] is string format && !string.IsNullOrEmpty(format))
+        if (values is
+            [
+                _, string format, ..
+            ] && !string.IsNullOrEmpty(format))
         {
             try
             {
@@ -25,6 +31,7 @@ internal class SliderToolTipConverter : IMultiValueConverter
                 // Nothing
             }
         }
+
         return values?.Length >= 1 && targetType is not null
             ? System.Convert.ChangeType(values[0], targetType, culture)
             : DependencyProperty.UnsetValue;

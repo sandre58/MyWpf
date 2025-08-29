@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MessageView.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Input;
@@ -78,7 +81,7 @@ public class MessageView : ContentDialog
     private void OnClose(MessageBoxResult result)
     {
         MessageBoxResult = result;
-        DialogResult = result == MessageBoxResult.Ok || result == MessageBoxResult.Yes;
+        DialogResult = result is MessageBoxResult.Ok or MessageBoxResult.Yes;
 
         Close();
     }

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DayOfWeekToStringConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using MyNet.Humanizer;
 using System;
@@ -11,7 +14,7 @@ namespace MyNet.Wpf.Converters;
 /// <summary>
 /// Converts string values.
 /// </summary>
-public class DayOfWeekStringConverter
+public sealed class DayOfWeekStringConverter
     : IValueConverter
 {
 

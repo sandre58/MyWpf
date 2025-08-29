@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RichTextEditor.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +21,6 @@ using MyNet.Utilities;
 using MyNet.Wpf.Commands;
 using MyNet.Wpf.Parameters;
 using MyNet.Wpf.Resources;
-using MyNet.Xaml;
 using MyNet.Xaml.Html;
 
 namespace MyNet.Wpf.Controls;
@@ -113,16 +115,16 @@ public class RichTextEditor : RichTextBox
         get => (string)GetValue(HtmlProperty);
         set => SetValue(HtmlProperty, value);
     }
+
     private static void OnHtmlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not RichTextEditor richTextEditor || richTextEditor._textChanging) return;
+        if (d is not RichTextEditor { _textChanging: not true } richTextEditor) return;
 
         richTextEditor.Document.Blocks.Clear();
 
-        if (GetSection(e.NewValue?.ToString()) is Section section)
+        if (GetSection(e.NewValue?.ToString()) is { } section)
             richTextEditor.Document.Blocks.Add(section);
     }
-
 
     #endregion
 

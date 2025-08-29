@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ComparaisonToBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -31,7 +34,7 @@ public sealed class ComparaisonToBooleanConverter : IValueConverter, IMultiValue
 
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => DoConvert(value, parameter, Comparaison);
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values == null || values.Length < 2 ? Binding.DoNothing : DoConvert(values[0], values[1], Comparaison);
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => values is not { Length: >= 2 } ? Binding.DoNothing : DoConvert(values[0], values[1], Comparaison);
 
     public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => Binding.DoNothing;
 
@@ -53,15 +56,15 @@ public sealed class ComparaisonToBooleanConverter : IValueConverter, IMultiValue
         {
             var firstCulture = firstValue is string ? CultureInfo.CurrentCulture : CultureInfo.InvariantCulture;
             var secondCulture = secondValue is string ? CultureInfo.CurrentCulture : CultureInfo.InvariantCulture;
-            var value1 = (firstValue as double?).GetValueOrDefault(System.Convert.ToDouble(firstValue, firstCulture));
-            var value2 = (secondValue as double?).GetValueOrDefault(System.Convert.ToDouble(secondValue, secondCulture));
+            var value1 = (firstValue as double?) ?? System.Convert.ToDouble(firstValue, firstCulture);
+            var value2 = (secondValue as double?) ?? System.Convert.ToDouble(secondValue, secondCulture);
 
             return operation switch
             {
                 MathComparaisonForConverter.IsEqualsTo => value1.NearlyEqual(value2),
                 MathComparaisonForConverter.IsGreaterThan => value1 > value2,
                 MathComparaisonForConverter.IsLessThan => value1 < value2,
-                _ => Binding.DoNothing,
+                _ => Binding.DoNothing
             };
         }
         catch (Exception)

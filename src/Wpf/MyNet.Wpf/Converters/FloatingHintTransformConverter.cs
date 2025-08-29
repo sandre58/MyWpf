@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FloatingHintTransformConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -15,8 +18,7 @@ internal class FloatingHintTransformConverter : IMultiValueConverter
 
     public object? Convert(object?[]? values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values == null
-            || values.Length != 4
+        if (values is not { Length: 4 }
             || Array.Exists(values, v => v == null)
             || !double.TryParse(values[0]?.ToString(), out var scale)
             || !double.TryParse(values[1]?.ToString(), out var lower)
@@ -26,7 +28,7 @@ internal class FloatingHintTransformConverter : IMultiValueConverter
             return Transform.Identity;
         }
 
-        var result = upper + (lower - upper) * scale;
+        var result = upper + ((lower - upper) * scale);
 
         var transformGroup = new TransformGroup();
         transformGroup.Children.Add(new ScaleTransform

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="CalendarAutomationPeer.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -15,12 +18,12 @@ using MyNet.Wpf.Controls;
 namespace MyNet.Wpf.Automation;
 
 /// <summary>
-/// AutomationPeer for Scheduler Control
+/// AutomationPeer for Scheduler Control.
 /// </summary>
 /// <remarks>
 /// Initializes a new instance of the SchedulerAutomationPeer class.
 /// </remarks>
-/// <param name="owner">Owning Scheduler</param>
+/// <param name="owner">Owning Scheduler.</param>
 public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElementAutomationPeer(owner), ISelectionProvider, ITableProvider, IItemContainerProvider
 {
 
@@ -139,7 +142,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
                 var focusedItem = GetOrCreateDateTimeAutomationPeer(focusedDate);
                 FrameworkElement? focusedButton = focusedItem.OwningButton;
 
-                if (focusedButton == null || !focusedButton.IsKeyboardFocused)
+                if (focusedButton is not { IsKeyboardFocused: true })
                 {
                     throw new InvalidOperationException();
                 }
@@ -160,7 +163,8 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
     ///                     security critical Hwnd value for this peer created asynchronously.
     /// SecurityTreatAsSafe - It's being called from this object which is real parent for the item peer.
     /// </SecurityNote>
-    [SecurityCritical, SecuritySafeCritical]
+    [SecurityCritical]
+    [SecuritySafeCritical]
     private CalendarItemAutomationPeer GetOrCreateDateTimeAutomationPeer(DateTime? date) => new(date, OwningScheduler);
 
     internal void RaiseSelectionEvents(SelectionChangedEventArgs e)
@@ -223,7 +227,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
 
     #region ISelectionProvider
 
-    bool ISelectionProvider.CanSelectMultiple => OwningScheduler?.DatesSelectionMode == CalendarSelectionMode.SingleRange || OwningScheduler?.DatesSelectionMode == CalendarSelectionMode.MultipleRange;
+    bool ISelectionProvider.CanSelectMultiple => OwningScheduler?.DatesSelectionMode is CalendarSelectionMode.SingleRange or CalendarSelectionMode.MultipleRange;
 
     bool ISelectionProvider.IsSelectionRequired => false;
 
@@ -277,7 +281,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
                 nextDate = parsedDate;
             }
 
-            if (!nextDate.HasValue || startAfterDatePeer != null && nextDate <= startAfterDatePeer.Date)
+            if (!nextDate.HasValue || (startAfterDatePeer != null && nextDate <= startAfterDatePeer.Date))
             {
                 throw new InvalidOperationException();
             }
@@ -290,6 +294,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
             {
                 return null;
             }
+
             nextDate = GetNextDate(startAfterDatePeer);
         }
         else
@@ -305,6 +310,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
                 return ProviderFromPeer(nextPeer);
             }
         }
+
         return null;
     }
 
@@ -330,12 +336,14 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
             {
                 return null;
             }
+
             // startDate is before first SelectedDate
             if (OwningScheduler.SelectedDatesInternal.MinimumDate != DateTime.MinValue && startDate < OwningScheduler.SelectedDatesInternal.MinimumDate)
             {
                 return OwningScheduler.SelectedDatesInternal.MinimumDate;
             }
         }
+
         while (true)
         {
             startDate = startDate.AddDays(1);
@@ -378,7 +386,7 @@ public sealed class CalendarAutomationPeer(CalendarBase owner) : FrameworkElemen
         return providers.Count switch
         {
             > 0 => [.. providers],
-            _ => [],
+            _ => []
         };
     }
 

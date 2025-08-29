@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="NumericUpDown.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -8,7 +11,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -39,7 +41,7 @@ public partial class NumericUpDown : Control
     private static partial Regex StringFormatRegex();
 
     private const string RawRegexNumberString = @"[-+]?(?<![0-9][<DecimalSeparator><GroupSeparator>])[<DecimalSeparator><GroupSeparator>]?[0-9]+(?:[<DecimalSeparator><GroupSeparator>\s][0-9]+)*[<DecimalSeparator><GroupSeparator>]?[0-9]?(?:[eE][-+]?[0-9]+)?(?!\.[0-9])";
-    private Regex? _regexNumber = null;
+    private Regex? _regexNumber;
 
     private Lazy<PropertyInfo?> _handlesMouseWheelScrolling = new();
     private double _internalIntervalMultiplierForCalculation = DefaultInterval;
@@ -280,10 +282,10 @@ public partial class NumericUpDown : Control
     private static object CoerceStringFormat(DependencyObject d, object? baseValue) => baseValue ?? string.Empty;
 
     /// <summary>
-    /// Gets or sets the formatting for the displaying <see cref="Value" />
+    /// Gets or sets the formatting for the displaying <see cref="Value" />.
     /// </summary>
     /// <remarks>
-    /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings"></see>
+    /// <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings"></see>.
     /// </remarks>
     [Category("Common")]
     public string StringFormat
@@ -300,7 +302,7 @@ public partial class NumericUpDown : Control
                                       new FrameworkPropertyMetadata(BooleanBoxes.TrueBox));
 
     /// <summary>
-    /// Gets or sets a value indicating whether the user can use the arrow keys <see cref="Key.Up"/> and <see cref="Key.Down"/> to change the value. 
+    /// Gets or sets a value indicating whether the user can use the arrow keys <see cref="Key.Up"/> and <see cref="Key.Down"/> to change the value.
     /// </summary>
     [Bindable(true)]
     [Category("Behavior")]
@@ -727,7 +729,7 @@ public partial class NumericUpDown : Control
     /// <summary>
     /// Gets or sets a composite string that specifies how to format the ButtonUpContent property if it is displayed as a string.
     /// </summary>
-    /// <remarks> 
+    /// <remarks>
     /// This property is ignored if <seealso cref="ButtonUpContentTemplate"/> is set.
     /// </remarks>
     [Bindable(true)]
@@ -778,7 +780,7 @@ public partial class NumericUpDown : Control
     /// <summary>
     /// Gets or sets a composite string that specifies how to format the ButtonDownContent property if it is displayed as a string.
     /// </summary>
-    /// <remarks> 
+    /// <remarks>
     /// This property is ignored if <seealso cref="ButtonDownContentTemplate"/> is set.
     /// </remarks>
     [Bindable(true)]
@@ -849,7 +851,7 @@ public partial class NumericUpDown : Control
                                       new PropertyMetadata(default(DecimalPointCorrectionMode)));
 
     /// <summary>
-    /// Gets or sets the decimal-point correction mode. The default is <see cref="DecimalPointCorrectionMode.Inherits"/>
+    /// Gets or sets the decimal-point correction mode. The default is <see cref="DecimalPointCorrectionMode.Inherits"/>.
     /// </summary>
     public DecimalPointCorrectionMode DecimalPointCorrection
     {
@@ -923,7 +925,7 @@ public partial class NumericUpDown : Control
         EventManager.RegisterClassHandler(typeof(NumericUpDown), GotFocusEvent, new RoutedEventHandler(OnGotFocus));
     }
 
-    /// <summary> 
+    /// <summary>
     ///     Called when this element or any below gets focus.
     /// </summary>
     private static void OnGotFocus(object sender, RoutedEventArgs e)
@@ -1078,8 +1080,7 @@ public partial class NumericUpDown : Control
     {
         base.OnPreviewKeyUp(e);
 
-        if (e.Key == Key.Down ||
-            e.Key == Key.Up)
+        if (e.Key is Key.Down or Key.Up)
         {
             ResetInternal();
         }
@@ -1128,10 +1129,10 @@ public partial class NumericUpDown : Control
     ///     Raises the <see cref="ValueChanged" /> routed event.
     /// </summary>
     /// <param name="oldValue">
-    ///     Old value of the <see cref="Value" /> property
+    ///     Old value of the <see cref="Value" /> property.
     /// </param>
     /// <param name="newValue">
-    ///     New value of the <see cref="Value" /> property
+    ///     New value of the <see cref="Value" /> property.
     /// </param>
     protected virtual void OnValueChanged(double? oldValue, double? newValue)
     {
@@ -1453,9 +1454,9 @@ public partial class NumericUpDown : Control
     }
 
     /// <summary>
-    /// Insertion of the proper decimal-point as part of the TextBox content
+    /// Insertion of the proper decimal-point as part of the TextBox content.
     /// </summary>
-    /// <param name="textBox">The TextBox which will be used for the correction</param>
+    /// <param name="textBox">The TextBox which will be used for the correction.</param>
     /// <param name="mode">The decimal correction mode.</param>
     /// <param name="culture">The culture with the decimal-point information.</param>
     /// <remarks>
@@ -1469,7 +1470,7 @@ public partial class NumericUpDown : Control
             DecimalPointCorrectionMode.Number => culture.NumberFormat.NumberDecimalSeparator,
             DecimalPointCorrectionMode.Currency => culture.NumberFormat.CurrencyDecimalSeparator,
             DecimalPointCorrectionMode.Percent => culture.NumberFormat.PercentDecimalSeparator,
-            _ => null,
+            _ => null
         };
         if (!string.IsNullOrEmpty(replace))
         {

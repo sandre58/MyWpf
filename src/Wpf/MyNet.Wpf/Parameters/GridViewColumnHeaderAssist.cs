@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="GridViewColumnHeaderAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.ComponentModel;
 using System.Windows;
@@ -16,7 +19,6 @@ public static class GridViewColumnHeaderAssist
         typeof(bool),
         typeof(GridViewColumnHeaderAssist),
         new PropertyMetadata(true));
-
 
     public static bool GetCanSort(GridViewColumnHeader item) => (bool)item.GetValue(CanSortProperty);
 

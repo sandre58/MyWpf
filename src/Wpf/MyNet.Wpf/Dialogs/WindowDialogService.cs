@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="WindowDialogService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -84,7 +87,7 @@ public class WindowDialogService : DialogService
     {
         var dialogViewModel = ((sender as Window)!.DataContext as IDialogViewModel);
 
-        if (dialogViewModel != null && dialogViewModel.LoadWhenDialogOpening)
+        if (dialogViewModel is { LoadWhenDialogOpening: true })
             dialogViewModel.Load();
     }
 

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BusyService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Reactive.Concurrency;
@@ -33,7 +36,6 @@ public class BusyService : ObservableObject, IBusyService
                 _busyView = CreateBusyView();
                 _busyView.BusyHidden += (sender, e) => _container?.Children.Remove(BusyView);
             }
-
 
             return _busyView;
         }
@@ -135,7 +137,7 @@ public class BusyService : ObservableObject, IBusyService
     #endregion IBusyService
 
     /// <summary>
-    /// Show busy
+    /// Show busy.
     /// </summary>
     private void ShowBusy(IBusy busy)
     {

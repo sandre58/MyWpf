@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MenuAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -34,8 +37,10 @@ public static class MenuAssist
             var contextMenu = button.FindVisualParent<ContextMenu>();
 
             if (contextMenu is not null)
+            {
                 contextMenu.IsOpen = false;
-            else if (button.FindVisualParent<DropDownButton>() is DropDownButton dropDownButton)
+            }
+            else if (button.FindVisualParent<DropDownButton>() is { } dropDownButton)
             {
                 dropDownButton.IsPopupOpen = false;
             }

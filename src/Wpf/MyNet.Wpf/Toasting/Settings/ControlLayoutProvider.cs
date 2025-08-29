@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ControlLayoutProvider.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -69,7 +72,7 @@ public sealed class ControlLayoutProvider : ILayoutProvider
             Corner.BottomRight => GetPositionForBottomRightCorner(location, actualPopupWidth, actualPopupHeight),
             Corner.BottomCenter => GetPositionForBottomCenterCorner(location, actualPopupWidth, actualPopupHeight),
             Corner.BottomLeft => GetPositionForBottomLeftCorner(location, actualPopupHeight),
-            _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth)),
+            _ => throw new ArgumentOutOfRangeException(nameof(actualPopupWidth))
         };
     }
 
@@ -79,15 +82,14 @@ public sealed class ControlLayoutProvider : ILayoutProvider
     {
         Corner.TopRight or Corner.TopLeft => EjectDirection.ToBottom,
         Corner.BottomRight or Corner.BottomLeft or Corner.BottomCenter => EjectDirection.ToTop,
-        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null),
+        _ => throw new ArgumentOutOfRangeException(nameof(corner), corner, null)
     };
 
     private Point GetPositionForBottomLeftCorner(Point location, double actualPopupHeight) => new(location.X + _offsetX, location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
 
     private Point GetPositionForBottomRightCorner(Point location, double actualPopupWidth, double actualPopupHeight) => new(location.X + _element.ActualWidth - _offsetX - actualPopupWidth, location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
 
-    private Point GetPositionForBottomCenterCorner(Point location, double actualPopupWidth, double actualPopupHeight) => new(location.X + (_element.ActualWidth - _offsetX - actualPopupWidth) / 2, location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
-
+    private Point GetPositionForBottomCenterCorner(Point location, double actualPopupWidth, double actualPopupHeight) => new(location.X + ((_element.ActualWidth - _offsetX - actualPopupWidth) / 2), location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
 
     private Point GetPositionForTopLeftCorner(Point location) => new(location.X + _offsetX, location.Y + _offsetY);
 

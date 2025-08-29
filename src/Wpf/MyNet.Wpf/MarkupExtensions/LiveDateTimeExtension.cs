@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="LiveDateTimeExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Data;
@@ -23,7 +26,8 @@ public class LiveDateTimeExtension : GlobalizationExtensionBase<Binding>
 {
     public virtual DateTime UtcDate => DateTime.UtcNow;
 
-    public LiveDateTimeExtension() : base(true, true) { }
+    public LiveDateTimeExtension()
+        : base(true, true) { }
 
     protected override Binding CreateBinding() => new(nameof(UtcDate))
     {

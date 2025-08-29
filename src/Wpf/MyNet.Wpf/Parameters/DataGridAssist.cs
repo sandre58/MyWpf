@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataGridAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Linq;
 using System.Windows;
@@ -220,7 +223,7 @@ public static class DataGridAssist
     private static void EditOnSpacebarPress(object sender, KeyEventArgs e)
     {
         var dataGrid = (DataGrid)sender;
-        if (e.Key == Key.Space && e.OriginalSource is DataGridCell { IsReadOnly: false } cell)
+        if (e is { Key: Key.Space, OriginalSource: DataGridCell { IsReadOnly: false } cell })
         {
             switch (cell.Column)
             {
@@ -260,11 +263,13 @@ public static class DataGridAssist
             {
                 return;
             }
+
             if (dataGridCell.IsEditing)
             {
                 // If the cell is already being edited, we don't want to (re)start editing
                 return;
             }
+
             //NB: Issue 2852 - Don't handle events from nested data grids
             var parentDataGrid = dataGridCell
                 .GetVisualAncestry()
@@ -308,6 +313,7 @@ public static class DataGridAssist
 
                             toggleButton.RaiseEvent(newMouseEvent);
                         }
+
                         break;
                     }
 

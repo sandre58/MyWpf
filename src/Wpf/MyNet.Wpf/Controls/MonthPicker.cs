@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MonthPicker.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -163,6 +166,7 @@ public class MonthPicker : Control
             _popup.Closed -= PopupOnClosed;
             _popup.Child = null;
         }
+
         if (_dropDownButton != null)
         {
             _dropDownButton.Click -= DropDownButtonOnClick;
@@ -192,7 +196,7 @@ public class MonthPicker : Control
 
     private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        if (sender is not Popup popup || popup.StaysOpen) return;
+        if (sender is not Popup { StaysOpen: not true }) return;
 
         if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
         {

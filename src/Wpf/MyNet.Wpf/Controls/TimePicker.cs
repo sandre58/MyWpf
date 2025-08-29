@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TimePicker.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -188,7 +191,6 @@ public class TimePicker : Control
         set => SetValue(IsHeaderVisibleProperty, value);
     }
 
-
     private static object OnCoerceIsDropDownOpen(DependencyObject d, object baseValue)
     {
         var timePicker = (TimePicker)d;
@@ -276,10 +278,12 @@ public class TimePicker : Control
             _popup.Closed -= PopupOnClosed;
             _popup.Child = null;
         }
+
         if (_dropDownButton != null)
         {
             _dropDownButton.Click -= DropDownButtonOnClick;
         }
+
         if (_textBox != null)
         {
             _textBox.RemoveHandler(KeyDownEvent, new KeyEventHandler(TextBoxOnKeyDown));
@@ -327,10 +331,10 @@ public class TimePicker : Control
             return;
         }
 
-        if (IsTimeValid(text!, out var time))
+        if (IsTimeValid(text, out var time))
         {
             SetSelectedTime(time);
-            UpdateTextBoxTextIfNeeded(text!);
+            UpdateTextBoxTextIfNeeded(text);
         }
         else // Invalid time, jump back to previous good time
         {
@@ -355,7 +359,6 @@ public class TimePicker : Control
                 textBox.Text = "";
             }
         }
-
     }
 
     private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
@@ -441,7 +444,7 @@ public class TimePicker : Control
         var currentText = _textBox?.Text;
         if (!string.IsNullOrEmpty(currentText))
         {
-            ParseTime(currentText!, t =>
+            ParseTime(currentText, t =>
             {
                 if (!beCautious || DateTimeToString(t) == currentText)
                 {
@@ -450,7 +453,7 @@ public class TimePicker : Control
 
                 if (!beCautious)
                 {
-                    UpdateTextBoxTextIfNeeded(currentText!);
+                    UpdateTextBoxTextIfNeeded(currentText);
                 }
             });
         }
@@ -516,7 +519,7 @@ public class TimePicker : Control
 
     private void PopupOnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
     {
-        if (sender is not Popup popup || popup.StaysOpen) return;
+        if (sender is not Popup { StaysOpen: not true }) return;
 
         if (_dropDownButton?.InputHitTest(mouseButtonEventArgs.GetPosition(_dropDownButton)) != null)
         {
@@ -566,8 +569,8 @@ public class TimePicker : Control
 
     private void ClockChoiceMadeHandler(object sender, ClockChoiceMadeEventArgs clockChoiceMadeEventArgs)
     {
-        if (WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Seconds ||
-            !WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes)
+        if ((WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Seconds) ||
+            (!WithSeconds && clockChoiceMadeEventArgs.Mode == ClockDisplayMode.Minutes))
         {
             TogglePopup();
             if (SelectedTime == null)

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorPair.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows.Media;
 using MyNet.Wpf.Extensions;
@@ -12,7 +15,7 @@ public struct ColorPair(Color color, Color? foreground = null)
 
     /// <summary>
     /// The foreground or opposite color. If left null, this will be calculated for you.
-    /// Calculated by calling ColorAssist.ContrastingForegroundColor()
+    /// Calculated by calling ColorAssist.ContrastingForegroundColor().
     /// </summary>
     public Color? ForegroundColor { get; set; } = foreground;
 

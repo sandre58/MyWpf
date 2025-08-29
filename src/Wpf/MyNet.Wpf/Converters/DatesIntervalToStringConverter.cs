@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DatesIntervalToStringConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -19,7 +22,10 @@ public class DatesIntervalToStringConverter(bool withPrefix) : IMultiValueConver
 
     public object? Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (values.Length >= 2 && values[0] != null && values[1] != null && DateTime.TryParse(values[0].ToString(), culture, out var date1) && DateTime.TryParse(values[1].ToString(), culture, out var date2))
+        if (values is
+            [
+                not null, not null, ..
+            ] && DateTime.TryParse(values[0].ToString(), culture, out var date1) && DateTime.TryParse(values[1].ToString(), culture, out var date2))
         {
             string? result;
             if (_withPrefix)

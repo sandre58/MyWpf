@@ -127,8 +127,6 @@ public class MainWindowViewModelBase : LocalizableObject
             case nameof(ProgressionBusy.IsCancelling):
                 RefreshTaskBarState(TaskbarProgressState.Paused, progressionBusy.Value);
                 break;
-            default:
-                break;
         }
     }
 

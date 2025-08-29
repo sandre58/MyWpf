@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MultiComboBox.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using MyNet.Wpf.Automation;
 using MyNet.Wpf.Extensions;
@@ -31,7 +34,7 @@ public class MultiComboBox : ListBox
         HasMouseEnteredItemsHost = 0x02,
         IsContextMenuOpen = 0x04,
         UpdatingText = 0x08,
-        IsWaitingForTextComposition = 0x20,
+        IsWaitingForTextComposition = 0x20
     }
 
     private const string SelectedItemsControlTemplateName = "PART_MultiComboBoxSelectedItems";
@@ -123,7 +126,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    /// Called when the Template's tree has been generated
+    /// Called when the Template's tree has been generated.
     /// </summary>
     public override void OnApplyTemplate()
     {
@@ -162,15 +165,16 @@ public class MultiComboBox : ListBox
     #region Properties
 
     /// <summary>
-    ///     DependencyProperty for MaxDropDownHeight
+    ///     DependencyProperty for MaxDropDownHeight.
     /// </summary>
     public static readonly DependencyProperty ShowRemoveItemButtonProperty
         = DependencyProperty.Register("ShowRemoveItemButton", typeof(bool), typeof(MultiComboBox), new FrameworkPropertyMetadata(true));
 
     /// <summary>
-    ///     The maximum height of the popup
+    ///     The maximum height of the popup.
     /// </summary>
-    [Bindable(true), Category("Layout")]
+    [Bindable(true)]
+    [Category("Layout")]
     public bool ShowRemoveItemButton
     {
         get => (bool)GetValue(ShowRemoveItemButtonProperty);
@@ -178,15 +182,16 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for MaxDropDownHeight
+    ///     DependencyProperty for MaxDropDownHeight.
     /// </summary>
     public static readonly DependencyProperty SelectedItemTemplateProperty
         = DependencyProperty.Register("SelectedItemTemplate", typeof(DataTemplate), typeof(MultiComboBox), new FrameworkPropertyMetadata(null));
 
     /// <summary>
-    ///     The maximum height of the popup
+    ///     The maximum height of the popup.
     /// </summary>
-    [Bindable(true), Category("Layout")]
+    [Bindable(true)]
+    [Category("Layout")]
     public DataTemplate SelectedItemTemplate
     {
         get => (DataTemplate)GetValue(SelectedItemTemplateProperty);
@@ -194,16 +199,17 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for MaxDropDownHeight
+    ///     DependencyProperty for MaxDropDownHeight.
     /// </summary>
     public static readonly DependencyProperty MaxDropDownHeightProperty
         = DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(MultiComboBox),
                                       new FrameworkPropertyMetadata(320d));
 
     /// <summary>
-    ///     The maximum height of the popup
+    ///     The maximum height of the popup.
     /// </summary>
-    [Bindable(true), Category("Layout")]
+    [Bindable(true)]
+    [Category("Layout")]
     [TypeConverter(typeof(LengthConverter))]
     public double MaxDropDownHeight
     {
@@ -212,7 +218,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    /// DependencyProperty for IsDropDownOpen
+    /// DependencyProperty for IsDropDownOpen.
     /// </summary>
     public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register(
@@ -226,9 +232,11 @@ public class MultiComboBox : ListBox
                             new CoerceValueCallback(CoerceIsDropDownOpen)));
 
     /// <summary>
-    /// Whether or not the "popup" for this control is currently open
+    /// Whether or not the "popup" for this control is currently open.
     /// </summary>
-    [Bindable(true), Browsable(false), Category("Appearance")]
+    [Bindable(true)]
+    [Browsable(false)]
+    [Category("Appearance")]
     public bool IsDropDownOpen
     {
         get => (bool)GetValue(IsDropDownOpenProperty);
@@ -300,7 +308,7 @@ public class MultiComboBox : ListBox
             _ = Mouse.Capture(comboBox, CaptureMode.SubTree);
 
             // Select text if editable
-            if (comboBox.IsEditable && comboBox.EditableTextBoxSite != null)
+            if (comboBox is { IsEditable: true, EditableTextBoxSite: not null })
                 comboBox.EditableTextBoxSite.SelectAll();
 
             comboBox.OnDropDownOpened(EventArgs.Empty);
@@ -312,7 +320,7 @@ public class MultiComboBox : ListBox
             {
                 if (comboBox.IsEditable)
                 {
-                    if (comboBox.EditableTextBoxSite != null && !comboBox.EditableTextBoxSite.IsKeyboardFocusWithin)
+                    if (comboBox.EditableTextBoxSite is { IsKeyboardFocusWithin: false })
                     {
                         _ = comboBox.Focus();
                     }
@@ -342,7 +350,7 @@ public class MultiComboBox : ListBox
     private void OnPopupClosed(object? source, EventArgs e) => OnDropDownClosed(EventArgs.Empty);
 
     /// <summary>
-    /// DependencyProperty for IsEditable
+    /// DependencyProperty for IsEditable.
     /// </summary>
     public static readonly DependencyProperty IsEditableProperty =
             DependencyProperty.Register(
@@ -363,7 +371,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for StaysOpenOnEdit
+    ///     DependencyProperty for StaysOpenOnEdit.
     /// </summary>
     public static readonly DependencyProperty StaysOpenOnEditProperty
         = DependencyProperty.Register("StaysOpenOnEdit", typeof(bool), typeof(MultiComboBox),
@@ -371,7 +379,7 @@ public class MultiComboBox : ListBox
 
     /// <summary>
     ///     Determines whether the ComboBox will remain open when clicking on
-    ///     the text box when the drop down is open
+    ///     the text box when the drop down is open.
     /// </summary>
     /// <value></value>
     public bool StaysOpenOnEdit
@@ -381,7 +389,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for Text
+    ///     DependencyProperty for Text.
     /// </summary>
     public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
@@ -405,7 +413,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for Text
+    ///     DependencyProperty for Text.
     /// </summary>
     public static readonly DependencyProperty PrefixProperty =
             DependencyProperty.Register(
@@ -428,7 +436,7 @@ public class MultiComboBox : ListBox
     }
 
     /// <summary>
-    ///     DependencyProperty for the IsReadOnlyProperty
+    ///     DependencyProperty for the IsReadOnlyProperty.
     /// </summary>
     public static readonly DependencyProperty IsReadOnlyProperty =
             TextBoxBase.IsReadOnlyProperty.AddOwner(typeof(MultiComboBox));
@@ -483,6 +491,7 @@ public class MultiComboBox : ListBox
         {
             EditableTextBoxSite?.Clear();
         }
+
         base.OnLostFocus(e);
     }
 
@@ -521,7 +530,7 @@ public class MultiComboBox : ListBox
         var comboBox = (MultiComboBox)sender;
 
         // If we (or one of our children) are clicked, claim the focus (don't steal focus if our context menu is clicked)
-        if (!comboBox.IsContextMenuOpen && !comboBox.IsKeyboardFocusWithin)
+        if (comboBox is { IsContextMenuOpen: false, IsKeyboardFocusWithin: false })
         {
             _ = comboBox.Focus();
         }
@@ -547,7 +556,7 @@ public class MultiComboBox : ListBox
 
         var originalSource = (Visual)e.OriginalSource;
 
-        if (comboBox.SelectedItemsControl != null && originalSource.IsDescendantOf(comboBox.SelectedItemsControl) && originalSource is ButtonBase button && button.Name == RemoveItemButtonTemplateName)
+        if (comboBox.SelectedItemsControl != null && originalSource.IsDescendantOf(comboBox.SelectedItemsControl) && originalSource is ButtonBase { Name: RemoveItemButtonTemplateName } button)
         {
             var item = button.FindVisualParent<MultiComboBoxSelectedItem>()?.DataContext;
             comboBox.RemoveSelectedItem(item);
@@ -565,14 +574,14 @@ public class MultiComboBox : ListBox
             if (e.OriginalSource is Visual originalSource && textBox != null
                 && originalSource.IsDescendantOf(textBox))
             {
-                if (comboBox.IsDropDownOpen && !comboBox.StaysOpenOnEdit)
+                if (comboBox is { IsDropDownOpen: true, StaysOpenOnEdit: false })
                 {
                     // When combobox is not editable, clicks anywhere outside
                     // the combobox will close it.  When the combobox is editable
                     // then clicking the text box should close the combobox as well.
                     comboBox.Close();
                 }
-                else if (!comboBox.IsContextMenuOpen && !comboBox.IsKeyboardFocusWithin)
+                else if (comboBox is { IsContextMenuOpen: false, IsKeyboardFocusWithin: false })
                 {
                     // If textBox is clicked, claim focus
                     _ = comboBox.Focus();
@@ -606,7 +615,7 @@ public class MultiComboBox : ListBox
         // The mouse moved, see if we're over the items host yet
         if (comboBox.IsDropDownOpen)
         {
-            var isMouseOverItemsHost = comboBox.DropDownPopup != null && comboBox.DropDownPopup.IsMouseOver;
+            var isMouseOverItemsHost = comboBox.DropDownPopup is { IsMouseOver: true };
 
             comboBox.HasMouseEnteredItemsHost |= isMouseOverItemsHost;
         }
@@ -621,7 +630,7 @@ public class MultiComboBox : ListBox
         var comboBox = (MultiComboBox)sender;
 
         // If we're an editable combobox, forward focus to the TextBox element
-        if (!e.Handled && comboBox.IsEditable && comboBox.EditableTextBoxSite != null)
+        if (!e.Handled && comboBox is { IsEditable: true, EditableTextBoxSite: not null })
         {
             if (e.OriginalSource == comboBox)
             {
@@ -667,7 +676,7 @@ public class MultiComboBox : ListBox
 
     protected override void OnSelectionChanged(SelectionChangedEventArgs e)
     {
-        HasSelectedItems = SelectedItems != null && SelectedItems.Count > 0;
+        HasSelectedItems = SelectedItems is { Count: > 0 };
 
         base.OnSelectionChanged(e);
 
@@ -675,14 +684,16 @@ public class MultiComboBox : ListBox
             || AutomationPeer.ListenerExists(AutomationEvents.SelectionItemPatternOnElementSelected)
             || AutomationPeer.ListenerExists(AutomationEvents.SelectionItemPatternOnElementAddedToSelection)
             || AutomationPeer.ListenerExists(AutomationEvents.SelectionItemPatternOnElementRemovedFromSelection)) && UIElementAutomationPeer.CreatePeerForElement(this) is MultiComboBoxAutomationPeer peer)
+        {
             peer.RaiseSelectionEvents(e);
+        }
     }
 
     private MultiComboBoxItem? GetItemContainer(object? item) => ItemContainerGenerator.ContainerFromItem(item) as MultiComboBoxItem;
 
     private void RemoveSelectedItem(object? item)
     {
-        if (GetItemContainer(item) is MultiComboBoxItem container && container.IsSelected)
+        if (GetItemContainer(item) is { IsSelected: true } container)
         {
             container.IsSelected = false;
         }
@@ -694,7 +705,7 @@ public class MultiComboBox : ListBox
 
     private bool AddSelectedItem(object? item)
     {
-        if (GetItemContainer(item) is MultiComboBoxItem container && !container.IsSelected)
+        if (GetItemContainer(item) is { IsSelected: false } container)
         {
             container.IsSelected = true;
             return true;
@@ -818,9 +829,9 @@ public class MultiComboBox : ListBox
                 {
                     SetCurrentValue(TextProperty, newText);
                 }
-                else if (EditableTextBoxSite != null)
+                else
                 {
-                    EditableTextBoxSite.Text = newText;
+                    EditableTextBoxSite?.Text = newText;
                 }
             }
             finally
@@ -902,10 +913,10 @@ public class MultiComboBox : ListBox
     /// Gets the length of the prefix (the prefix of matchedText matched by newText) and the rest of the string from the matchedText
     /// It takes care of compressions or expansions in both matchedText and newText  which could be impacting the length of the string
     /// For example: length of prefix would be 5 and the rest would be 2 if matchedText is "Grosses" and newText is ""Groß"
-    /// length of prefix would be 4 and the rest would be 2 if matchedText is ""Großes" and newText is "Gross" as "ß" = "ss"
+    /// length of prefix would be 4 and the rest would be 2 if matchedText is ""Großes" and newText is "Gross" as "ß" = "ss".
     /// </summary>
-    /// /// <param name="matchedText">string that is assumed to contain prefix which matches newText</param>
-    /// <param name="newText">string that is assumed to match a prefix of matchedText</param>
+    /// /// <param name="matchedText">string that is assumed to contain prefix which matches newText.</param>
+    /// <param name="newText">string that is assumed to match a prefix of matchedText.</param>
     /// <param name="cultureInfo"></param>
     /// <param name="ignoreCase"></param>
     /// <param name="matchedPrefixLength"></param>
@@ -941,6 +952,7 @@ public class MultiComboBox : ListBox
                         break;
                     }
                 }
+
                 if (j <= matchedText.Length)
                 {
                     temp = matchedText[..j];
@@ -997,6 +1009,7 @@ public class MultiComboBox : ListBox
                 {
                     Close();
                 }
+
                 break;
 
             case Key.Tab:
@@ -1029,7 +1042,7 @@ public class MultiComboBox : ListBox
     #region Accessibility
 
     /// <summary>
-    /// Creates AutomationPeer (<see cref="UIElement.OnCreateAutomationPeer"/>)
+    /// Creates AutomationPeer (<see cref="UIElement.OnCreateAutomationPeer"/>).
     /// </summary>
     protected override AutomationPeer OnCreateAutomationPeer() => new MultiComboBoxAutomationPeer(this);
 
@@ -1049,32 +1062,32 @@ public class MultiComboBox : ListBox
         #region Internal Properties
 
         /// <summary>
-        /// No match from text search
+        /// No match from text search.
         /// </summary>
         internal static MatchedTextInfo NoMatch { get; } = new MatchedTextInfo(-1, string.Empty, null, 0, 0);
 
         /// <summary>
-        /// Matched text from text search
+        /// Matched text from text search.
         /// </summary>
         internal string MatchedText { get; }
 
         /// <summary>
-        /// Matched text from text search
+        /// Matched text from text search.
         /// </summary>
         internal object? MatchedItem { get; }
 
         /// <summary>
-        /// Index of the matched item
+        /// Index of the matched item.
         /// </summary>
         internal int MatchedItemIndex { get; }
 
         /// <summary>
-        /// Length of the matched prefix
+        /// Length of the matched prefix.
         /// </summary>
         internal int MatchedPrefixLength { get; }
 
         /// <summary>
-        /// Length of the text excluding prefix
+        /// Length of the text excluding prefix.
         /// </summary>
         internal int TextExcludingPrefixLength { get; }
 

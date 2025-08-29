@@ -59,8 +59,6 @@ public class Wrapper<T>(T item) : LocalizableObject, ICloneable, ISettable, IIde
                 case Wrapper<T> newWrapper:
                     settable.SetFrom(newWrapper.Item);
                     break;
-                default:
-                    break;
             }
         }
         else
@@ -72,8 +70,6 @@ public class Wrapper<T>(T item) : LocalizableObject, ICloneable, ISettable, IIde
                     break;
                 case Wrapper<T> newWrapper:
                     Item?.DeepSet(newWrapper.Item);
-                    break;
-                default:
                     break;
             }
         }

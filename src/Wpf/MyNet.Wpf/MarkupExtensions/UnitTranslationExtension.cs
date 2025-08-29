@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="UnitTranslationExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Data;
@@ -11,9 +14,11 @@ namespace MyNet.Wpf.MarkupExtensions;
 
 public class UnitTranslationExtension : AbstractGlobalizationExtension
 {
-    public UnitTranslationExtension() : base(true, false) { }
+    public UnitTranslationExtension()
+        : base(true, false) { }
 
-    public UnitTranslationExtension(string path) : this() => Path = new PropertyPath(path);
+    public UnitTranslationExtension(string path)
+        : this() => Path = new PropertyPath(path);
 
     protected override Binding CreateBinding() => new();
 

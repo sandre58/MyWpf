@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="EqualityToVisibilityConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -9,7 +12,7 @@ using System.Windows.Data;
 namespace MyNet.Wpf.Converters;
 
 /// <summary>
-/// Converts a boolean value to a font weight (false: normal, true: bold)
+/// Converts a boolean value to a font weight (false: normal, true: bold).
 /// </summary>
 public class EqualityToVisibilityConverter(Visibility equalVisibility = Visibility.Visible, Visibility notEqualVisibility = Visibility.Collapsed, bool checkReferences = false)
             : IValueConverter, IMultiValueConverter
@@ -40,7 +43,7 @@ public class EqualityToVisibilityConverter(Visibility equalVisibility = Visibili
     /// </returns>
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         => !_checkReferences
-            ? (parameter != null && value?.ToString() is string str && str.Equals(parameter.ToString(), StringComparison.OrdinalIgnoreCase) ? _equalVisibility : _notEqualVisibility)
+            ? (parameter != null && value?.ToString() is { } str && str.Equals(parameter.ToString(), StringComparison.OrdinalIgnoreCase) ? _equalVisibility : _notEqualVisibility)
             : (ReferenceEquals(value, parameter) ? _equalVisibility : _notEqualVisibility);
 
     public object? Convert(object[] values, Type targetType, object parameter, CultureInfo culture) => Convert(values[0], targetType, values[1], culture);

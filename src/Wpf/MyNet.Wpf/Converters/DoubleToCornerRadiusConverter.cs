@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DoubleToCornerRadiusConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -8,7 +11,7 @@ using System.Windows.Data;
 
 namespace MyNet.Wpf.Converters;
 
-public class DoubleToCornerRadiusConverter : IValueConverter
+public sealed class DoubleToCornerRadiusConverter : IValueConverter
 {
     private enum Mode
     {

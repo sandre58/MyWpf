@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DialogService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -15,10 +18,10 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
 {
     public ObservableCollection<IDialogViewModel> OpenedDialogs { get; private set; } = [];
 
-    public event EventHandler<DialogEventArgs> DialogOpened;
-    public event EventHandler<DialogEventArgs> DialogClosed;
-    public event EventHandler<MessageBoxEventArgs> MessageBoxOpened;
-    public event EventHandler<MessageBoxEventArgs> MessageBoxClosed;
+    public event EventHandler<DialogEventArgs>? DialogOpened;
+    public event EventHandler<DialogEventArgs>? DialogClosed;
+    public event EventHandler<MessageBoxEventArgs>? MessageBoxOpened;
+    public event EventHandler<MessageBoxEventArgs>? MessageBoxClosed;
 
     /// <inheritdoc />
     public abstract Task ShowAsync(object view, IDialogViewModel viewModel);

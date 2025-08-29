@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateToWeekConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -15,8 +18,8 @@ public sealed class DateToWeekConverter : IValueConverter
         StartWeek,
         EndWeek
     }
-    private readonly Mode _type;
 
+    private readonly Mode _type;
 
     public static readonly DateToWeekConverter ToStartWeek = new(Mode.StartWeek);
 

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ItemsControlAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,12 +98,12 @@ public static class ItemsControlAssist
         });
     }
 
-    private static void UpdateSort(ItemsControl control, IEnumerable<(string property, ListSortDirection direction)> sorts)
+    private static void UpdateSort(ItemsControl control, IEnumerable<(string Property, ListSortDirection Direction)> sorts)
     {
         using (control.Items.DeferRefresh())
         {
             control.Items.SortDescriptions.Clear();
-            control.Items.SortDescriptions.AddRange(sorts.Select(x => new SortDescription(x.property, x.direction)));
+            control.Items.SortDescriptions.AddRange(sorts.Select(x => new SortDescription(x.Property, x.Direction)));
         }
     }
 
@@ -124,7 +127,7 @@ public static class ItemsControlAssist
 
         d.OnLoading<ItemsControl>(x =>
         {
-            var groups = GetGroupingProperty(element)?.Split(";") ?? [];
+            var groups = GetGroupingProperty(element).Split(";");
             UpdateGroups(x, groups);
         });
     }
@@ -133,7 +136,7 @@ public static class ItemsControlAssist
     {
         using (control.Items.DeferRefresh())
         {
-            control.Items.GroupDescriptions.Clear();
+            control.Items.GroupDescriptions!.Clear();
             control.Items.GroupDescriptions.AddRange(groups.Where(x => !string.IsNullOrEmpty(x)).Select(x => new PropertyGroupDescription(x)));
         }
     }

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="MultipleBooleanConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -7,7 +10,7 @@ using System.Windows.Data;
 
 namespace MyNet.Wpf.Converters;
 
-public class MultipleBooleanConverter : IMultiValueConverter
+public sealed class MultipleBooleanConverter : IMultiValueConverter
 {
     private enum Operator
     {
@@ -41,6 +44,7 @@ public class MultipleBooleanConverter : IMultiValueConverter
                 return false;
             }
         }
+
         return _operator == Operator.And;
     }
 

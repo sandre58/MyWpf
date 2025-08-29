@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataGridSelectionBehavior.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Collections;
 using System.Collections.Specialized;
@@ -53,7 +56,7 @@ public class DataGridSelectionBehavior : Behavior<DataGrid>
     // Propagate selected items from model to view
     private void SelectItems()
     {
-        if (AssociatedObject == null || AssociatedObject.SelectionMode == DataGridSelectionMode.Single || AssociatedObject.SelectionUnit == DataGridSelectionUnit.Cell || _updatingDataGridSelectedItems) return;
+        if (AssociatedObject is not { SelectionMode: not DataGridSelectionMode.Single } || AssociatedObject.SelectionUnit == DataGridSelectionUnit.Cell || _updatingDataGridSelectedItems) return;
 
         AssociatedObject.SelectionChanged -= OnDataGridSelectionChanged;
         AssociatedObject.SelectedItems.Clear();
@@ -64,6 +67,7 @@ public class DataGridSelectionBehavior : Behavior<DataGrid>
                 _ = AssociatedObject.SelectedItems.Add(item);
             }
         }
+
         AssociatedObject.SelectionChanged += OnDataGridSelectionChanged;
     }
 

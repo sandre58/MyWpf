@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="StringConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -41,7 +44,7 @@ public class StringConverter(LetterCasing casing, bool pluralize = false, bool a
             Enum enumValue => enumValue.Humanize(_abbreviate, culture),
             IEnumeration enumValue => enumValue.Humanize(_abbreviate, culture),
             TimeSpan timespan => timespan.Humanize(1, TimeUnit.Year, TimeUnit.Day, culture: culture),
-            _ => value.ToString(),
+            _ => value.ToString()
         };
 
         // Format

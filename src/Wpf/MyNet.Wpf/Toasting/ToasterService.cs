@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ToasterService.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Reactive.Concurrency;
@@ -25,11 +28,12 @@ public class ToasterService : IToasterService, IDisposable
     private readonly IToastLifetimeSupervisor _lifetimeSupervisor;
     private readonly CompositeDisposable _cleanup = [];
 
-    public event EventHandler<ToastEventArgs> ToastShown;
-    public event EventHandler<ToastEventArgs> ToastClosed;
-    public event EventHandler<ToastEventArgs> ToastClicked;
+    public event EventHandler<ToastEventArgs>? ToastShown;
+    public event EventHandler<ToastEventArgs>? ToastClosed;
+    public event EventHandler<ToastEventArgs>? ToastClicked;
 
-    public ToasterService() : this(ToasterSettings.Default) { }
+    public ToasterService()
+        : this(ToasterSettings.Default) { }
 
     public ToasterService(ToasterSettings settings)
     : this(new TimeAndCountBasedLifetimeSupervisor(settings.Duration, MaximumToastCount.FromCount(settings.MaxItems), () => Application.Current.Dispatcher),
@@ -54,15 +58,15 @@ public class ToasterService : IToasterService, IDisposable
 
             System.Reactive.Linq.Observable.FromEventPattern(x => _layoutProvider.UpdatePositionRequested += x, x => _layoutProvider.UpdatePositionRequested -= x)
                       .ObserveOn(Schedulers.WpfScheduler.Current)
-                      .Subscribe(x => UpdateWindowPosition()),
+                      .Subscribe(_ => UpdateWindowPosition()),
 
             System.Reactive.Linq.Observable.FromEventPattern(x => _layoutProvider.UpdateEjectDirectionRequested += x, x => _layoutProvider.UpdateEjectDirectionRequested -= x)
                       .ObserveOn(Schedulers.WpfScheduler.Current)
-                      .Subscribe(x => UpdateEjectDirection()),
+                      .Subscribe(_ => UpdateEjectDirection()),
 
             System.Reactive.Linq.Observable.FromEventPattern(x => _layoutProvider.UpdateHeightRequested += x, x => _layoutProvider.UpdateHeightRequested -= x)
                       .ObserveOn(Schedulers.WpfScheduler.Current)
-                      .Subscribe(x => UpdateHeight())
+                      .Subscribe(_ => UpdateHeight())
         ]);
     }
 

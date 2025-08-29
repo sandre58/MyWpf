@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="AbstractGlobalizationExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -9,9 +12,11 @@ namespace MyNet.Wpf.MarkupExtensions;
 
 public abstract class AbstractGlobalizationExtension : GlobalizationExtensionBase<Binding>
 {
-    protected AbstractGlobalizationExtension(bool updateOnCultureChanged, bool updateOnTimeZoneChanged) : base(updateOnCultureChanged, updateOnTimeZoneChanged) { }
+    protected AbstractGlobalizationExtension(bool updateOnCultureChanged, bool updateOnTimeZoneChanged)
+        : base(updateOnCultureChanged, updateOnTimeZoneChanged) { }
 
-    protected AbstractGlobalizationExtension(string path, bool updateOnCultureChanged, bool updateOnTimeZoneChanged) : this(updateOnCultureChanged, updateOnTimeZoneChanged)
+    protected AbstractGlobalizationExtension(string path, bool updateOnCultureChanged, bool updateOnTimeZoneChanged)
+        : this(updateOnCultureChanged, updateOnTimeZoneChanged)
         => Path = Path = new PropertyPath(path);
 
     protected override Binding CreateBinding() => new() { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged };

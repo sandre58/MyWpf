@@ -243,8 +243,6 @@ public static class TypeHelper
                         case SingleTypeEnd:
                             openings--;
                             break;
-                        default:
-                            break;
                     }
 
                     // Increase current pos if we still have openings left

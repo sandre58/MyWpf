@@ -1,7 +1,9 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RevealPasswordBox.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using MyNet.Utilities;
@@ -40,7 +42,7 @@ public class RevealPasswordBox : TextBox
         typeof(bool), typeof(RevealPasswordBox), new PropertyMetadata(true));
 
     /// <summary>
-    /// Event for "Password has changed"
+    /// Event for "Password has changed".
     /// </summary>
     public static readonly RoutedEvent PasswordChangedEvent = EventManager.RegisterRoutedEvent(
         nameof(PasswordChanged),
@@ -155,7 +157,6 @@ public class RevealPasswordBox : TextBox
         {
             _revealPasswordButton.Click += RevealPasswordButtonOnClick;
         }
-
 
         base.OnApplyTemplate();
     }

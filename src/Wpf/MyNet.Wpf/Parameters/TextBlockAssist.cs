@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="TextBlockAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -11,7 +14,7 @@ public static class TextBlockAssist
     #region Property AutoToolTip
 
     /// <summary>
-    /// Automatic ToolTip for TextBlock or TextBoxBase if containing text is trimmed
+    /// Automatic ToolTip for TextBlock or TextBoxBase if containing text is trimmed.
     /// </summary>
     public static readonly DependencyProperty AutoToolTipProperty = DependencyProperty.RegisterAttached(
         "AutoToolTip", typeof(bool), typeof(TextBlockAssist), new PropertyMetadata(false, OnAutoToolTipChanged));
@@ -31,7 +34,9 @@ public static class TextBlockAssist
             textBlock.SizeChanged += UpdateToolTipOnSizeChanged;
         }
         else
+        {
             textBlock.SizeChanged -= UpdateToolTipOnSizeChanged;
+        }
     }
 
     private static void UpdateToolTipOnSizeChanged(object sender, SizeChangedEventArgs args) => UpdateToolTip((TextBlock)sender);
@@ -41,8 +46,7 @@ public static class TextBlockAssist
         textBlock.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
         ToolTipService.SetToolTip(textBlock,
-            textBlock.TextWrapping == TextWrapping.NoWrap
-            && textBlock.TextTrimming != TextTrimming.None
+            textBlock is { TextWrapping: TextWrapping.NoWrap, TextTrimming: not TextTrimming.None }
             && textBlock.ActualWidth < textBlock.DesiredSize.Width
                 ? textBlock.Text
                 : null);

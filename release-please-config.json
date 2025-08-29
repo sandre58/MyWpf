@@ -60,5 +60,21 @@
     "src/MyNet.Utilities.Mail.MailKit": {
       "package-name": "MyNet.Utilities.Mail.MailKit"
     }
+    ,
+    "src/Wpf/MyNet.Wpf": {
+      "package-name": "MyNet.Wpf"
+    },
+    "src/Wpf/MyNet.Wpf.DragAndDrop": {
+      "package-name": "MyNet.Wpf.DragAndDrop"
+    },
+    "src/Wpf/MyNet.Wpf.LiveCharts": {
+      "package-name": "MyNet.Wpf.LiveCharts"
+    },
+    "src/Wpf/MyNet.Wpf.Presentation": {
+      "package-name": "MyNet.Wpf.Presentation"
+    },
+    "src/Wpf/MyNet.Wpf.Web": {
+      "package-name": "MyNet.Wpf.Web"
+    }
   }
 }

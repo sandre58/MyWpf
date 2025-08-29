@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FloatingHintOffsetCalculationConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -33,14 +36,14 @@ internal class FloatingHintOffsetCalculationConverter : IMultiValueConverter
 
         var offset = (values.Length > 4 ? values[4] : null) switch
         {
-            Thickness padding => floatingHintHeight / 2 + padding.Top,
+            Thickness padding => (floatingHintHeight / 2) + padding.Top,
             double parentHeight => (parentHeight - hintHeight + floatingHintHeight) / 2,
             _ => floatingHintHeight
         };
 
         return IsType<Point>(targetType)
             ? new Point(0, -offset)
-            : (object)new Thickness(0, offset, 0, 0);
+            : new Thickness(0, offset, 0, 0);
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) => throw new NotSupportedException();

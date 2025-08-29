@@ -1,12 +1,15 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="IHintProxy.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 
 namespace MyNet.Wpf.Controls.HintProxy;
 
 /// <summary>
-/// This interface is the adapter from UiControl (like <see cref="TextBox"/>, <see cref="ComboBox"/> and others) to <see cref="SmartHint"/>
+/// This interface is the adapter from UiControl (like <see cref="TextBox"/>, <see cref="ComboBox"/> and others) to <see cref="SmartHint"/>.
 /// <para/>
 /// You should implement this interface in order to use SmartHint for your own control.
 /// </summary>
@@ -20,7 +23,7 @@ public interface IHintProxy : IDisposable
     bool IsEmpty();
 
     /// <summary>
-    /// Targeted control has keyboard focus
+    /// Targeted control has keyboard focus.
     /// </summary>
     /// <returns></returns>
     bool IsFocused();

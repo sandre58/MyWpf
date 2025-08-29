@@ -1,10 +1,11 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FloatingHintToInverseMarginConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
-using System.Collections;
 using System.Globalization;
-using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 

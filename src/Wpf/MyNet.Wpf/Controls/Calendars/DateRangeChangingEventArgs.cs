@@ -1,12 +1,15 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateRangeChangingEventArgs.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 
 namespace MyNet.Wpf.Controls.Calendars;
 
 /// <summary>
-/// Event arguments to notify clients that the range is changing and what the new range will be
+/// Event arguments to notify clients that the range is changing and what the new range will be.
 /// </summary>
 internal class DateRangeChangingEventArgs(DateTime start, DateTime end) : EventArgs
 {

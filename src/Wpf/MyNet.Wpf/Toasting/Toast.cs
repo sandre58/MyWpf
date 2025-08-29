@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Toast.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using MyNet.UI.Notifications;
@@ -28,6 +31,7 @@ public class Toast(INotification notification, ToastSettings settings, Action<IN
         CloseRequest?.Invoke(this, EventArgs.Empty);
         _onClose?.Invoke();
     }
+
     public override bool Equals(object? obj) => obj != null && GetType() == obj.GetType() && Id == ((Toast)obj).Id;
 
     public override int GetHashCode() => Id.GetHashCode();

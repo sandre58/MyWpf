@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ColorHSVPicker.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -7,7 +10,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.Controls;
-using MaterialDesignThemes.Wpf;
 
 namespace MyNet.Wpf.Controls;
 
@@ -30,6 +32,7 @@ public class ColorHSVPicker : ColorPickerBase
             _saturationBrightnessCanvas.MouseDown -= SaturationBrightnessCanvasMouseDown;
             _saturationBrightnessCanvas.MouseUp -= SaturationBrightnessCanvasMouseUp;
         }
+
         _saturationBrightnessCanvas = GetTemplateChild(SaturationBrightnessPickerPartName) as Canvas;
         if (_saturationBrightnessCanvas != null)
         {
@@ -43,6 +46,7 @@ public class ColorHSVPicker : ColorPickerBase
 
         base.OnApplyTemplate();
     }
+
     private void SaturationBrightnessCanvasMouseDown(object sender, MouseButtonEventArgs e)
     {
         Mouse.Capture(_saturationBrightnessCanvas);

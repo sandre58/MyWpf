@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="WpfHelper.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Media;
@@ -25,7 +28,7 @@ public static class WpfHelper
 
         foreach (var item in dictionary.MergedDictionaries)
         {
-            if (GetResource(item, key) is object value)
+            if (GetResource(item, key) is { } value)
             {
                 return value;
             }

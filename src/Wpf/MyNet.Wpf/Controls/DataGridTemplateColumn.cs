@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DataGridTemplateColumn.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls;
@@ -57,7 +60,7 @@ public class DataGridTemplateColumn : System.Windows.Controls.DataGridTextColumn
     }
 
     /// <summary>
-    ///     The DependencyProperty representing the CellEditingTemplate
+    ///     The DependencyProperty representing the CellEditingTemplate.
     /// </summary>
     public static readonly DependencyProperty CellEditingTemplateProperty = DependencyProperty.Register(
                                                                                 "CellEditingTemplate",
@@ -76,7 +79,7 @@ public class DataGridTemplateColumn : System.Windows.Controls.DataGridTextColumn
     }
 
     /// <summary>
-    ///     The DependencyProperty representing the CellEditingTemplateSelector
+    ///     The DependencyProperty representing the CellEditingTemplateSelector.
     /// </summary>
     public static readonly DependencyProperty CellEditingTemplateSelectorProperty = DependencyProperty.Register(
                                                                                         "CellEditingTemplateSelector",

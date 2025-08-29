@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ValidationAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -12,7 +15,7 @@ public static class ValidationAssist
     #region ShowOnFocusProperty
 
     /// <summary>
-    /// The hint property
+    /// The hint property.
     /// </summary>
     public static readonly DependencyProperty OnlyShowOnFocusProperty = DependencyProperty.RegisterAttached(
         "OnlyShowOnFocus",
@@ -29,7 +32,7 @@ public static class ValidationAssist
     #region UsePopupProperty
 
     /// <summary>
-    /// The hint property
+    /// The hint property.
     /// </summary>
     public static readonly DependencyProperty UsePopupProperty = DependencyProperty.RegisterAttached(
         "UsePopup",
@@ -44,7 +47,7 @@ public static class ValidationAssist
     #endregion
 
     /// <summary>
-    /// The hint property
+    /// The hint property.
     /// </summary>
     public static readonly DependencyProperty PopupPlacementProperty = DependencyProperty.RegisterAttached(
         "PopupPlacement",
@@ -80,8 +83,6 @@ public static class ValidationAssist
     public static void SetBackground(DependencyObject element, Brush value) => element.SetValue(BackgroundProperty, value);
 
     public static Brush GetBackground(DependencyObject element) => (Brush)element.GetValue(BackgroundProperty);
-
-
 
     public static readonly DependencyProperty FontSizeProperty = DependencyProperty.RegisterAttached("FontSize", typeof(double), typeof(ValidationAssist), new PropertyMetadata(10.0));
 

@@ -558,7 +558,7 @@ public static class DateTimeExtensions
     {
         var currentCulture = CultureInfo.CurrentCulture;
         var firstDay = firstDayOfWeek ?? currentCulture.DateTimeFormat.FirstDayOfWeek;
-        var offset = dateTime.DayOfWeek - firstDay < 0 ? 7 : 0;
+        var offset = dateTime.DayOfWeek < firstDay ? 7 : 0;
         var numberOfDaysSinceBeginningOfTheWeek = dateTime.DayOfWeek + offset - firstDay;
 
         return dateTime.AddDays(-numberOfDaysSinceBeginningOfTheWeek);
@@ -631,7 +631,6 @@ public static class DateTimeExtensions
     {
         DateTimeKind.Utc => current.SameDay(DateTime.UtcNow),
         DateTimeKind.Local => current.SameDay(DateTime.Now),
-        DateTimeKind.Unspecified => current.SameDay(GlobalizationService.Current.Date),
         _ => current.SameDay(GlobalizationService.Current.Date)
     };
 

@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="GlobalizationExtensionBase.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Data;
@@ -14,7 +17,8 @@ public abstract class GlobalizationExtensionBase<T> : MarkupExtension
 {
     private T? _binding;
 
-    protected GlobalizationExtensionBase(bool updateOnCultureChanged, bool updateOnTimeZoneChanged) : base()
+    protected GlobalizationExtensionBase(bool updateOnCultureChanged, bool updateOnTimeZoneChanged)
+        : base()
     {
         ResourceLocator.Initialize();
         UpdateOnCultureChanged = updateOnCultureChanged;
@@ -54,7 +58,7 @@ public abstract class GlobalizationExtensionBase<T> : MarkupExtension
                 var wr = new WeakReference<BindingExpressionBase>(expression);
                 if (wr.TryGetTarget(out var target))
                 {
-                    if (expression is not BindingExpression bindinExpression || bindinExpression.Status != BindingStatus.Detached)
+                    if (expression is not BindingExpression { Status: BindingStatus.Detached })
                         expression.UpdateTarget();
                 }
                 else
@@ -62,7 +66,8 @@ public abstract class GlobalizationExtensionBase<T> : MarkupExtension
                     GlobalizationService.Current.CultureChanged -= UpdateTargetHandler;
                     GlobalizationService.Current.TimeZoneChanged -= UpdateTargetHandler;
                 }
-            };
+            }
+;
             UpdateTargetHandler = new(handler);
 
             if (UpdateOnCultureChanged)

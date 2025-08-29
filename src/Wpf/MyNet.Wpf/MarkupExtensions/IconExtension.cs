@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="IconExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using MaterialDesignThemes.Wpf;
 using MyNet.Wpf.Controls;
@@ -20,7 +23,6 @@ public enum IconSizeMode
     Medium = 24,
 
     Large = 36
-
 }
 
 public class IconExtension : MarkupExtension
@@ -70,7 +72,7 @@ public class IconExtension : MarkupExtension
 
     public IconSizeMode? SizeMode { get; set; }
 
-    private double? GetSize() => Size.HasValue ? Size : SizeMode.HasValue ? (int)SizeMode.Value : (double?)null;
+    private double? GetSize() => Size.HasValue ? Size : SizeMode.HasValue ? (int)SizeMode.Value : null;
 
     public override object? ProvideValue(IServiceProvider serviceProvider)
     {
@@ -88,7 +90,6 @@ public class IconExtension : MarkupExtension
 
             return result;
         }
-
 
         if (Data != null)
         {
@@ -117,7 +118,6 @@ public class IconExtension : MarkupExtension
             return result;
         }
 
-
         return null;
     }
 }
@@ -126,34 +126,42 @@ public class ToolIconExtension : IconExtension
 {
     public ToolIconExtension() => SizeMode = IconSizeMode.Tool;
 
-    public ToolIconExtension(Geometry data) : base(data) { }
+    public ToolIconExtension(Geometry data)
+        : base(data) { }
 
-    public ToolIconExtension(PackIconKind kind) : base(kind) { }
+    public ToolIconExtension(PackIconKind kind)
+        : base(kind) { }
 }
 
 public class SmallIconExtension : IconExtension
 {
     public SmallIconExtension() => SizeMode = IconSizeMode.Small;
 
-    public SmallIconExtension(Geometry data) : base(data) { }
+    public SmallIconExtension(Geometry data)
+        : base(data) { }
 
-    public SmallIconExtension(PackIconKind kind) : base(kind) { }
+    public SmallIconExtension(PackIconKind kind)
+        : base(kind) { }
 }
 
 public class MediumIconExtension : IconExtension
 {
     public MediumIconExtension() => SizeMode = IconSizeMode.Medium;
 
-    public MediumIconExtension(Geometry data) : base(data) { }
+    public MediumIconExtension(Geometry data)
+        : base(data) { }
 
-    public MediumIconExtension(PackIconKind kind) : base(kind) { }
+    public MediumIconExtension(PackIconKind kind)
+        : base(kind) { }
 }
 
 public class LargeIconExtension : IconExtension
 {
     public LargeIconExtension() => SizeMode = IconSizeMode.Large;
 
-    public LargeIconExtension(Geometry data) : base(data) { }
+    public LargeIconExtension(Geometry data)
+        : base(data) { }
 
-    public LargeIconExtension(PackIconKind kind) : base(kind) { }
+    public LargeIconExtension(PackIconKind kind)
+        : base(kind) { }
 }

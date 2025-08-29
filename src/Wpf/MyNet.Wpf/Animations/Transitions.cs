@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="Transitions.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows;
@@ -75,7 +78,7 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = 0.0,
-            To = 1.0,
+            To = 1.0
         };
 
         navigatedElement.BeginAnimation(UIElement.OpacityProperty, opacityDoubleAnimation);
@@ -88,14 +91,14 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = 30,
-            To = 0,
+            To = 0
         };
 
         if (navigatedElement.RenderTransform is not TranslateTransform)
-            navigatedElement!.RenderTransform = new TranslateTransform(0, 0);
+            navigatedElement.RenderTransform = new TranslateTransform(0, 0);
 
         if (!navigatedElement.RenderTransformOrigin.Equals(new Point(0.5, 0.5)))
-            navigatedElement!.RenderTransformOrigin = new Point(0.5, 0.5);
+            navigatedElement.RenderTransformOrigin = new Point(0.5, 0.5);
 
         navigatedElement.RenderTransform.BeginAnimation(TranslateTransform.YProperty, translateDoubleAnimation);
 
@@ -104,7 +107,7 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = 0.0,
-            To = 1.0,
+            To = 1.0
         };
         navigatedElement.BeginAnimation(UIElement.OpacityProperty, opacityDoubleAnimation);
     }
@@ -116,14 +119,14 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = 30,
-            To = 0,
+            To = 0
         };
 
         if (navigatedElement.RenderTransform is not TranslateTransform)
-            navigatedElement!.RenderTransform = new TranslateTransform(0, 0);
+            navigatedElement.RenderTransform = new TranslateTransform(0, 0);
 
         if (!navigatedElement.RenderTransformOrigin.Equals(new Point(0.5, 0.5)))
-            navigatedElement!.RenderTransformOrigin = new Point(0.5, 0.5);
+            navigatedElement.RenderTransformOrigin = new Point(0.5, 0.5);
 
         navigatedElement.RenderTransform.BeginAnimation(TranslateTransform.YProperty, translateDoubleAnimation);
     }
@@ -135,14 +138,14 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = 50,
-            To = 0,
+            To = 0
         };
 
         if (navigatedElement.RenderTransform is not TranslateTransform)
-            navigatedElement!.RenderTransform = new TranslateTransform(0, 0);
+            navigatedElement.RenderTransform = new TranslateTransform(0, 0);
 
         if (!navigatedElement.RenderTransformOrigin.Equals(new Point(0.5, 0.5)))
-            navigatedElement!.RenderTransformOrigin = new Point(0.5, 0.5);
+            navigatedElement.RenderTransformOrigin = new Point(0.5, 0.5);
 
         navigatedElement.RenderTransform.BeginAnimation(TranslateTransform.XProperty, translateDoubleAnimation);
     }
@@ -154,14 +157,14 @@ public static class Transitions
             Duration = duration,
             DecelerationRatio = DecelerationRatio,
             From = -50,
-            To = 0,
+            To = 0
         };
 
         if (navigatedElement.RenderTransform is not TranslateTransform)
-            navigatedElement!.RenderTransform = new TranslateTransform(0, 0);
+            navigatedElement.RenderTransform = new TranslateTransform(0, 0);
 
         if (!navigatedElement.RenderTransformOrigin.Equals(new Point(0.5, 0.5)))
-            navigatedElement!.RenderTransformOrigin = new Point(0.5, 0.5);
+            navigatedElement.RenderTransformOrigin = new Point(0.5, 0.5);
 
         navigatedElement.RenderTransform.BeginAnimation(TranslateTransform.XProperty, translateDoubleAnimation);
     }

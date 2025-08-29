@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ShortcutResourceExtension.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Windows.Data;
@@ -16,9 +19,11 @@ public class ShortcutResourceExtension : ResourceExtension
     public ShortcutResourceExtension()
     { }
 
-    public ShortcutResourceExtension(string key) : base(key) { }
+    public ShortcutResourceExtension(string key)
+        : base(key) { }
 
-    public ShortcutResourceExtension(string key, string shortcutKey) : base(key) => ShortcutKey = shortcutKey;
+    public ShortcutResourceExtension(string key, string shortcutKey)
+        : base(key) => ShortcutKey = shortcutKey;
 
     [ConstructorArgument("shortcutKey")]
     public string ShortcutKey { get; set; } = string.Empty;

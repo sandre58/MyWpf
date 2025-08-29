@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="DateRange.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -24,8 +27,8 @@ public sealed class DateRange(DateTime start, DateTime end) : INotifyPropertyCha
     /// <summary>
     /// Initializes a new instance of the SchedulerDateRange class.
     /// </summary>
-    public DateRange() :
-        this(DateTime.MinValue, DateTime.MaxValue)
+    public DateRange()
+        : this(DateTime.MinValue, DateTime.MaxValue)
     {
     }
 
@@ -33,8 +36,8 @@ public sealed class DateRange(DateTime start, DateTime end) : INotifyPropertyCha
     /// Initializes a new instance of the SchedulerDateRange class which creates a range from a single DateTime value.
     /// </summary>
     /// <param name="day"></param>
-    public DateRange(DateTime day) :
-        this(day, day)
+    public DateRange(DateTime day)
+        : this(day, day)
     {
     }
 
@@ -123,11 +126,11 @@ public sealed class DateRange(DateTime start, DateTime end) : INotifyPropertyCha
     }
 
     /// <summary>
-    /// Coerced the end parameter to satisfy the start &lt;= end constraint
+    /// Coerced the end parameter to satisfy the start &lt;= end constraint.
     /// </summary>
     /// <param name="start"></param>
     /// <param name="end"></param>
-    /// <returns>If start &lt;= end the end parameter otherwise the start parameter</returns>
+    /// <returns>If start &lt;= end the end parameter otherwise the start parameter.</returns>
     private static DateTime CoerceEnd(DateTime start, DateTime end) => DateTime.Compare(start, end) <= 0 ? end : start;
 
     #endregion Private Methods

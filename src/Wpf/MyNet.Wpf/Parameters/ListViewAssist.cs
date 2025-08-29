@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="ListViewAssist.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using DynamicData.Binding;
 using Microsoft.Xaml.Behaviors;
-using MyNet.Observable.Collections.Sorting;
 using MyNet.UI.Layout;
 using MyNet.Utilities;
 using MyNet.Wpf.Behaviors;
@@ -124,6 +126,7 @@ public static class ListViewAssist
                 behavior = new ListViewLayoutBehavior();
                 SetLayoutBehavior(listView, behavior);
             }
+
             itemBehaviors.Add(behavior);
         }
 
@@ -168,6 +171,7 @@ public static class ListViewAssist
                 behavior = new ListViewSortBehavior();
                 SetSortBehavior(listView, behavior);
             }
+
             itemBehaviors.Add(behavior);
         }
 
@@ -251,12 +255,14 @@ public static class ListViewAssist
             {
                 return gridViewHeader;
             }
+
             var childGridViewHeader = FindColumnHeader(childVisual, column);
             if (childGridViewHeader != null)
             {
                 return childGridViewHeader;
             }
         }
+
         return null;
     }
 

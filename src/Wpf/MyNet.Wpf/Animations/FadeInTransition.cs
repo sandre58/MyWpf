@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="FadeInTransition.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -15,7 +18,7 @@ public class FadeInTransition : Transition
             Duration = Duration,
             DecelerationRatio = DecelerationRatio,
             From = 0.0,
-            To = 1.0,
+            To = 1.0
         };
 
         frameworkElement.BeginAnimation(UIElement.OpacityProperty, opacityDoubleAnimation);

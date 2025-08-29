@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="KeyboardHelper.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System.Windows.Input;
 
@@ -7,6 +10,5 @@ namespace MyNet.Wpf.Helpers;
 
 public static class KeyboardHelper
 {
-    public static (bool ctrl, bool shift) GetMetaKeyState()
-        => ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control, (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
+    public static (bool Ctrl, bool Shift) MetaKeyState => ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control, (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift);
 }

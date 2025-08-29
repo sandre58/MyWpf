@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="OverlayDialogControl.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Linq;
@@ -27,11 +30,11 @@ public class OverlayDialogControl : HeaderedContentControl
     public const string OpenStateName = "Open";
     public const string ClosedStateName = "Closed";
 
-    private bool? _dialogResult = null;
+    private bool? _dialogResult;
     private ContentControl? _contentControl;
     private Grid? _contentCoverGrid;
     private IInputElement? _restoreFocus;
-    private bool _restoreIsEnabledAssociatedControl = false;
+    private bool _restoreIsEnabledAssociatedControl;
     private TaskCompletionSource<bool?>? _dialogTaskCompletionSource;
 
     /// <summary>
@@ -64,7 +67,7 @@ public class OverlayDialogControl : HeaderedContentControl
 
         SetCurrentValue(IsOpenProperty, true);
 
-        var result = await _dialogTaskCompletionSource.Task;
+        var result = await _dialogTaskCompletionSource.Task.ConfigureAwait(false);
 
         return result;
     }
@@ -107,8 +110,7 @@ public class OverlayDialogControl : HeaderedContentControl
         {
             overlayDialogControl._restoreIsEnabledAssociatedControl = overlayDialogControl.AssociatedControl?.IsEnabled ?? true;
 
-            if (overlayDialogControl.AssociatedControl is not null)
-                overlayDialogControl.AssociatedControl.IsEnabled = false;
+            overlayDialogControl.AssociatedControl?.IsEnabled = false;
         }
         else
         {
@@ -117,8 +119,7 @@ public class OverlayDialogControl : HeaderedContentControl
             var dialogClosedEventArgs = new RoutedEventArgs(ClosedEvent);
             overlayDialogControl.OnClosed(dialogClosedEventArgs);
 
-            if (overlayDialogControl.AssociatedControl is not null)
-                overlayDialogControl.AssociatedControl.IsEnabled = overlayDialogControl._restoreIsEnabledAssociatedControl;
+            overlayDialogControl.AssociatedControl?.IsEnabled = overlayDialogControl._restoreIsEnabledAssociatedControl;
 
             // Don't attempt to Invoke if _restoreFocusDialogClose hasn't been assigned yet. Can occur
             // if the MainWindow has started up minimized. Even when Show() has been called, this doesn't
@@ -197,7 +198,7 @@ public class OverlayDialogControl : HeaderedContentControl
         nameof(OverlayBackground), typeof(Brush), typeof(OverlayDialogControl), new PropertyMetadata(Brushes.Black));
 
     /// <summary>
-    /// Represents the overlay brush that is used to dim the background behind the dialog
+    /// Represents the overlay brush that is used to dim the background behind the dialog.
     /// </summary>
     public Brush? OverlayBackground
     {
@@ -213,7 +214,7 @@ public class OverlayDialogControl : HeaderedContentControl
         nameof(ContentMaxWidth), typeof(double), typeof(OverlayDialogControl), new PropertyMetadata(double.PositiveInfinity));
 
     /// <summary>
-    /// Represents the overlay brush that is used to dim the background behind the dialog
+    /// Represents the overlay brush that is used to dim the background behind the dialog.
     /// </summary>
     public double ContentMaxWidth
     {
@@ -229,7 +230,7 @@ public class OverlayDialogControl : HeaderedContentControl
         nameof(ContentMinWidth), typeof(double), typeof(OverlayDialogControl), new PropertyMetadata(0.0D));
 
     /// <summary>
-    /// Represents the overlay brush that is used to dim the background behind the dialog
+    /// Represents the overlay brush that is used to dim the background behind the dialog.
     /// </summary>
     public double ContentMinWidth
     {
@@ -245,7 +246,7 @@ public class OverlayDialogControl : HeaderedContentControl
         nameof(ContentMaxHeight), typeof(double), typeof(OverlayDialogControl), new PropertyMetadata(double.PositiveInfinity));
 
     /// <summary>
-    /// Represents the overlay brush that is used to dim the background behind the dialog
+    /// Represents the overlay brush that is used to dim the background behind the dialog.
     /// </summary>
     public double ContentMaxHeight
     {
@@ -261,7 +262,7 @@ public class OverlayDialogControl : HeaderedContentControl
         nameof(ContentMinHeight), typeof(double), typeof(OverlayDialogControl), new PropertyMetadata(0.0D));
 
     /// <summary>
-    /// Represents the overlay brush that is used to dim the background behind the dialog
+    /// Represents the overlay brush that is used to dim the background behind the dialog.
     /// </summary>
     public double ContentMinHeight
     {
@@ -383,10 +384,11 @@ public class OverlayDialogControl : HeaderedContentControl
 
     protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
     {
-        if (Window.GetWindow(this) is { } window && !window.IsActive)
+        if (Window.GetWindow(this) is { IsActive: false } window)
         {
             window.Activate();
         }
+
         base.OnPreviewMouseDown(e);
     }
 
@@ -403,7 +405,7 @@ public class OverlayDialogControl : HeaderedContentControl
 
         CommandManager.InvalidateRequerySuggested();
         var focusable = child.VisualDepthFirstTraversal().OfType<FrameworkElement>().FirstOrDefault(FocusAssist.GetIsDefault)
-                        ?? child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui.Focusable && ui.IsVisible);
+                        ?? child.VisualDepthFirstTraversal().OfType<UIElement>().FirstOrDefault(ui => ui is { Focusable: true, IsVisible: true });
         focusable?.Dispatcher.InvokeAsync(() =>
         {
             if (!focusable.Focus()) return;

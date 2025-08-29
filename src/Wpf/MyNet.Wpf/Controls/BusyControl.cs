@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="BusyControl.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -18,7 +21,7 @@ public class BusyControl : ContentControl
     private readonly Storyboard? _showBusyAnimation;
     private readonly Storyboard? _hideBusyAnimation;
     private IInputElement? _restoreFocus;
-    private bool _restoreIsEnabledAssociatedControl = false;
+    private bool _restoreIsEnabledAssociatedControl;
 
     static BusyControl() => DefaultStyleKeyProperty.OverrideMetadata(typeof(BusyControl), new FrameworkPropertyMetadata(typeof(BusyControl)));
 
@@ -66,16 +69,14 @@ public class BusyControl : ContentControl
             control._restoreFocus = window != null ? FocusManager.GetFocusedElement(window) : null;
             control._restoreIsEnabledAssociatedControl = control.AssociatedControl?.IsEnabled ?? true;
 
-            if (control.AssociatedControl is not null)
-                control.AssociatedControl.IsEnabled = false;
+            control.AssociatedControl?.IsEnabled = false;
             control._showBusyAnimation?.Begin();
         }
         else
         {
             control._hideBusyAnimation?.Begin();
 
-            if (control.AssociatedControl is not null)
-                control.AssociatedControl.IsEnabled = control._restoreIsEnabledAssociatedControl;
+            control.AssociatedControl?.IsEnabled = control._restoreIsEnabledAssociatedControl;
             control.Dispatcher.InvokeAsync(() => control._restoreFocus?.Focus(), DispatcherPriority.Input);
         }
 

@@ -1,8 +1,20 @@
 <Project>
+    
+    <!-- Ignore analysis -->
+    <PropertyGroup>
+        <EnableAnalyzers>false</EnableAnalyzers>
+        <Nullable>disable</Nullable>
+        <NoWarn>$(NoWarn);CS0618;CS0612;CS1573;CS8600;CS8602;CS8603;CS8632;CS8633;CS8618;IDE0022</NoWarn>
+    </PropertyGroup>
+    
+    <!-- Force import of root -->
+    <Import Project="$(SolutionDir)\Directory.Build.props" />
 
-    <!-- Configuration -->
+    <!-- WPF settings -->
     <PropertyGroup>
         <TargetFrameworks>net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
         <UseWPF>true</UseWPF>
+        <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
     </PropertyGroup>
+
 </Project>

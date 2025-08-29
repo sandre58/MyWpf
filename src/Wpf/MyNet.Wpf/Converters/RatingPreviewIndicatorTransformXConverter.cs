@@ -1,5 +1,8 @@
-﻿// Copyright (c) Stéphane ANDRE. All Right Reserved.
-// See the LICENSE file in the project root for more information.
+﻿// -----------------------------------------------------------------------
+// <copyright file="RatingPreviewIndicatorTransformXConverter.cs" company="Stéphane ANDRE">
+// Copyright (c) Stéphane ANDRE. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
 
 using System;
 using System.Globalization;
@@ -17,10 +20,10 @@ internal class RatingPreviewIndicatorTransformXConverter : IMultiValueConverter
 
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {
-        if (values.Length >= 4
-            && values[0] is double ratingBarButtonActualWidth
-            && values[1] is double previewValueActualWidth
-            && values[2] is int ratingButtonValue
+        if (values is
+            [
+                double ratingBarButtonActualWidth, double previewValueActualWidth, int ratingButtonValue, _, ..
+            ]
             && values[4] is RatingBar ratingBar)
         {
             var ratingBarOrientation = ratingBar.Orientation;
@@ -45,11 +48,12 @@ internal class RatingPreviewIndicatorTransformXConverter : IMultiValueConverter
 
             return ratingBarOrientation switch
             {
-                Orientation.Horizontal => percent * ratingBarButtonActualWidth - (previewValueActualWidth / 2),
+                Orientation.Horizontal => (percent * ratingBarButtonActualWidth) - (previewValueActualWidth / 2),
                 Orientation.Vertical => -previewValueActualWidth - Margin,
                 _ => throw new ArgumentOutOfRangeException(nameof(values))
             };
         }
+
         return 1.0;
     }
 
