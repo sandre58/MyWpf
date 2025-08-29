@@ -31,8 +31,8 @@
     </PropertyGroup>
     
     <!-- Imports -->
-    <Import Project="$(SolutionDir)\build\code-analysis.props" />
-    <Import Project="$(SolutionDir)\build\dependencies.props" />
-    <Import Project="$(SolutionDir)\build\package.props" Condition="'$(IsPackable)' == 'true'"  />
+    <Import Project="$(SolutionDir)/build/code-analysis.props" Condition="Exists('$(SolutionDir)/build/code-analysis.props')" />
+    <Import Project="$(SolutionDir)/build/dependencies.props" Condition="Exists('$(SolutionDir)/build/dependencies.props')" />
+    <Import Project="$(SolutionDir)/build/package.props" Condition="Exists('$(SolutionDir)/build/package.props') and '$(IsPackable)' == 'true'" />
 
 </Project>
