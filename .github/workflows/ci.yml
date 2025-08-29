@@ -34,7 +34,7 @@ jobs:
 
       # Step 3: Restore project dependencies
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore --property:EnableWindowsTargeting=true
 
       # Step 4: Build the project
       - name: Build
