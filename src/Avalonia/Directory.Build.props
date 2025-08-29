@@ -1,6 +1,6 @@
 <Project>
     <!-- Force import of root -->
-    <Import Project="$(SolutionDir)\Directory.Build.props" />
+    <Import Project="$(SolutionDir)\Directory.Build.props" Condition="Exists('$(SolutionDir)\Directory.Build.props')" />
 
     <PropertyGroup>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
