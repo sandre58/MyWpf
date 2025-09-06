@@ -5,7 +5,8 @@
     "precision": "minor"
   },
   "publicReleaseRefSpec": [
-    "^refs/heads/main$"
+    "^refs/heads/main$",
+    "^refs/tags/[^/]+/v\\d+.\\d+.\\d+$"
   ],
   "cloudBuild": {
     "buildNumber": {
@@ -17,9 +18,10 @@
     }
   },
   "release": {
-    "firstUnstableTag": "alpha"
+    "firstUnstableTag": "beta"
   },
   "nuGetPackageVersion": {
     "semVer": 2
-  }
+  },
+  "versioningMode": "ContinuousDelivery"
 }
