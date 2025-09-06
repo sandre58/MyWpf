@@ -33,6 +33,10 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
 
+      - name: Show tag in workflow summary
+        run: |
+          echo "# 🚀 Release triggered for tag: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+
       - name: Parse tag
         id: parse-tag
         run: |
@@ -111,6 +115,9 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
 
+      - name: Fetch all tags
+        run: git fetch --tags --force
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -147,6 +154,9 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
 
+      - name: Fetch all tags
+        run: git fetch --tags --force
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -177,6 +187,15 @@ jobs:
     if: always() && (needs.publish-wpf.result == 'success' || needs.publish-core.result == 'success')
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Fetch all tags
+        run: git fetch --tags --force
+
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
@@ -212,6 +231,9 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
+
+      - name: Fetch all tags
+        run: git fetch --tags --force
 
       - name: Install git-chglog
         run: |
