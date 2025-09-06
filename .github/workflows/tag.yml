@@ -37,6 +37,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Required for git history and NBGV
+          token: ${{ secrets.GITHUB_TOKEN }} # Use PAT if available: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -231,8 +232,30 @@ jobs:
           
           if [ "${{ inputs.dry_run }}" = "false" ]; then
             echo "Pushing all tags to origin..."
-            git push origin --tags
-            echo "All tags pushed successfully"
+            
+            # Push tags one by one to ensure proper processing
+            while IFS=':' read -r project tag_name version; do
+              [ -z "$project" ] && continue
+              
+              echo "Pushing tag: $tag_name"
+              
+              # Push the tag using git
+              git push origin "$tag_name"
+              
+              # Trigger release workflow via repository dispatch
+              echo "Triggering release workflow for $tag_name..."
+              curl -X POST \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/${{ github.repository }}/dispatches" \
+                -d "{\"event_type\":\"tag_created\",\"client_payload\":{\"tag\":\"$tag_name\",\"project\":\"$project\",\"version\":\"$version\"}}"
+              
+              # Small delay to ensure GitHub processes the tag
+              sleep 3
+              
+            done < projects_to_tag.txt
+            
+            echo "All tags pushed successfully and release workflows triggered"
           else
             echo "DRY RUN: Tags were not actually created or pushed"
           fi
