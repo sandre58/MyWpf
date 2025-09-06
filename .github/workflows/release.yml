@@ -37,10 +37,6 @@ jobs:
       - name: Full fetch
         run: git fetch --all --tags --force
 
-      - name: Show tag in workflow summary
-        run: |
-          echo "# 🚀 Release triggered for tag: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-
       - name: Parse tag
         id: parse-tag
         run: |
@@ -106,6 +102,10 @@ jobs:
             echo "This is a core/.NET project"
             echo "is_wpf=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Show tag in workflow summary
+        run: |
+          echo "# 🚀 Release triggered for tag: ${{ steps.parse-tag.outputs.tag }}" >> $GITHUB_STEP_SUMMARY
 
   # Job for WPF projects (Windows runner)
   publish-wpf:
