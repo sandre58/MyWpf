@@ -1,4 +1,4 @@
-# Changelog for {{ .Info.Title }} v{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" }}
+# Changelog for {{ .Info.Title }} v{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
 
 **Released:** {{ (index .Versions 0).Tag.Date | date "2006-01-02 15:04:05 UTC" }}  
 **Tag:** {{ (index .Versions 0).Tag.Name }}  
