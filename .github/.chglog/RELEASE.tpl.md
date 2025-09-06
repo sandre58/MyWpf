@@ -1,4 +1,4 @@
-# {{ .Info.Title }} v{{ (index .Versions 0).Tag.Name | replace (printf "%s/v" .Info.Title) "" }}
+# {{ .Info.Title }} v{{ (index .Versions 0).Tag.Name | replace (printf "%s/v" .Info.Title) "" -1 }}
 
 {{ if .Versions -}}
 {{ range .Versions }}
