@@ -127,11 +127,7 @@ jobs:
           
           Write-Host "Building WPF project: $projectPath"
           
-          dotnet pack "$projectPath" `
-            --configuration Release `
-            --output ./packages `
-            -p:PackageVersion=$version `
-            --include-symbols
+          dotnet build "$projectPath" --configuration Release -p:PackageVersion=$version --no-restore
 
       - name: Upload WPF packages
         uses: actions/upload-artifact@v4
@@ -169,11 +165,7 @@ jobs:
           
           echo "Building core project: $project_path"
           
-          dotnet pack "$project_path" \
-            --configuration Release \
-            --output ./packages \
-            -p:PackageVersion=$version \
-            --include-symbols
+          dotnet build "$projectPath" --configuration Release -p:PackageVersion=$version --no-restore
 
       - name: Upload core packages
         uses: actions/upload-artifact@v4
