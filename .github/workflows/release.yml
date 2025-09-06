@@ -223,9 +223,9 @@ jobs:
           echo "Updating git-chglog configurations for $project_name..."
           
           # Update the title in both config files to match the current project
-          sed -i "s/title: CHANGELOG/title: $project_name/" .chglog/config.yml
-          sed -i "s/title: CHANGELOG/title: $project_name/" .chglog/release-config.yml
-          
+          sed -i "s/title: CHANGELOG/title: $project_name/" .github/.chglog/config.yml
+          sed -i "s/title: CHANGELOG/title: $project_name/" .github/.chglog/release-config.yml
+
           echo "Configurations updated for project: $project_name"
 
       - name: Generate release changelog
@@ -263,7 +263,7 @@ jobs:
           echo "Updating permanent CHANGELOG.md for $project_name..."
           
           # Generate complete changelog for all versions of this project
-          git-chglog --config .chglog/config.yml --path "$project_dir" --tag-filter-pattern "$project_name/v*" > "$project_changelog"
+          git-chglog --config .github/.chglog/config.yml --path "$project_dir" --tag-filter-pattern "$project_name/v*" > "$project_changelog"
           
           echo "Permanent CHANGELOG.md updated at: $project_changelog"
           echo "Content preview:"
