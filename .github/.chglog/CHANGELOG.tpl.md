@@ -1,7 +1,7 @@
-# Changelog for {{ .Info.Title }} v{{ .Info.Version | replace (printf "%s/v" .Info.Title) "" }}
+# Changelog for {{ .Info.Title }} v{{ (index .Versions 0).Tag.Name | replace (printf "%s/v" .Info.Title) "" }}
 
-**Released:** {{ .Info.Date | date "2006-01-02 15:04:05 UTC" }}  
-**Tag:** {{ .Info.Version }}  
+**Released:** {{ (index .Versions 0).Tag.Date | date "2006-01-02 15:04:05 UTC" }}  
+**Tag:** {{ (index .Versions 0).Tag.Name }}  
 **Repository:** [{{ .Info.RepositoryURL }}]({{ .Info.RepositoryURL }})
 
 {{ if .Versions -}}
