@@ -20,22 +20,74 @@ namespace MyNet.Utilities;
 /// </summary>
 public static class DateTimeExtensions
 {
+    /// <summary>
+    /// Converts the specified <see cref="DateTime"/> to the given time zone.
+    /// </summary>
+    /// <param name="dateTime">The date/time to convert.</param>
+    /// <param name="timeZoneInfo">The target time zone.</param>
+    /// <returns>The converted <see cref="DateTime"/> in the specified time zone.</returns>
     public static DateTime ToTimeZone(this DateTime dateTime, TimeZoneInfo timeZoneInfo) => TimeZoneInfo.ConvertTime(dateTime, timeZoneInfo);
 
+    /// <summary>
+    /// Converts the provided <see cref="DateTime"/> to local time and applies the given time-of-day offset.
+    /// </summary>
+    /// <param name="date">The date to convert.</param>
+    /// <param name="time">The time-of-day to add after converting to local time.</param>
+    /// <returns>A <see cref="DateTime"/> adjusted to local time and the provided time-of-day.</returns>
     public static DateTime ToLocalTime(this DateTime date, TimeSpan time) => date.ToLocalTime().BeginningOfDay().Add(time);
 
+    /// <summary>
+    /// Converts the provided <see cref="DateTime"/> to local time, applies the given time-of-day and converts to UTC.
+    /// </summary>
+    /// <param name="date">The date to convert.</param>
+    /// <param name="time">The time-of-day to apply before converting to UTC.</param>
+    /// <returns>A UTC <see cref="DateTime"/> instance.</returns>
     public static DateTime ToUniversalTime(this DateTime date, TimeSpan time) => date.ToLocalTime().BeginningOfDay().Add(time).ToUniversalTime();
 
+    /// <summary>
+    /// Converts the specified <see cref="DateTime"/> to the application's current time zone.
+    /// </summary>
+    /// <param name="dateTime">The date/time to convert.</param>
+    /// <returns>The converted <see cref="DateTime"/> in the configured current time zone.</returns>
     public static DateTime ToCurrentTime(this DateTime dateTime) => TimeZoneInfo.ConvertTime(dateTime, GlobalizationService.Current.TimeZone);
 
+    /// <summary>
+    /// Returns the date component of the specified <see cref="DateTime"/> as a <see cref="DateOnly"/>.
+    /// </summary>
+    /// <param name="dateTime">The date/time value.</param>
+    /// <returns>A <see cref="DateOnly"/> containing the date part.</returns>
     public static DateOnly ToDate(this DateTime dateTime) => DateOnly.FromDateTime(dateTime);
 
+    /// <summary>
+    /// Returns the time component of the specified <see cref="DateTime"/> as a <see cref="TimeOnly"/>.
+    /// </summary>
+    /// <param name="dateTime">The date/time value.</param>
+    /// <returns>A <see cref="TimeOnly"/> containing the time-of-day part.</returns>
     public static TimeOnly ToTime(this DateTime dateTime) => TimeOnly.FromDateTime(dateTime);
 
+    /// <summary>
+    /// Creates a <see cref="Period"/> starting at this date/time and lasting the specified <see cref="FluentTimeSpan"/>.
+    /// </summary>
+    /// <param name="dateTime">The starting date/time.</param>
+    /// <param name="timeSpan">The duration to apply.</param>
+    /// <returns>A <see cref="Period"/> representing the interval.</returns>
     public static Period ToPeriod(this DateTime dateTime, FluentTimeSpan timeSpan) => new(dateTime, dateTime.AddFluentTimeSpan(timeSpan));
 
+    /// <summary>
+    /// Creates a <see cref="Period"/> that spans between this date/time and another date/time.
+    /// </summary>
+    /// <param name="dateTime">One end of the period.</param>
+    /// <param name="otherDateTime">The other end of the period.</param>
+    /// <returns>A <see cref="Period"/> representing the interval between the two dates.</returns>
     public static Period ToPeriod(this DateTime dateTime, DateTime otherDateTime) => new(DateTimeHelper.Min(dateTime, otherDateTime), DateTimeHelper.Max(dateTime, otherDateTime));
 
+    /// <summary>
+    /// Adds a value expressed in the specified <see cref="TimeUnit"/> to the date.
+    /// </summary>
+    /// <param name="date">The base date.</param>
+    /// <param name="value">The amount to add.</param>
+    /// <param name="timeUnitToGet">The unit of time for the amount.</param>
+    /// <returns>The adjusted <see cref="DateTime"/>.</returns>
     public static DateTime Add(this DateTime date, int value, TimeUnit timeUnitToGet) => date.AddFluentTimeSpan(value.ToTimeSpan(timeUnitToGet));
 
     /// <summary>
@@ -53,7 +105,7 @@ public static class DateTimeExtensions
         .Subtract(timeSpan.TimeSpan);
 
     /// <summary>
-    /// Returns the very end of the given day (the last millisecond of the last hour for the given <see cref="DateTime"/>).
+    /// Returns the very end of the given hour (the last millisecond of the hour for the given <see cref="DateTime"/>).
     /// </summary>
     public static DateTime EndOfHour(this DateTime date) => new(date.Year, date.Month, date.Day, date.Hour, 59, 59, 999, date.Kind);
 
@@ -722,12 +774,35 @@ public static class DateTimeExtensions
     /// </summary>
     public static int NumberOfYears(this DateTime dt1, DateTime dt2) => Math.Abs(CompareYear(dt1, dt2));
 
+    /// <summary>
+    /// Returns the date with day-of-month discarded (keeps month and year) — useful for monthly calculations.
+    /// </summary>
+    /// <param name="d">The original date.</param>
+    /// <returns>A <see cref="DateTime"/> set to the first day of the month at midnight.</returns>
     public static DateTime DiscardDayTime(this DateTime d) => new(d.Year, d.Month, 1, 0, 0, 0, d.Kind);
 
+    /// <summary>
+    /// Returns the date with the time portion discarded (time set to midnight).
+    /// </summary>
+    /// <param name="d">The original date.</param>
+    /// <returns>A <see cref="DateTime"/> with time portion set to 00:00:00.</returns>
     public static DateTime DiscardTime(this DateTime d) => d.Date;
 
+    /// <summary>
+    /// Determines whether the date lies within the inclusive range defined by start and end.
+    /// </summary>
+    /// <param name="date">The date to test.</param>
+    /// <param name="start">Range start.</param>
+    /// <param name="end">Range end.</param>
+    /// <param name="discardTime">If <c>true</c> compare only date parts for equality to boundaries.</param>
+    /// <returns><c>true</c> when the date is within the range; otherwise <c>false</c>.</returns>
     public static bool InRange(this DateTime date, DateTime start, DateTime end, bool discardTime = true) => (discardTime && (date.SameDay(start) || date.SameDay(end))) || (date.IsAfter(start) && date.IsBefore(end)) || (date.IsAfter(end) && date.IsBefore(start));
 
+    /// <summary>
+    /// Calculates the age in years from a birthdate to now (UTC based).
+    /// </summary>
+    /// <param name="birthdate">The birthdate to calculate age from.</param>
+    /// <returns>The number of full years elapsed since <paramref name="birthdate"/>.</returns>
     public static int GetAge(this DateTime birthdate)
     {
         var today = DateTime.UtcNow;

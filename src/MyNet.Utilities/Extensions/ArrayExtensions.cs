@@ -10,8 +10,16 @@ using System;
 namespace MyNet.Utilities;
 #pragma warning restore IDE0130 // Namespace does not match folder structure
 
+/// <summary>
+/// Provides extension methods for multidimensional arrays.
+/// </summary>
 public static class ArrayExtensions
 {
+    /// <summary>
+    /// Iterates over every element of the array invoking the provided action with the array and the current position indices.
+    /// </summary>
+    /// <param name="array">The array to iterate.</param>
+    /// <param name="action">An action invoked for each element; receives the array and the index positions.</param>
     public static void ForEach(this Array array, Action<Array, int[]> action)
     {
         if (array.LongLength == 0)
@@ -23,6 +31,9 @@ public static class ArrayExtensions
         while (walker.Step());
     }
 
+    /// <summary>
+    /// Helper that walks through positions of a multidimensional array.
+    /// </summary>
     internal sealed class ArrayTraverse
     {
         private readonly int[] _maxLengths;
@@ -36,8 +47,15 @@ public static class ArrayExtensions
             Position = new int[array.Rank];
         }
 
+        /// <summary>
+        /// Gets the current position indices of the walker.
+        /// </summary>
         public int[] Position { get; }
 
+        /// <summary>
+        /// Advances the walker to the next position.
+        /// </summary>
+        /// <returns><c>true</c> if advanced; otherwise <c>false</c> when end reached.</returns>
         public bool Step()
         {
             for (var i = 0; i < Position.Length; ++i)

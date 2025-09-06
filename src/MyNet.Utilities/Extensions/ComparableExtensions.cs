@@ -12,8 +12,14 @@ using MyNet.Utilities.Comparison;
 namespace MyNet.Utilities;
 #pragma warning restore IDE0130 // Namespace does not match folder structure
 
+/// <summary>
+/// Extension methods to compare values using custom comparison operators.
+/// </summary>
 public static class ComparableExtensions
 {
+    /// <summary>
+    /// Compares two IComparable values using the supplied operator.
+    /// </summary>
     public static bool Compare(this IComparable? x, IComparable? y, ComparableOperator sign)
     {
         if (x == null || y == null)
@@ -33,6 +39,9 @@ public static class ComparableExtensions
         };
     }
 
+    /// <summary>
+    /// Compares a value against a range using a complex operator.
+    /// </summary>
     public static bool Compare(this IComparable? x, IComparable? from, IComparable? to, ComplexComparableOperator sign)
     {
         if (x == null || from == null || to == null)
@@ -57,6 +66,9 @@ public static class ComparableExtensions
         };
     }
 
+    /// <summary>
+    /// Compares a generic comparable against a range using a complex operator.
+    /// </summary>
     public static bool Compare<T>(this IComparable<T> x, T? from, T? to, ComplexComparableOperator sign)
         where T : struct, IComparable<T>
     {
@@ -79,10 +91,16 @@ public static class ComparableExtensions
         };
     }
 
+    /// <summary>
+    /// Safely compares a nullable comparable to a value.
+    /// </summary>
     public static int CompareTo<T>(this IComparable<T>? obj1, T obj2)
         where T : struct, IComparable<T>
         => new NullableComparer<T>().Compare(obj1, obj2);
 
+    /// <summary>
+    /// Safely compares a nullable comparable to a nullable value.
+    /// </summary>
     public static int CompareTo<T>(this IComparable<T>? obj1, T? obj2)
         where T : struct, IComparable<T>
         => new NullableComparer<T>().Compare(obj1, obj2);
