@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <!-- Ignore analysis -->
     <PropertyGroup>
@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>net10.0-windows</TargetFrameworks>
+        <TargetFramework>net10.0-windows</TargetFramework>
         <OutputType>WinExe</OutputType>
         <Product>My .NET WPF</Product>
         <Description>Platform for testing and experimenting with WPF controls and styles. </Description>
@@ -46,8 +46,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0-rc.2.24473.5" />
-        <PackageReference Include="Fody" Version="6.8.2">
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0-preview.7.25380.108" />
+        <PackageReference Include="Fody" Version="6.9.3">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

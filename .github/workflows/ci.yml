@@ -1,29 +1,36 @@
-name: CI
+name: CI - Build and Test
 
 on:
   push:
-    branches: [ "main", "feature/*" ]
+    branches: [ "main", "feature/*", "hotfix/*" ]
   pull_request:
     branches: [ "main" ]
 
 permissions:
-  contents: write      # required to push to gh-pages
-  pages: write         # required to publish to GitHub Pages
-  id-token: write      # required for OIDC authentication if needed
+  contents: read       # Required to checkout code
+  pages: write         # Required to publish to GitHub Pages
+  id-token: write      # Required for OIDC authentication
+  checks: write        # Required to publish test results
+  pull-requests: write # Required to comment on PRs
+  actions: read        # Required to read workflow runs
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 jobs:
 
-  build:
+  # Job 1: Build non-WPF projects on Linux
+  build-core-projects:
     runs-on: ubuntu-latest
+    
     steps:
-
-      # Step 1: Checkout the repository
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # required for NBGV
+          fetch-depth: 0 # Required for NBGV
 
-      # Step 2: Set up .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -32,62 +39,312 @@ jobs:
             9.0.x
             8.0.x
 
-      # Step 2b: Install wasm-tools workload
-      - name: Install wasm-tools workload
-        run: dotnet workload install wasm-tools
+      - name: Restore non-WPF dependencies
+        run: |
+          # Restore core projects (exclude WPF)
+          find src -name "*.csproj" -not -path "*/Wpf/*" | while read project; do
+            echo "Restoring: $project"
+            dotnet restore "$project"
+          done
+          
+          # Restore test projects
+          find tests -name "*.csproj" | while read project; do
+            echo "Restoring test: $project"
+            dotnet restore "$project"
+          done
 
-      # Step 2c: Install android workload
-      - name: Install android workload
-        run: dotnet workload install android
+      - name: Build non-WPF projects
+        run: |
+          # Build core projects
+          find src -name "*.csproj" -not -path "*/Wpf/*" | while read project; do
+            echo "Building: $project"
+            dotnet build "$project" --configuration Release --no-restore
+          done
+          
+          # Build test projects
+          find tests -name "*.csproj" | while read project; do
+            echo "Building test: $project"
+            dotnet build "$project" --configuration Release --no-restore
+          done
 
-      # Step 2d: Restore .NET workloads
-      - name: Restore .NET workloads
-        run: dotnet workload restore
-
-      # Step 3: Restore project dependencies
-      - name: Restore
-        run: dotnet restore --property:EnableWindowsTargeting=true
-
-      # Step 4: Build the project
-      - name: Build
-        run: dotnet build --configuration Release --no-restore --property:EnableWindowsTargeting=true
-
-      # Step 5: Run tests and collect code coverage
       - name: Run tests with coverage
-        run: dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"
+        run: |
+          # Create results directory
+          mkdir -p ./TestResults
+          
+          # Run tests with coverage collection using Directory.Build.targets configuration
+          dotnet test --no-build --configuration Release \
+            --collect:"XPlat Code Coverage" \
+            --settings .runsettings \
+            --logger GitHubActions \
+            --logger "trx" \
+            --results-directory ./TestResults
+          
+          echo "📋 Test results generated:"
+          find ./TestResults -name "*.trx" | head -10
+          echo "📋 Coverage files from Directory.Build.targets:"
+          find ./TestResults -name "*.cobertura.xml" 2>/dev/null | head -10 || echo "No coverage files found yet"
 
-      # Step 6: Generate coverage report
-      - name: Report coverage
+      - name: Generate coverage report
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
-          reports: '**/coverage.cobertura.xml'
-          targetdir: 'coverage-report'
-          reporttypes: 'Html;Cobertura;MarkdownSummary'
+          reports: 'TestResults/**/*.cobertura.xml'
+          targetdir: 'coveragereport'
+          reporttypes: 'HtmlInline_AzurePipelines;Cobertura;MarkdownSummaryGithub'
 
-      # Step 7: Upload coverage report as artifact
-      - name: Upload coverage report as artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./coverage-report
-
-      # Step 8: Upload coverage to Codecov
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v4
         with:
-          files: '**/coverage.cobertura.xml'
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+          files: TestResults/**/*.cobertura.xml
+          fail_ci_if_error: false
+          verbose: true
 
-  deploy:
-    needs: build
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        with:
+          files: TestResults/**/*.trx
+          check_name: 'Test Results'
+          comment_mode: changes
+          fail_on: 'test failures'
+
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-linux
+          path: coveragereport
+
+      - name: Upload auto-generated packages (core)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packages-core
+          path: packages/*.nupkg
+
+  # Job 2: Build WPF projects on Windows
+  build-wpf-projects:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for NBGV
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            9.0.x
+            8.0.x
+
+      - name: Restore WPF dependencies
+        run: |
+          # Restore WPF projects using PowerShell
+          Get-ChildItem -Path "src/Wpf" -Filter "*.csproj" -Recurse | ForEach-Object {
+            Write-Host "Restoring: $($_.FullName)"
+            dotnet restore "$($_.FullName)"
+          }
+
+      - name: Build WPF projects
+        run: |
+          # Build WPF projects using PowerShell
+          Get-ChildItem -Path "src/Wpf" -Filter "*.csproj" -Recurse | ForEach-Object {
+            Write-Host "Building: $($_.FullName)"
+            dotnet build "$($_.FullName)" --configuration Release --no-restore
+          }
+
+      - name: Upload auto-generated packages (WPF)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: packages-wpf
+          path: packages/*.nupkg
+
+  # Job 3: Build Avalonia demos on Linux  
+  build-avalonia-demos:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for NBGV
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            9.0.x
+            8.0.x
+
+      - name: Install workloads
+        run: |
+          dotnet workload install wasm-tools
+          dotnet workload install android
+          dotnet workload restore
+
+      - name: Publish Avalonia demos
+        run: |
+          mkdir -p publish/avalonia
+          
+          # Publish Desktop demo
+          if [ -f "demos/MyNet.Avalonia.Demo.Desktop/MyNet.Avalonia.Demo.Desktop.csproj" ]; then
+            echo "📦 Publishing Desktop demo..."
+            dotnet publish "demos/MyNet.Avalonia.Demo.Desktop/MyNet.Avalonia.Demo.Desktop.csproj" \
+              --configuration Release \
+              --output publish/MyNet.Avalonia.Demo.Desktop \
+              -f net10.0-windows
+          fi
+          
+          # Publish Browser demo
+          if [ -f "demos/MyNet.Avalonia.Demo.Browser/MyNet.Avalonia.Demo.Browser.csproj" ]; then
+            echo "📦 Publishing Browser demo..."
+            dotnet publish "demos/MyNet.Avalonia.Demo.Browser/MyNet.Avalonia.Demo.Browser.csproj" \
+              --configuration Release \
+              --output publish/MyNet.Avalonia.Demo.Browser \
+              -f net10.0-browser
+          fi
+
+      - name: Upload Avalonia demo artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: demos-avalonia
+          path: publish/**
+
+  # Job 4: Build WPF demos on Windows
+  build-wpf-demos:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for NBGV
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            9.0.x
+            8.0.x
+
+      - name: Publish WPF demos
+        run: |
+          New-Item -ItemType Directory -Path "published-demos/wpf" -Force
+          
+          # Publish WPF demo projects
+          Get-ChildItem -Path "demos" -Filter "*Wpf*.csproj" -Recurse | ForEach-Object {
+            $projectName = $_.BaseName
+            Write-Host "📦 Publishing: $projectName"
+            
+            dotnet publish "$($_.FullName)" `
+              --configuration Release `
+              --output "publish/$projectName"
+          }
+
+      - name: Upload WPF demo artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: demos-wpf
+          path: publish/**
+
+
+  # Job 5: Résumé des artifacts et build summary
+  publish-artifacts-summary:
+    runs-on: ubuntu-latest
+    needs: [build-core-projects, build-wpf-projects, build-avalonia-demos, build-wpf-demos]
+    if: always()
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Display artifacts summary
+        run: |
+          echo "📦 All artifacts downloaded:"
+          find artifacts -type f -name "*.nupkg" -o -name "*.exe" -o -name "*.dll" | head -20
+          echo ""
+          echo "📊 Artifacts summary:"
+          echo "  NuGet packages: $(find artifacts -name "*.nupkg" | wc -l)"
+          echo "  Demo executables: $(find artifacts -name "**/*.exe" | wc -l)"
+          echo "  Coverage reports: $(find artifacts -name "coverage-report-linux" -type d | wc -l)"
+
+      - name: Display build summary
+        run: |
+          echo "## 🚀 Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Core Projects | ${{ needs.build-core-projects.result == 'success' && '✅ Success' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| WPF Projects | ${{ needs.build-wpf-projects.result == 'success' && '✅ Success' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Avalonia Demos | ${{ needs.build-avalonia-demos.result == 'success' && '✅ Success' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| WPF Demos | ${{ needs.build-wpf-demos.result == 'success' && '✅ Success' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**📦 Artifacts Generated:**" >> $GITHUB_STEP_SUMMARY
+          echo "- NuGet Packages: $(find artifacts -name "*.nupkg" | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Demo Executables: $(find artifacts -name "*.exe" | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Coverage Reports: Available" >> $GITHUB_STEP_SUMMARY
+
+  # Job 6: Publication du demo Avalonia Browser sur GitHub Pages (main uniquement)
+  publish-avalonia-demo-to-pages:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    needs: [build-avalonia-demos]
+    if: github.ref == 'refs/heads/main'
     steps:
-      
-      # Step 9: Deploy to GitHub Pages
+      - name: Download Avalonia demo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: demos-avalonia
+          path: artifacts/demos-avalonia
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Publish Avalonia Browser demo for GitHub Pages
+        run: |
+          echo "🌐 Publishing Avalonia Browser demo for GitHub Pages..."
+          mkdir -p github-pages
+          cp -r artifacts/demos-avalonia/MyNet.Avalonia.Demo.Browser/wwwroot/* github-pages/
+
+          if [ ! -f "github-pages/index.html" ]; then
+            echo "Creating index.html redirect..."
+            echo '<!DOCTYPE html>' > github-pages/index.html
+            echo '<html>' >> github-pages/index.html
+            echo '<head>' >> github-pages/index.html
+            echo '    <meta charset="utf-8">' >> github-pages/index.html
+            echo '    <title>MyNet Avalonia Demo</title>' >> github-pages/index.html
+            echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">' >> github-pages/index.html
+            echo '    <style>' >> github-pages/index.html
+            echo '        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; }' >> github-pages/index.html
+            echo '        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }' >> github-pages/index.html
+            echo '        .demo-button { display: inline-block; padding: 15px 30px; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; text-decoration: none; border-radius: 10px; margin: 10px; transition: all 0.3s ease; }' >> github-pages/index.html
+            echo '        .demo-button:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }' >> github-pages/index.html
+            echo '    </style>' >> github-pages/index.html
+            echo '</head>' >> github-pages/index.html
+            echo '<body>' >> github-pages/index.html
+            echo '    <div class="container">' >> github-pages/index.html
+            echo '        <h1>🚀 MyNet Avalonia Demo</h1>' >> github-pages/index.html
+            echo '        <p>Welcome to the MyNet Avalonia cross-platform demo application running in your browser!</p>' >> github-pages/index.html
+            echo '        <a href="./main.html" class="demo-button">🌐 Launch Avalonia WebAssembly Demo</a>' >> github-pages/index.html
+            echo '        <p><small>Built with Avalonia UI and .NET WebAssembly</small></p>' >> github-pages/index.html
+            echo '    </div>' >> github-pages/index.html
+            echo '</body>' >> github-pages/index.html
+            echo '</html>' >> github-pages/index.html
+          fi
+
+          echo "✅ Browser demo published to GitHub Pages"
+
+      - name: Upload Avalonia Web Demo to GitHub Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: github-pages
+
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
         id: deployment
         uses: actions/deploy-pages@v4
