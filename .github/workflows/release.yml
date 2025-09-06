@@ -117,17 +117,14 @@ jobs:
             9.0.x
             8.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore "${{ needs.detect-project-type.outputs.project_path }}"
-
       - name: Build and pack WPF project
         run: |
-          $projectPath = "${{ needs.detect-project-type.outputs.project_path }}"
+          $project_path = "${{ needs.detect-project-type.outputs.project_path }}"
           $version = "${{ needs.detect-project-type.outputs.version }}"
-          
-          Write-Host "Building WPF project: $projectPath"
-          
-          dotnet build "$projectPath" --configuration Release -p:PackageVersion=$version --no-restore
+
+          Write-Host "Building WPF project: $project_path"
+
+          dotnet build "$project_path" --configuration Release -p:PackageVersion=$version
 
       - name: Upload WPF packages
         uses: actions/upload-artifact@v4
@@ -155,17 +152,14 @@ jobs:
             9.0.x
             8.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore "${{ needs.detect-project-type.outputs.project_path }}"
-
       - name: Build and pack core project
         run: |
           project_path="${{ needs.detect-project-type.outputs.project_path }}"
           version="${{ needs.detect-project-type.outputs.version }}"
           
           echo "Building core project: $project_path"
-          
-          dotnet build "$projectPath" --configuration Release -p:PackageVersion=$version --no-restore
+
+          dotnet build "$project_path" --configuration Release -p:PackageVersion=$version
 
       - name: Upload core packages
         uses: actions/upload-artifact@v4
