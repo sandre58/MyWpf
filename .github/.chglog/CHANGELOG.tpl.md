@@ -16,9 +16,9 @@
 {{ end }}
 {{ range .Versions }}
 {{ if .Tag.Previous -}}
-## [{{ .Tag.Name | replace (printf "%s/v" $.Info.Title) "" }}] - {{ .Tag.Date | date "2006-01-02" }}
+## [{{ replace .Tag.Name (printf "%s/v" $.Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
 {{ else -}}
-## {{ .Tag.Name | replace (printf "%s/v" $.Info.Title) "" }} - {{ .Tag.Date | date "2006-01-02" }}
+## [{{ replace .Tag.Name (printf "%s/v" $.Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
 {{ end -}}
 {{ range .CommitGroups -}}
 ### {{ .Title }}
@@ -63,7 +63,7 @@
 ## 📦 Package Information
 
 - **Project:** {{ .Info.Title }}
-- **Version:** {{ .Tag.Name | replace (printf "%s/v" .Info.Title) "" }}
+- **Version:** {{ replace .Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
 - **Commit:** `{{ .Tag.Hash.Long }}`
 - **Build:** [GitHub Actions Run #${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
