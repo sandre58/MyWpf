@@ -6,7 +6,7 @@ on:
       dry_run:
         description: 'Dry run - Only show what would be tagged without creating tags'
         required: false
-        default: 'true'
+        default: 'false'
         type: choice
         options:
           - 'true'
@@ -58,18 +58,26 @@ jobs:
         id: find-projects
         run: |
           echo "Finding all packable projects..."
-          
+
           # Find all .csproj files in src directory (exclude demos and tests)
-          projects=$(find src -name "*.csproj" -not -path "*/Demo*" -not -path "*/Test*" | sort)
-          
-          echo "Found projects:"
-          echo "$projects"
-          
+          all_projects=$(find src -name "*.csproj" -not -path "*/Demo*" -not -path "*/Test*" | sort)
+
+          # Exclude projects with <IsPackable>false</IsPackable>
+          packable_projects=""
+          for project in $all_projects; do
+            if ! grep -q '<IsPackable>\s*false' "$project"; then
+              packable_projects="$packable_projects$project\n"
+            fi
+          done
+
+          echo "Found packable projects:"
+          echo -e "$packable_projects"
+
           # Save projects list for later steps
-          echo "$projects" > projects.txt
-          
+          echo -e "$packable_projects" > projects.txt
+
           # Convert to JSON array for matrix strategy if needed
-          projects_json=$(echo "$projects" | jq -R -s -c 'split("\n")[:-1]')
+          projects_json=$(echo -e "$packable_projects" | jq -R -s -c 'split("\n")[:-1]')
           echo "projects=$projects_json" >> $GITHUB_OUTPUT
 
       - name: Get last release tags
