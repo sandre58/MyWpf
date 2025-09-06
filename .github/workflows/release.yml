@@ -118,6 +118,9 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags --force
 
+      - name: List all tags
+        run: git tag -l
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -156,6 +159,9 @@ jobs:
 
       - name: Fetch all tags
         run: git fetch --tags --force
+
+      - name: List all tags
+        run: git tag -l
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -196,6 +202,9 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags --force
 
+      - name: List all tags
+        run: git tag -l
+
       - name: Download packages
         uses: actions/download-artifact@v4
         with:
@@ -234,6 +243,9 @@ jobs:
 
       - name: Fetch all tags
         run: git fetch --tags --force
+
+      - name: List all tags
+        run: git tag -l
 
       - name: Install git-chglog
         run: |
