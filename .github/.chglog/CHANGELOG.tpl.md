@@ -16,9 +16,9 @@
 {{ end }}
 {{ range .Versions }}
 {{ if .Tag.Previous -}}
-## [{{ replace .Tag.Name (printf "%s/v" $.Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
+## [{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
 {{ else -}}
-## [{{ replace .Tag.Name (printf "%s/v" $.Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
+## [{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
 {{ end -}}
 {{ range .CommitGroups -}}
 ### {{ .Title }}
@@ -63,7 +63,7 @@
 ## 📦 Package Information
 
 - **Project:** {{ .Info.Title }}
-- **Version:** {{ replace .Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
+- **Version:** {{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
 - **Commit:** `{{ .Tag.Hash.Long }}`
 
 {{ if .NoteGroups -}}
