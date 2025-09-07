@@ -65,7 +65,6 @@
 - **Project:** {{ .Info.Title }}
 - **Version:** {{ replace .Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
 - **Commit:** `{{ .Tag.Hash.Long }}`
-- **Build:** [GitHub Actions Run #${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
 {{ if .NoteGroups -}}
 {{ range .NoteGroups -}}
