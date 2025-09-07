@@ -72,5 +72,4 @@
 
 ---
 
-**Full Changelog:** [{{ .Info.Title }}/CHANGELOG.md]({{ .Info.RepositoryURL }}/blob/main/{{ .Info.Title | replace "." "/" | lower }}/CHANGELOG.md)
-
+**Full Changelog:** [{{ .Info.Title }}/CHANGELOG.md]({{ .Info.RepositoryURL }}/blob/main/{{ replace .Info.Title "." "/" -1 | lower }}/CHANGELOG.md)
