@@ -1,7 +1,5 @@
-# Changelog for {{ .Info.Title }} v{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
+# Changelog for {{ .Info.Title }}
 
-**Released:** {{ (index .Versions 0).Tag.Date | date "2006-01-02 15:04:05 UTC" }}  
-**Tag:** {{ (index .Versions 0).Tag.Name }}  
 **Repository:** [{{ .Info.RepositoryURL }}]({{ .Info.RepositoryURL }})
 
 {{ if .Versions -}}
@@ -14,12 +12,14 @@
 {{ end }}
 {{ end }}
 {{ end }}
+
 {{ range .Versions }}
 {{ if .Tag.Previous -}}
-## [{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
+## [{{ .Tag.Name }}] - {{ .Tag.Date | date "2006-01-02" }}
 {{ else -}}
-## [{{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}] - {{ .Tag.Date | date "2006-01-02" }}
+## {{ .Tag.Name }} - {{ .Tag.Date | date "2006-01-02" }}
 {{ end -}}
+
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
@@ -49,6 +49,7 @@
 {{ end }}
 {{ end }}
 {{ end }}
+
 {{ end }}
 {{ else }}
 ## 📝 Changes
@@ -57,14 +58,6 @@
 - {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} ([{{ .Hash.Short }}]({{ .Info.RepositoryURL }}/commit/{{ .Hash.Long }})){{ end }}
 {{ end }}
 {{ end }}
-
----
-
-## 📦 Package Information
-
-- **Project:** {{ .Info.Title }}
-- **Version:** {{ replace (index .Versions 0).Tag.Name (printf "%s/v" .Info.Title) "" -1 }}
-- **Commit:** `{{ .Tag.Hash.Long }}`
 
 {{ if .NoteGroups -}}
 {{ range .NoteGroups -}}
