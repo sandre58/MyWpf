@@ -43,12 +43,12 @@
 ---
 
 {{- $basePath := "" -}}
-{{- if (hasSuffix .Info.Title ".Wpf") -}}
-  {{- $basePath = printf "src/wpf/%s" .Info.Title -}}
-{{- else if (hasSuffix .Info.Title ".Wpf") -}}
-  {{- $basePath = printf "src/avalonia/%s" .Info.Title -}}
+{{- if (hasSuffix $.Info.Title ".Wpf") -}}
+  {{- $basePath = printf "src/wpf/%s" $.Info.Title -}}
+{{- else if (hasSuffix $.Info.Title ".Wpf") -}}
+  {{- $basePath = printf "src/avalonia/%s" $.Info.Title -}}
 {{- else -}}
-  {{- $basePath = printf "src/%s" .Info.Title -}}
+  {{- $basePath = printf "src/%s" $.Info.Title -}}
 {{- end -}}
 
 📖 [Full Changelog]({{ $.Info.RepositoryURL }}/blob/main/{{ $basePath }}/CHANGELOG.md)
