@@ -158,7 +158,7 @@ jobs:
                   echo "Last tag for $project_name: $last_tag"
                   
                   # Check for changes since last tag
-                  if git diff --quiet "$last_tag" HEAD -- "$project_dir/"; then
+                  if git diff --quiet "$last_tag" HEAD -- "$project_dir/" ":(exclude)$project_dir/*.md"; then
                     echo "No changes since $last_tag"
                   else
                     echo "Changes detected since $last_tag"
