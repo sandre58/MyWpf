@@ -1,6 +1,7 @@
 # Changelog for {{ .Info.Title }}
 
-**Repository:** [{{ .Info.RepositoryURL }}]({{ .Info.RepositoryURL }})
+All notable changes to this project will be documented in this file.  
+This file is generated automatically based on commit history and tags.
 
 {{ if .Unreleased.CommitGroups }}
 ## [Unreleased]
@@ -18,7 +19,7 @@
 {{ range .CommitGroups }}
 ### {{ .Title }}
 {{ range .Commits }}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} ([{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }})){{ end }}
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} *(commit{{ if .Author.Login }} by [@{{ .Author.Login }}]({{ .Author.URL }}){{ end }}{{ if .PullRequest.Number }} in [#{{ .PullRequest.Number }}]({{ .PullRequest.URL }}){{ else if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*{{ end }}
 {{ end }}
 {{ end }}
 

@@ -7,12 +7,12 @@
 {{ end }}
 {{ end }}
 {{ end }}
-
 {{ range .Versions }}
+ 
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} ([{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }})){{ end }}
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} *(commit{{ if .Author.Login }} by [@{{ .Author.Login }}]({{ .Author.URL }}){{ end }}{{ if .PullRequest.Number }} in [#{{ .PullRequest.Number }}]({{ .PullRequest.URL }}){{ else if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*{{ end }}
 {{ end }}
 {{ end }}
 
