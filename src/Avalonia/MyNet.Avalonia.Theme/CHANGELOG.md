@@ -1,4 +1,22 @@
-# Changelog
+# Changelog for MyNet.Avalonia.Theme
 
-## [v1.0.1] - 2024-12-16
-- Initialize repository
+All notable changes to this project will be documented in this file.  
+This file is generated automatically based on commit history and tags.
+
+
+
+
+## [1.0.42] - 2025-09-08
+
+
+
+
+
+
+
+
+
+
+
+---
+
