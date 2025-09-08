@@ -12,7 +12,7 @@
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} *(commit by **{{ with .Author }}{{ .Name }}**{{ if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} *(commit by **{{ with .Author }}{{ .Name }}**{{ end }}{{ if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*
 {{ end }}
 {{ end }}
 
@@ -45,7 +45,7 @@
 {{- $basePath := "" -}}
 {{- if (hasSuffix $.Info.Title ".Wpf") -}}
   {{- $basePath = printf "src/wpf/%s" $.Info.Title -}}
-{{- else if (hasSuffix $.Info.Title ".Wpf") -}}
+{{- else if (hasSuffix $.Info.Title ".Avalonia") -}}
   {{- $basePath = printf "src/avalonia/%s" $.Info.Title -}}
 {{- else -}}
   {{- $basePath = printf "src/%s" $.Info.Title -}}
