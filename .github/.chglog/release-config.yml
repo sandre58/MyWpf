@@ -11,7 +11,6 @@ options:
         - fix
         - perf
         - refactor
-        - docs
         - style
         - test
         - chore
@@ -23,7 +22,6 @@ options:
       fix: "🐛 Bug Fixes"
       perf: "⚡ Performance Improvements"
       refactor: "♻️ Code Refactoring"
-      docs: "📚 Documentation"
       style: "💄 Styles"
       test: "✅ Tests"
       chore: "🔧 Chores"

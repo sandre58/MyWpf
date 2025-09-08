@@ -12,7 +12,7 @@
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} *(commit by {{ with .Author }}{{ .Name }}{{ end }}{{ if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} *(commit by **{{ with .Author }}{{ .Name }}**{{ if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*
 {{ end }}
 {{ end }}
 
