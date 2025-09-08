@@ -19,7 +19,7 @@ This file is generated automatically based on commit history and tags.
 {{ range .CommitGroups }}
 ### {{ .Title }}
 {{ range .Commits }}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} *(commit{{ with .Author }} by {{ if .Login }}[@{{ .Login }}]({{ .URL }}){{ else }}{{ .Name }}{{ end }}{{ end }}{{ if .PullRequest.Number }} in [#{{ .PullRequest.Number }}]({{ .PullRequest.URL }}){{ else if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*{{ end }}
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ if .Hash }} *(commit by {{ with .Author }}{{ .Name }}{{ end }}{{ if .PullRequest.Number }} in [#{{ .PullRequest.Number }}]({{ .PullRequest.URL }}){{ else if .Hash }} in [{{ .Hash.Short }}]({{ $.Info.RepositoryURL }}/commit/{{ .Hash.Long }}){{ end }})*{{ end }}
 {{ end }}
 {{ end }}
 
