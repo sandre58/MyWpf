@@ -360,16 +360,21 @@ jobs:
             echo "CHANGELOG.md committed and pushed to main branch"
           fi
 
+      - name: Download packages for release
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+
       - name: Create GitHub Release
-        uses: actions/create-release@v1
+        id: create_release
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.detect-project-type.outputs.project_name }}/v${{ needs.detect-project-type.outputs.version }}
-          release_name: ${{ needs.detect-project-type.outputs.project_name }} v${{ needs.detect-project-type.outputs.version }}
-          body: |
-            Release of ${{ needs.detect-project-type.outputs.project_name }} version ${{ needs.detect-project-type.outputs.version }}
-            
-            This release was automatically created by GitHub Actions.
+          tag_name: ${{ needs.detect-project-type.outputs.tag }}
+          name: ${{ needs.detect-project-type.outputs.project_name }} v${{ needs.detect-project-type.outputs.version }}
+          body_path: RELEASE_CHANGELOG.md
           draft: false
           prerelease: false
+          files: |
+            release-artifacts/**/*.nupkg
