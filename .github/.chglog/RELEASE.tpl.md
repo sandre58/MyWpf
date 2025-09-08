@@ -51,5 +51,7 @@
   {{- $basePath = printf "src/%s" $.Info.Title -}}
 {{- end -}}
 
+{{ "" }}  <!-- force a line break -->
+
 📖 [Full Changelog]({{ $.Info.RepositoryURL }}/blob/main/{{ $basePath }}/CHANGELOG.md)
 {{ end }}
