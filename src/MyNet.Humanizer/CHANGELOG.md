@@ -6,7 +6,7 @@ This file is generated automatically based on commit history and tags.
 
 
 
-## [5.0.41] - 2025-09-08
+## [5.0.43] - 2025-09-08
 
 
 ### ♻️ Code Refactoring
