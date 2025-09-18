@@ -33,9 +33,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
-        
-    - name: Self Build - Publish (main only)
-      if: github.event_name == 'push'
+
+    - name: Build, Tests, Cover, Pack and Publish (on push tag)
       shell: bash
       run: |
-        ./src/dotnet-releaser/bin/Debug/net9.0/dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" dotnet-releaser.toml
+        dotnet tool install --global dotnet-releaser
+        dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" dotnet-releaser.toml
