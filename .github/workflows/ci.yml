@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read       # Required to checkout code
+  contents: write      # Required to checkout code and push to gh-pages
   pages: write         # Required to publish to GitHub Pages
   id-token: write      # Required for OIDC authentication
   checks: write        # Required to publish test results
@@ -24,21 +24,158 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: |
-          10.0.x
-          9.0.x
-          8.0.x
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+            9.0.x
+            8.0.x
 
-    - name: Build, Tests, Cover, Pack and Publish (on push tag)
-      shell: bash
-      run: |
-        dotnet tool install --global dotnet-releaser
-        dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" dotnet-releaser.toml
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install tools
+        run: |
+          npm install
+
+      - name: Versions
+        id: versions
+        shell: pwsh
+        run: |
+          $projects_versions = @()
+
+          Get-ChildItem -Path "src" -Directory | ForEach-Object {
+            $project = $_.Name
+            $path = $_.FullName
+            Write-Host "Processing project: $project"
+
+            # Compute version
+            $result = node scripts/compute-version.js $project | ConvertFrom-Json
+            $version = $result.version
+            Write-Host "Version for $project: $version"
+
+            # Add the project/version to the array
+            $projects_versions += @{
+              project = $project
+              version = $version
+              path = $path.Replace('\', '/')
+            }
+          }
+
+          # Convert to JSON and output
+          $projects_versions_json = $projects_versions | ConvertTo-Json -Compress
+          echo "projects_versions=$projects_versions_json" >> $env:GITHUB_OUTPUT
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $projects = '${{ steps.versions.outputs.projects_versions }}' | ConvertFrom-Json
+          foreach ($proj in $projects) {
+            $project = $proj.project
+            $version = $proj.version
+            $path = $proj.path
+
+            Write-Host "Building $project version $version"
+            dotnet build "$path/$project.csproj" `
+              --configuration Release `
+              --no-restore `
+              -p:Version=$version `
+              -p:AssemblyVersion=$version `
+              -p:FileVersion=$version
+          }
+
+      - name: Run tests with coverage
+        shell: pwsh
+        run: |
+          # Run tests with coverage collection using Directory.Build.targets configuration
+          dotnet test --configuration Release `
+            --collect:"XPlat Code Coverage" `
+            --settings .runsettings `
+            --logger GitHubActions `
+            --logger "trx" `
+            --results-directory ./TestResults
+
+          Write-Host "📋 Test results generated:"
+          Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.trx" | Select-Object -First 10 | ForEach-Object {
+            Write-Host $_.FullName
+          }
+
+          Write-Host "📋 Coverage files from Directory.Build.targets:"
+          $coverageFiles = Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.cobertura.xml" | Select-Object -First 10
+          if ($coverageFiles) {
+            $coverageFiles | ForEach-Object { Write-Host $_.FullName }
+          } else {
+            Write-Host "No coverage files found yet"
+          }
+
+      - name: Pack NuGet packages
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "./packages"
+          $projects = '${{ steps.versions.outputs.projects_versions }}' | ConvertFrom-Json
+          foreach ($proj in $projects) {
+            $project = $proj.project
+            $version = $proj.version
+            $path = $proj.path
+
+            Write-Host "Packaging $project version $version"
+            dotnet pack "$path/$project.csproj" `
+                --configuration Release `
+                --no-build `
+                -p:PackageVersion=$version `
+                -o ./packages
+          }
+
+      - name: Generate coverage report
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5
+        with:
+          reports: 'TestResults/**/*.cobertura.xml'
+          targetdir: 'coveragereport'
+          reporttypes: 'HtmlInline_AzurePipelines;Cobertura;MarkdownSummaryGithub'
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: TestResults/**/*.cobertura.xml
+          fail_ci_if_error: false
+          verbose: true
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: TestResults/**/*.trx
+          check_name: 'Test Results'
+          comment_mode: changes
+          fail_on: 'test failures'
+
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coveragereport
+
+      - name: Upload NuGet Packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: packages/*.nupkg
+
+      - name: Deploy documentation to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: coveragereport
