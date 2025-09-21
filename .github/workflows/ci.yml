@@ -62,7 +62,7 @@ jobs:
             # Compute version
             $result = node scripts/compute-version.js $project | ConvertFrom-Json
             $version = $result.version
-            Write-Host "Version for $project: $version"
+            Write-Host "Version for ${project}: ${version}"
 
             # Add the project/version to the array
             $projects_versions += @{
@@ -88,7 +88,7 @@ jobs:
             $version = $proj.version
             $path = $proj.path
 
-            Write-Host "Building $project version $version"
+            Write-Host "Building ${project} version ${version}"
             dotnet build "$path/$project.csproj" `
               --configuration Release `
               --no-restore `
@@ -131,7 +131,7 @@ jobs:
             $version = $proj.version
             $path = $proj.path
 
-            Write-Host "Packaging $project version $version"
+            Write-Host "Packaging ${project} version ${version}"
             dotnet pack "$path/$project.csproj" `
                 --configuration Release `
                 --no-build `
