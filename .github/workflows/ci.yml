@@ -109,12 +109,12 @@ jobs:
             --results-directory ./TestResults
 
           Write-Host "📋 Test results generated:"
-          Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.trx" | Select-Object -First 10 | ForEach-Object {
+          Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.trx" -ErrorAction SilentlyContinue | Select-Object -First 10 | ForEach-Object {
             Write-Host $_.FullName
           }
 
           Write-Host "📋 Coverage files from Directory.Build.targets:"
-          $coverageFiles = Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.cobertura.xml" | Select-Object -First 10
+          $coverageFiles = Get-ChildItem -Path "./TestResults" -Recurse -Filter "*.cobertura.xml" -ErrorAction SilentlyContinue | Select-Object -First 10
           if ($coverageFiles) {
             $coverageFiles | ForEach-Object { Write-Host $_.FullName }
           } else {
@@ -140,6 +140,7 @@ jobs:
           }
 
       - name: Generate coverage report
+        if: hashFiles('TestResults/**/*.cobertura.xml') != ''
         uses: danielpalme/ReportGenerator-GitHub-Action@v5
         with:
           reports: 'TestResults/**/*.cobertura.xml'
@@ -147,6 +148,7 @@ jobs:
           reporttypes: 'HtmlInline_AzurePipelines;Cobertura;MarkdownSummaryGithub'
 
       - name: Upload coverage to Codecov
+        if: hashFiles('TestResults/**/*.cobertura.xml') != ''
         uses: codecov/codecov-action@v4
         with:
           files: TestResults/**/*.cobertura.xml
@@ -154,6 +156,7 @@ jobs:
           verbose: true
 
       - name: Publish Test Results
+        if: hashFiles('TestResults/**/*.trx') != ''
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           files: TestResults/**/*.trx
@@ -162,6 +165,7 @@ jobs:
           fail_on: 'test failures'
 
       - name: Upload Coverage Reports
+        if: hashFiles('coveragereport/**/*') != ''
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
