@@ -10,12 +10,12 @@
     <PropertyGroup>
 
         <!-- NuGet information -->
-        <RepositoryUrl>https://github.com/sandre58/MyNet</RepositoryUrl>
+        <RepositoryUrl>https://github.com/sandre58/MyWpf</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryBranch>main</RepositoryBranch>
         <PackageOutputPath>$(MSBuildThisFileDirectory)..\packages</PackageOutputPath>
-        <PackageProjectUrl>https://github.com/sandre58/MyNet</PackageProjectUrl>
-        <PackageReleaseNotes>https://github.com/sandre58/MyNet/releases</PackageReleaseNotes>
+        <PackageProjectUrl>https://github.com/sandre58/MyWpf</PackageProjectUrl>
+        <PackageReleaseNotes>https://github.com/sandre58/MyWpf/releases</PackageReleaseNotes>
         <PackageIconUrl>$(PackageIcon)</PackageIconUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,7 +24,7 @@
 
         <!-- Build configuration -->
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <IncludeSource>true</IncludeSource>
 

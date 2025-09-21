@@ -3,34 +3,37 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <img src="assets/MyNetUtilities.png" width="128" alt="MyNetUtilities">
-  <img src="assets/MyNetUI.png" width="128" alt="MyNetUI">
-  <img src="assets/MyNetObservable.png" width="128" alt="MyNetObservable">
-  <img src="assets/MyNetHumanizer.png" width="128" alt="MyNetHumanizer">
-  <img src="assets/MyNetCsvHelper.png" width="128" alt="MyNetCsvHelper">
-  <img src="assets/MyNetAutoMapper.png" width="128" alt="MyNetAutoMapper">
-  <img src="assets/MyNetHttp.png" width="128" alt="MyNetHttp">
-  <img src="assets/MyNetXaml.png" width="128" alt="MyNetXaml">
-  <img src="assets/MyNetAvalonia.png" width="128" alt="MyNetAvalonia">
   <img src="assets/MyNetWpf.png" width="128" alt="MyNetWpf">
+  <img src="assets/MyNetXaml.png" width="128" alt="MyNetXaml">
 </div>
 
-<h1 align="center">My .NET</h1>
+<h1 align="center">My .NET WPF</h1>
 
 [![MIT License][license-shield]][license-url]
-[![GitHub Stars](https://img.shields.io/github/stars/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/network/members)
-[![GitHub Issues](https://img.shields.io/github/issues/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/commits/main)
-[![Contributors](https://img.shields.io/github/contributors/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet/graphs/contributors)
-[![Repo Size](https://img.shields.io/github/repo-size/sandre58/mynet?style=for-the-badge)](https://github.com/sandre58/mynet)
+[![GitHub Stars](https://img.shields.io/github/stars/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/commits/main)
+[![Contributors](https://img.shields.io/github/contributors/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/graphs/contributors)
+[![Repo Size](https://img.shields.io/github/repo-size/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf)
 
-A comprehensive collection of powerful libraries and extensions for modern .NET development (8.0, 9.0, and 10.0). Each package is carefully designed to be independent, modular, and production-ready, enabling developers to pick exactly what they need to enhance their applications.
+A comprehensive collection of WPF libraries and extensions for modern .NET desktop development (8.0, 9.0, and 10.0). This repository provides specialized WPF controls, theming, drag-and-drop functionality, LiveCharts integration, presentation helpers, web components, and XAML utilities to enhance Windows desktop applications.
+
+## ✨ Key Features
+
+- 🎨 **Advanced Theming & Styling** - Complete theming system with Material Design integration
+- 🪟 **Rich WPF Controls** - Custom controls, dialogs, notifications, and UI helpers
+- 🖱️ **Drag & Drop** - Advanced drag-and-drop functionality with custom handlers and adorners
+- 📊 **Data Visualization** - LiveCharts integration for beautiful, interactive charts
+- 🏗️ **MVVM Architecture** - Presentation layer utilities and MVVM pattern support
+- 🌐 **Web Integration** - Browser controls and web view components for hybrid applications
+- 🔄 **XAML Utilities** - XAML to HTML conversion and cross-platform content rendering
+- 🚀 **Production Ready** - Battle-tested libraries used in real-world applications
 
 ## Packages
 
 [![Build][build-shield]][build-url]
-[![Coverage](https://codecov.io/gh/sandre58/mynet/branch/main/graph/badge.svg)](https://codecov.io/gh/sandre58/mynet)
+[![Coverage](https://codecov.io/gh/sandre58/MyWpf/branch/main/graph/badge.svg)](https://codecov.io/gh/sandre58/MyWpf)
 [![C#](https://img.shields.io/badge/language-C%23-blue)](#)
 [![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
 [![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)
@@ -38,103 +41,117 @@ A comprehensive collection of powerful libraries and extensions for modern .NET 
 
 | Package | Description | NuGet |
 |---|---|---|
-| [**MyNet.Utilities**](src/MyNet.Utilities) | 🔧 Core utilities for .NET development: authentication, cache, encryption, geography, generator, Google services, IO operations, localization, logging, mail, messaging, progress tracking, and threading utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities)](https://www.nuget.org/packages/MyNet.Utilities) |
-| [**MyNet.UI**](src/MyNet.UI) | 🎨 UI helpers for notifications, dialogs, navigation, themes, and user interface components. | [![NuGet](https://img.shields.io/nuget/v/MyNet.UI)](https://www.nuget.org/packages/MyNet.UI) |
-| [**MyNet.Observable**](src/MyNet.Observable) | 🔄 Editable and validatable object base classes with property change notifications and validation support. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Observable)](https://www.nuget.org/packages/MyNet.Observable) |
-| [**MyNet.Humanizer**](src/MyNet.Humanizer) | 👤 Convert objects and values to human-readable strings with natural language formatting. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Humanizer)](https://www.nuget.org/packages/MyNet.Humanizer) |
-| [**MyNet.CsvHelper.Extensions**](src/MyNet.CsvHelper.Extensions) | 📊 Extensions for CsvHelper to simplify CSV mapping, import, and export operations. | [![NuGet](https://img.shields.io/nuget/v/MyNet.CsvHelper.Extensions)](https://www.nuget.org/packages/MyNet.CsvHelper.Extensions) |
-| [**MyNet.AutoMapper.Extensions**](src/MyNet.AutoMapper.Extensions) | 🗺️ Extensions and helpers for seamless AutoMapper integration and configuration. | [![NuGet](https://img.shields.io/nuget/v/MyNet.AutoMapper.Extensions)](https://www.nuget.org/packages/MyNet.AutoMapper.Extensions) |
-| [**MyNet.Http**](src/MyNet.Http) | 🌐 HTTP client helpers and extensions for simplified web API communication. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Http)](https://www.nuget.org/packages/MyNet.Http) |
-| [**MyNet.Utilities.Generator.Extensions**](src/MyNet.Utilities.Generator.Extensions) | 🎲 Generate realistic random data for testing, demos, and simulations. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Generator.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Generator.Extensions) |
-| [**MyNet.Utilities.Geography.Extensions**](src/MyNet.Utilities.Geography.Extensions) | 🌍 Access detailed geography information including countries, cities, and regions. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Geography.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Geography.Extensions) |
-| [**MyNet.Utilities.Localization.Extensions**](src/MyNet.Utilities.Localization.Extensions) | 🌐 Localization resources and helpers for multi-language applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Localization.Extensions)](https://www.nuget.org/packages/MyNet.Utilities.Localization.Extensions) |
-| [**MyNet.Utilities.Logging.NLog**](src/MyNet.Utilities.Logging.NLog) | 📝 Logging integration with NLog for structured logging. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Logging.NLog)](https://www.nuget.org/packages/MyNet.Utilities.Logging.NLog) |
-| [**MyNet.Utilities.Mail.MailKit**](src/MyNet.Utilities.Mail.MailKit) | 📧 Email sending capabilities with MailKit integration. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Utilities.Mail.MailKit)](https://www.nuget.org/packages/MyNet.Utilities.Mail.MailKit) |
-| [**MyNet.Avalonia**](src/Avalonia/MyNet.Avalonia) | 🖥️ Avalonia UI helpers and extensions for cross-platform desktop applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Avalonia)](https://www.nuget.org/packages/MyNet.Avalonia) |
-| [**MyNet.Avalonia.Controls**](src/Avalonia/MyNet.Avalonia.Controls) | 🎛️ Custom Avalonia controls and components. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Avalonia.Controls)](https://www.nuget.org/packages/MyNet.Avalonia.Controls) |
-| [**MyNet.Avalonia.Theme**](src/Avalonia/MyNet.Avalonia.Theme) | 🎨 Avalonia theming resources and styles. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Avalonia.Theme)](https://www.nuget.org/packages/MyNet.Avalonia.Theme) |
-| [**MyNet.Avalonia.UI**](src/Avalonia/MyNet.Avalonia.UI) | 🖼️ UI extensions and utilities for Avalonia applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Avalonia.UI)](https://www.nuget.org/packages/MyNet.Avalonia.UI) |
-| [**MyNet.Xaml.Html**](src/Wpf/MyNet.Xaml.Html) | 🔄 XAML to HTML conversion and helpers. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Xaml.Html)](https://www.nuget.org/packages/MyNet.Xaml.Html) |
-| [**MyNet.Wpf**](src/Wpf/MyNet.Wpf) | 🪟 WPF helpers and extensions for Windows desktop applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf)](https://www.nuget.org/packages/MyNet.Wpf) |
-| [**MyNet.Wpf.DragAndDrop**](src/Wpf/MyNet.Wpf.DragAndDrop) | 🖱️ WPF drag and drop helpers and utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.DragAndDrop)](https://www.nuget.org/packages/MyNet.Wpf.DragAndDrop) |
-| [**MyNet.Wpf.LiveCharts**](src/Wpf/MyNet.Wpf.LiveCharts) | 📈 WPF LiveCharts integration for data visualization. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.LiveCharts)](https://www.nuget.org/packages/MyNet.Wpf.LiveCharts) |
-| [**MyNet.Wpf.Presentation**](src/Wpf/MyNet.Wpf.Presentation) | 📽️ WPF presentation helpers and MVVM utilities. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Presentation)](https://www.nuget.org/packages/MyNet.Wpf.Presentation) |
-| [**MyNet.Wpf.Web**](src/Wpf/MyNet.Wpf.Web) | 🌐 WPF web integration and browser components. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Web)](https://www.nuget.org/packages/MyNet.Wpf.Web) |
+| [**MyNet.Wpf**](src/MyNet.Wpf) | 🪟 Comprehensive WPF library with controls, theming, dialogs, notifications, and UI helpers for Windows desktop applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf)](https://www.nuget.org/packages/MyNet.Wpf) |
+| [**MyNet.Wpf.DragAndDrop**](src/MyNet.Wpf.DragAndDrop) | �️ Advanced drag-and-drop functionality with custom handlers, adorners, and file/calendar integration for WPF applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.DragAndDrop)](https://www.nuget.org/packages/MyNet.Wpf.DragAndDrop) |
+| [**MyNet.Wpf.LiveCharts**](src/MyNet.Wpf.LiveCharts) | � WPF LiveCharts integration with custom formatters, series, and theming for beautiful data visualization. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.LiveCharts)](https://www.nuget.org/packages/MyNet.Wpf.LiveCharts) |
+| [**MyNet.Wpf.Presentation**](src/MyNet.Wpf.Presentation) | 📽️ MVVM presentation layer with controls, converters, models, and services for structured WPF applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Presentation)](https://www.nuget.org/packages/MyNet.Wpf.Presentation) |
+| [**MyNet.Wpf.Web**](src/MyNet.Wpf.Web) | 🌐 WPF web integration with browser controls and web view components for hybrid applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Web)](https://www.nuget.org/packages/MyNet.Wpf.Web) |
+| [**MyNet.Xaml.Html**](src/MyNet.Xaml.Html) | 🔄 XAML to HTML conversion utilities and helpers for cross-platform content rendering. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Xaml.Html)](https://www.nuget.org/packages/MyNet.Xaml.Html) |
+| [**LiveCharts**](src/LiveCharts/LiveCharts) | � Core LiveCharts library for creating interactive and animated charts. | [![NuGet](https://img.shields.io/nuget/v/LiveCharts)](https://www.nuget.org/packages/LiveCharts) |
+| [**LiveCharts.Wpf**](src/LiveCharts/LiveCharts.Wpf) | 🎯 WPF-specific implementation of LiveCharts with native WPF controls and styling. | [![NuGet](https://img.shields.io/nuget/v/LiveCharts.Wpf)](https://www.nuget.org/packages/LiveCharts.Wpf) |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - **.NET 8.0, 9.0, or 10.0** - The libraries support the latest .NET versions
-- **Visual Studio 2022** or **Visual Studio Code** (recommended)
+- **Visual Studio 2022** (recommended for WPF development)
+- **Windows 10/11** - Required for WPF applications
 - **NuGet** package manager
 
 ### Installation
 
-Install any package via NuGet Package Manager, .NET CLI, or PackageReference:
+Install any WPF package via NuGet Package Manager, .NET CLI, or PackageReference:
 
 **Using .NET CLI:**
 ```bash
-# Core utilities package
-dotnet add package MyNet.Utilities
-
-# UI helpers package  
-dotnet add package MyNet.UI
-
-# Observable objects package
-dotnet add package MyNet.Observable
-
-# Humanization package
-dotnet add package MyNet.Humanizer
-
-# CSV operations package
-dotnet add package MyNet.CsvHelper.Extensions
-
-# Avalonia UI package
-dotnet add package MyNet.Avalonia
-
-# WPF extensions package
+# Core WPF library with controls and theming
 dotnet add package MyNet.Wpf
+
+# Advanced drag-and-drop functionality
+dotnet add package MyNet.Wpf.DragAndDrop
+
+# LiveCharts integration for data visualization
+dotnet add package MyNet.Wpf.LiveCharts
+
+# MVVM presentation helpers
+dotnet add package MyNet.Wpf.Presentation
+
+# Web integration components
+dotnet add package MyNet.Wpf.Web
+
+# XAML to HTML conversion
+dotnet add package MyNet.Xaml.Html
 ```
 
 **Using Package Manager Console:**
 ```powershell
-Install-Package MyNet.Utilities
-Install-Package MyNet.UI
-# ... and so on
+Install-Package MyNet.Wpf
+Install-Package MyNet.Wpf.DragAndDrop
+Install-Package MyNet.Wpf.LiveCharts
+Install-Package MyNet.Wpf.Presentation
+Install-Package MyNet.Wpf.Web
+Install-Package MyNet.Xaml.Html
 ```
 
 **Using PackageReference:**
 ```xml
-<PackageReference Include="MyNet.Utilities" Version="1.0.*" />
-<PackageReference Include="MyNet.UI" Version="1.0.*" />
+<PackageReference Include="MyNet.Wpf" Version="1.0.*" />
+<PackageReference Include="MyNet.Wpf.DragAndDrop" Version="1.0.*" />
+<PackageReference Include="MyNet.Wpf.LiveCharts" Version="1.0.*" />
 ```
 
-### Quick Start
+### Quick Examples
 
-After installing a package, explore the package-specific documentation in the `src/` directory of each project for detailed usage examples and API references.
+**Basic WPF Theming:**
+```xaml
+<!-- App.xaml -->
+<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/MyNet.Wpf;component/Themes/MyNet.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
+```
+
+**Drag & Drop Integration:**
+```csharp
+// Enable file drop handling
+var dropHandler = new FileDropHandler();
+myControl.AllowDrop = true;
+```
+
+**LiveCharts Data Visualization:**
+```csharp
+// Create a simple chart
+var chartSeries = new ChartSerie<double> 
+{ 
+    Values = new[] { 1, 5, 3, 8, 2 },
+    Title = "Sample Data"
+};
+```
+
+For detailed usage examples and API references, explore the documentation in each package's directory under `src/`.
 
 ## 📁 Repository Structure
 
-- **`src/`** — Source code for all packages organized by category:
-  - **`MyNet.Utilities*`** — Core utilities and extensions
-  - **`MyNet.UI`** — Cross-platform UI helpers
-  - **`MyNet.Observable`** — Observable object patterns and validation
-  - **`MyNet.Humanizer`** — Human-readable string conversion
-  - **`MyNet.CsvHelper.Extensions`** — CSV import/export utilities
-  - **`MyNet.AutoMapper.Extensions`** — Object mapping helpers
-  - **`MyNet.Http`** — HTTP client utilities
-  - **`Avalonia/`** — Cross-platform UI packages for Avalonia
-  - **`Wpf/`** — Windows-specific WPF packages
+- **`src/`** — Source code for all WPF packages:
+  - **`MyNet.Wpf/`** — Core WPF library with controls, theming, and UI helpers
+  - **`MyNet.Wpf.DragAndDrop/`** — Drag-and-drop functionality and handlers
+  - **`MyNet.Wpf.LiveCharts/`** — LiveCharts integration and chart components
+  - **`MyNet.Wpf.Presentation/`** — MVVM presentation layer and utilities
+  - **`MyNet.Wpf.Web/`** — Web integration and browser controls
+  - **`MyNet.Xaml.Html/`** — XAML to HTML conversion utilities
+  - **`LiveCharts/`** — Core LiveCharts libraries (LiveCharts, LiveCharts.Wpf)
 
-- **`demos/`** — Example applications showcasing library features
-  - **`MyNet.Avalonia.Demo/`** — Cross-platform Avalonia demo
-  - **`MyNet.Wpf.Demo/`** — Windows WPF demo
+- **`demos/`** — Example WPF applications showcasing library features
+  - **`MyNet.Wpf.Demo/`** — Comprehensive WPF demo application
   
-- **`tests/`** — Comprehensive unit and integration tests
 - **`assets/`** — Project logos, icons, and visual assets
 - **`build/`** — MSBuild configuration and shared properties
 - **`scripts/`** — Build automation and utility scripts
+- **`docs/`** — Documentation and contribution guidelines
 - **`.github/`** — CI/CD workflows and GitHub automation
 
 ## 🛠️ Development
@@ -143,17 +160,26 @@ After installing a package, explore the package-specific documentation in the `s
 
 ```bash
 # Clone the repository
-git clone https://github.com/sandre58/MyNet.git
-cd MyNet
+git clone https://github.com/sandre58/MyWpf.git
+cd MyWpf
 
 # Build all projects
 dotnet build
 
-# Run tests
+# Run tests (if available)
 dotnet test
 
-# Create packages
+# Create NuGet packages
 dotnet pack
+```
+
+### Demo Application
+
+Explore the comprehensive demo application to see all WPF libraries in action:
+
+```bash
+# Run the WPF demo
+dotnet run --project demos/MyNet.Wpf.Demo
 ```
 
 ### Contributing
@@ -167,7 +193,7 @@ Copyright © 2016-2025 Stéphane ANDRE.
 Distributed under the MIT License. See [LICENSE](./LICENSE) for complete details.
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[license-shield]: https://img.shields.io/github/license/sandre58/MyNet?style=for-the-badge
-[license-url]: https://github.com/sandre58/MyNet/blob/main/LICENSE
-[build-shield]: https://img.shields.io/github/actions/workflow/status/sandre58/MyNet/ci.yml?logo=github&label=CI
-[build-url]: https://github.com/sandre58/MyNet/actions
+[license-shield]: https://img.shields.io/github/license/sandre58/MyWpf?style=for-the-badge
+[license-url]: https://github.com/sandre58/MyWpf/blob/main/LICENSE
+[build-shield]: https://img.shields.io/github/actions/workflow/status/sandre58/MyWpf/ci.yml?logo=github&label=CI
+[build-url]: https://github.com/sandre58/MyWpf/actions

@@ -1,0 +1,152 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11012.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github Actions", "Github Actions", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\tag.yml = .github\workflows\tag.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2E7433DA-B851-4B09-A8BF-5E8265B474AC}"
+	ProjectSection(SolutionItems) = preProject
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		docs\CONVENTIONAL_COMMITS.md = docs\CONVENTIONAL_COMMITS.md
+		LICENSE = LICENSE
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
+		README.md = README.md
+		docs\WORKFLOWS.md = docs\WORKFLOWS.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{892DFD87-4C6A-412C-8243-7E9709DF5209}"
+	ProjectSection(SolutionItems) = preProject
+		.runsettings = .runsettings
+		build\code-analysis.props = build\code-analysis.props
+		build\dependencies.props = build\dependencies.props
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		global.json = global.json
+		NuGet.config = NuGet.config
+		build\package.props = build\package.props
+		Settings.XamlStyler = Settings.XamlStyler
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{FB9A9AA6-6119-43F3-9F1B-A4539F2DD1A3}"
+	ProjectSection(SolutionItems) = preProject
+		assets\MyNetWpf.png = assets\MyNetWpf.png
+		assets\MyNetXaml.png = assets\MyNetXaml.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code analysis", "Code analysis", "{015D541F-7A6E-4FF7-A267-7FA869C00DE0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioning", "Versioning", "{ECE90391-AE4A-42D9-8332-508DC90BABE6}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\compute-version.js = scripts\compute-version.js
+		package.json = package.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4942B6F1-961C-4D26-A566-06D348BA98C1}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\test-coverage.ps1 = scripts\test-coverage.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{2C7D6C1B-A6CA-44B6-B604-FDD86A107640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf.Demo", "demos\MyNet.Wpf.Demo\MyNet.Wpf.Demo.csproj", "{21F988AE-E497-F744-F6F5-94385605B8BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{761E88AC-1747-465B-BFFA-B7EFFD3F47B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{9C3385D2-1E72-4723-83A9-35A106A6ACBA}"
+	ProjectSection(SolutionItems) = preProject
+		.github\.chglog\CHANGELOG.tpl.md = .github\.chglog\CHANGELOG.tpl.md
+		.github\.chglog\config.yml = .github\.chglog\config.yml
+		.github\.chglog\release-config.yml = .github\.chglog\release-config.yml
+		.github\.chglog\RELEASE.tpl.md = .github\.chglog\RELEASE.tpl.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LiveCharts", "LiveCharts", "{319B6515-FB43-4848-940D-5F2FB20FEF4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCharts", "src\LiveCharts\LiveCharts\LiveCharts.csproj", "{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCharts.Wpf", "src\LiveCharts\LiveCharts.Wpf\LiveCharts.Wpf.csproj", "{C350017C-39C8-C39D-1B45-D70A280A3571}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf", "src\MyNet.Wpf\MyNet.Wpf.csproj", "{19C670B3-3505-2CFC-D20A-324FB0660BF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf.DragAndDrop", "src\MyNet.Wpf.DragAndDrop\MyNet.Wpf.DragAndDrop.csproj", "{676B7EAE-B358-C5F4-07D8-B524C35BE11D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf.LiveCharts", "src\MyNet.Wpf.LiveCharts\MyNet.Wpf.LiveCharts.csproj", "{391E87DD-820F-3733-076E-AF1F1C65F677}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf.Presentation", "src\MyNet.Wpf.Presentation\MyNet.Wpf.Presentation.csproj", "{D7278B54-960D-9328-656E-31DD4C2772B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Wpf.Web", "src\MyNet.Wpf.Web\MyNet.Wpf.Web.csproj", "{63DC1F42-FC84-A8B2-A984-E762BC2BB5D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNet.Xaml.Html", "src\MyNet.Xaml.Html\MyNet.Xaml.Html.csproj", "{305488E0-3B7B-942F-F9E5-91CDA664B582}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21F988AE-E497-F744-F6F5-94385605B8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F988AE-E497-F744-F6F5-94385605B8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F988AE-E497-F744-F6F5-94385605B8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F988AE-E497-F744-F6F5-94385605B8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C350017C-39C8-C39D-1B45-D70A280A3571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C350017C-39C8-C39D-1B45-D70A280A3571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C350017C-39C8-C39D-1B45-D70A280A3571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C350017C-39C8-C39D-1B45-D70A280A3571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C670B3-3505-2CFC-D20A-324FB0660BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C670B3-3505-2CFC-D20A-324FB0660BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C670B3-3505-2CFC-D20A-324FB0660BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C670B3-3505-2CFC-D20A-324FB0660BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676B7EAE-B358-C5F4-07D8-B524C35BE11D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676B7EAE-B358-C5F4-07D8-B524C35BE11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676B7EAE-B358-C5F4-07D8-B524C35BE11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676B7EAE-B358-C5F4-07D8-B524C35BE11D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{391E87DD-820F-3733-076E-AF1F1C65F677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391E87DD-820F-3733-076E-AF1F1C65F677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391E87DD-820F-3733-076E-AF1F1C65F677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391E87DD-820F-3733-076E-AF1F1C65F677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7278B54-960D-9328-656E-31DD4C2772B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7278B54-960D-9328-656E-31DD4C2772B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7278B54-960D-9328-656E-31DD4C2772B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7278B54-960D-9328-656E-31DD4C2772B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DC1F42-FC84-A8B2-A984-E762BC2BB5D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DC1F42-FC84-A8B2-A984-E762BC2BB5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DC1F42-FC84-A8B2-A984-E762BC2BB5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DC1F42-FC84-A8B2-A984-E762BC2BB5D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{305488E0-3B7B-942F-F9E5-91CDA664B582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{305488E0-3B7B-942F-F9E5-91CDA664B582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{305488E0-3B7B-942F-F9E5-91CDA664B582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{305488E0-3B7B-942F-F9E5-91CDA664B582}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E7433DA-B851-4B09-A8BF-5E8265B474AC} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{892DFD87-4C6A-412C-8243-7E9709DF5209} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{FB9A9AA6-6119-43F3-9F1B-A4539F2DD1A3} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{015D541F-7A6E-4FF7-A267-7FA869C00DE0} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{ECE90391-AE4A-42D9-8332-508DC90BABE6} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{4942B6F1-961C-4D26-A566-06D348BA98C1} = {761E88AC-1747-465B-BFFA-B7EFFD3F47B6}
+		{21F988AE-E497-F744-F6F5-94385605B8BC} = {2C7D6C1B-A6CA-44B6-B604-FDD86A107640}
+		{9C3385D2-1E72-4723-83A9-35A106A6ACBA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{3B0A605B-7ADC-D89B-A2F0-022E8FC4C83A} = {319B6515-FB43-4848-940D-5F2FB20FEF4F}
+		{C350017C-39C8-C39D-1B45-D70A280A3571} = {319B6515-FB43-4848-940D-5F2FB20FEF4F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {075CDC9E-861B-4CC2-87C4-C6DD6DDB77B6}
+	EndGlobalSection
+EndGlobal
