@@ -134,9 +134,42 @@ jobs:
             Write-Host "Packaging ${project} version ${version}"
             dotnet pack "$path/$project.csproj" `
                 --configuration Release `
-                --no-build `
+                --no-restore `
                 -p:PackageVersion=$version `
+                -p:Version=$version `
+                -p:AssemblyVersion=$version `
+                -p:FileVersion=$version `
                 -o ./packages
+          }
+
+      - name: Publish WPF Demo
+        shell: pwsh
+        run: |
+          $demoProject = "demos/MyNet.Wpf.Demo/MyNet.Wpf.Demo.csproj"
+          
+          if (Test-Path $demoProject) {
+            Write-Host "📦 Publishing WPF Demo application..."
+            
+            # Create publish directory
+            New-Item -ItemType Directory -Force -Path "./publish/demo"
+            
+            # Publish the demo as self-contained for easy distribution
+            dotnet publish $demoProject `
+              --configuration Release `
+              --output "./publish/demo" `
+              --self-contained true `
+              --runtime win-x64 `
+              -p:PublishSingleFile=true `
+              -p:IncludeNativeLibrariesForSelfExtract=true `
+              -p:PublishReadyToRun=false
+              
+            Write-Host "✅ Demo published successfully to ./publish/demo"
+            
+            # List published files
+            Write-Host "📋 Published files:"
+            Get-ChildItem "./publish/demo" | ForEach-Object { Write-Host "  - $($_.Name)" }
+          } else {
+            Write-Host "⚠️ Demo project not found at $demoProject. Skipping demo publish."
           }
 
       - name: Generate coverage report
@@ -176,6 +209,14 @@ jobs:
         with:
           name: packages
           path: packages/*.nupkg
+
+      - name: Upload WPF Demo
+        if: hashFiles('publish/demo/**/*') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: wpf-demo
+          path: publish/demo/
+          retention-days: 30
 
       - name: Deploy documentation to GitHub Pages
         if: github.ref == 'refs/heads/main'
