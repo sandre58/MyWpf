@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net10.0-windows</TargetFramework>
+        <TargetFrameworks>net10.0-windows</TargetFrameworks>
         <OutputType>WinExe</OutputType>
         <Product>My .NET WPF</Product>
         <Description>Platform for testing and experimenting with WPF controls and styles. </Description>
