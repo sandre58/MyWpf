@@ -28,8 +28,7 @@
         <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
 
         <!-- Output builds -->
-        <AppendTargetFrameworkToOutputPath Condition="'$(IsDemoProject)' != 'True'">true</AppendTargetFrameworkToOutputPath>
-        <AppendTargetFrameworkToOutputPath Condition="'$(IsDemoProject)' == 'True'">false</AppendTargetFrameworkToOutputPath>
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
 
     <!-- Ignore analysis -->
