@@ -13,4 +13,4 @@ jobs:
     with:
       app-projects: "demos"
       nuget-projects: "src"
-      app-target-framework: "net9-windows"
+      app-target-framework: "net9.0-windows"
