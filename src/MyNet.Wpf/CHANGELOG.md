@@ -6,12 +6,12 @@ This file is generated automatically based on commit history and tags.
 
 
 
-## [6.0.48] - 2025-09-08
+## [6.0.49] - 2025-10-03
 
 
 ### ♻️ Code Refactoring
 
-- add versioning and new CI ([#1](https://github.com/sandre58/MyNet/issues/1)) *(commit by Stéphane ANDRE in [81852b2](https://github.com/sandre58/MyNet/commit/81852b2d63ece675b59e57a9497bec3fd444f95b))*
+- initialize repository *(commit by **Stéphane ANDRE (E104915)** in [da80a52](https://github.com/sandre58/MyWpf/commit/da80a52c3a21661f5efd8bef384dcc196078087f))*
 
 
 
@@ -24,4 +24,3 @@ This file is generated automatically based on commit history and tags.
 
 
 ---
-
