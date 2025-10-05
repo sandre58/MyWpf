@@ -4,7 +4,7 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <img src="../../../assets/MyNetWpf.png" width="128" alt="MyNetWpf">
+  <img src="../../assets/MyWpf.png" width="128" alt="MyNetWpf">
 </div>
 
 <h1 align="center">My .NET WPF</h1>

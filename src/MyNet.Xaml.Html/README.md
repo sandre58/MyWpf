@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sandre58/MyNetXaml">
-    <img src="images/logo.png" width="256" height="256">
+    <img src="../../assets/MyNetXaml.png" width="256" height="256">
   </a>
 
 <h1 align="center">My .NET Xaml</h1>

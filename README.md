@@ -42,13 +42,11 @@ A comprehensive collection of WPF libraries and extensions for modern .NET deskt
 | Package | Description | NuGet |
 |---|---|---|
 | [**MyNet.Wpf**](src/MyNet.Wpf) | 🪟 Comprehensive WPF library with controls, theming, dialogs, notifications, and UI helpers for Windows desktop applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf)](https://www.nuget.org/packages/MyNet.Wpf) |
-| [**MyNet.Wpf.DragAndDrop**](src/MyNet.Wpf.DragAndDrop) | �️ Advanced drag-and-drop functionality with custom handlers, adorners, and file/calendar integration for WPF applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.DragAndDrop)](https://www.nuget.org/packages/MyNet.Wpf.DragAndDrop) |
-| [**MyNet.Wpf.LiveCharts**](src/MyNet.Wpf.LiveCharts) | � WPF LiveCharts integration with custom formatters, series, and theming for beautiful data visualization. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.LiveCharts)](https://www.nuget.org/packages/MyNet.Wpf.LiveCharts) |
+| [**MyNet.Wpf.DragAndDrop**](src/MyNet.Wpf.DragAndDrop) | 🖱️ Advanced drag-and-drop functionality with custom handlers, adorners, and file/calendar integration for WPF applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.DragAndDrop)](https://www.nuget.org/packages/MyNet.Wpf.DragAndDrop) |
+| [**MyNet.Wpf.LiveCharts**](src/MyNet.Wpf.LiveCharts) | 📈 WPF LiveCharts integration with custom formatters, series, and theming for beautiful data visualization. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.LiveCharts)](https://www.nuget.org/packages/MyNet.Wpf.LiveCharts) |
 | [**MyNet.Wpf.Presentation**](src/MyNet.Wpf.Presentation) | 📽️ MVVM presentation layer with controls, converters, models, and services for structured WPF applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Presentation)](https://www.nuget.org/packages/MyNet.Wpf.Presentation) |
 | [**MyNet.Wpf.Web**](src/MyNet.Wpf.Web) | 🌐 WPF web integration with browser controls and web view components for hybrid applications. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Wpf.Web)](https://www.nuget.org/packages/MyNet.Wpf.Web) |
 | [**MyNet.Xaml.Html**](src/MyNet.Xaml.Html) | 🔄 XAML to HTML conversion utilities and helpers for cross-platform content rendering. | [![NuGet](https://img.shields.io/nuget/v/MyNet.Xaml.Html)](https://www.nuget.org/packages/MyNet.Xaml.Html) |
-| [**LiveCharts**](src/LiveCharts/LiveCharts) | � Core LiveCharts library for creating interactive and animated charts. | [![NuGet](https://img.shields.io/nuget/v/LiveCharts)](https://www.nuget.org/packages/LiveCharts) |
-| [**LiveCharts.Wpf**](src/LiveCharts/LiveCharts.Wpf) | 🎯 WPF-specific implementation of LiveCharts with native WPF controls and styling. | [![NuGet](https://img.shields.io/nuget/v/LiveCharts.Wpf)](https://www.nuget.org/packages/LiveCharts.Wpf) |
 
 ## 🚀 Getting Started
 
@@ -150,7 +148,6 @@ For detailed usage examples and API references, explore the documentation in eac
   
 - **`assets/`** — Project logos, icons, and visual assets
 - **`build/`** — MSBuild configuration and shared properties
-- **`scripts/`** — Build automation and utility scripts
 - **`docs/`** — Documentation and contribution guidelines
 - **`.github/`** — CI/CD workflows and GitHub automation
 
