@@ -24,4 +24,4 @@ jobs:
   build:
     uses: sandre58/MyWorkflows/.github/workflows/release.yml@main
     with:
-      dry_run: ${{ inputs.dry_run }}
+      dry-run: ${{ inputs.dry_run }}
