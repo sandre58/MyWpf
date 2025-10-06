@@ -20,3 +20,7 @@ jobs:
     with:
       dry-run: ${{ inputs.dry_run }}
       force-tag: ${{ inputs.force_all }}
+      max-depth: "1"
+      src-path: |
+        src
+        demos
