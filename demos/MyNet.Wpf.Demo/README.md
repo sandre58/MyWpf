@@ -3,7 +3,7 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <img src="../../assets/MyWpf.png" width="128" alt="MyWpf">
+  <img src="Images/Demo.ico" width="128" alt="MyWpf">
 </div>
 
 <h1 align="center">MyNet.Wpf Demo Application</h1>
