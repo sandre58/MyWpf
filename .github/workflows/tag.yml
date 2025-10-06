@@ -22,5 +22,5 @@ jobs:
       force-tag: ${{ inputs.force_all }}
       max-depth: "1"
       src-path: |
-        src
-        demos
+        "src"
+        "demos"
