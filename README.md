@@ -3,8 +3,8 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <img src="assets/MyWpf.png" width="128" alt="MyNetWpf">
-  <img src="assets/MyXaml.png" width="128" alt="MyNetXaml">
+  <img src="assets/MyWpf.png" width="128" alt="MyWpf">
+  <img src="assets/MyXaml.png" width="128" alt="MyXaml">
 </div>
 
 <h1 align="center">My .NET WPF</h1>

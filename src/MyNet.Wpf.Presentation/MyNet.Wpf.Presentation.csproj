@@ -2,7 +2,7 @@
 
   <PropertyGroup>
       <Product>My .NET WPF - Presentation</Product>
-      <PackageIcon>MyNetWpf.png</PackageIcon>
+      <PackageIcon>MyWpf.png</PackageIcon>
       <Description>A comprehensive collection of controls, graphical elements, and views designed for accelerating WPF application development.</Description>
       <PackageTags>MyNet;UI;Xaml;Presentation;Wpf</PackageTags>
   </PropertyGroup>

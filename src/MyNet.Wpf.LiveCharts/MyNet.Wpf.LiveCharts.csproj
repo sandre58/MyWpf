@@ -2,7 +2,7 @@
 
   <PropertyGroup>
       <Product>My .NET WPF - LiveCharts</Product>
-      <PackageIcon>MyNetWpf.png</PackageIcon>
+      <PackageIcon>MyWpf.png</PackageIcon>
     <Description>Extends the functionality of the LiveCharts library, enhancing its capabilities for data visualization in .NET applications.</Description>
     <PackageTags>MyNet;UI;Charts;Wpf;LiveCharts</PackageTags>
   </PropertyGroup>

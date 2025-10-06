@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <Product>My .NET WPF - Web</Product>
-        <PackageIcon>MyNetWpf.png</PackageIcon>
+        <PackageIcon>MyWpf.png</PackageIcon>
         <Description>Provides developers with powerful tools to seamlessly integrate web components into WPF applications.</Description>
         <PackageTags>MyNet;UI;Web;Xaml;Wpf</PackageTags>
     </PropertyGroup>

@@ -3,116 +3,94 @@
 <!-- PROJECT INFO -->
 <br />
 <div align="center">
-  <a href="https://github.com/sandre58/MyNetXaml">
-    <img src="../../assets/MyNetXaml.png" width="256" height="256">
-  </a>
-
-<h1 align="center">My .NET Xaml</h1>
-
-[![Downloads][downloads-shield]][downloads-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-  <p align="center">
-Various tools for easing the development of XAML related applications.
-
-As i only use WPF myself everything is focused on WPF, but things should work for other XAML dialects (at least in theory).
-
-You can either use the commandline tool `MyNet.Xaml.Merger` or the MSBuild version `MyNet.Xaml.Merger.MSBuild` to make use of the provided functionalities.
-  </p>
-
-[![Language][language-shield]][language-url]
-[![Framework][framework-shield]][framework-url]
-[![Version][version-shield]][version-url]
-[![Build][build-shield]][build-url]
-
+  <img src="../../assets/MyXaml.png" width="128" alt="MyXaml">
 </div>
 
-## XAMLCombine
+<h1 align="center">My .NET XAML to HTML</h1>
 
-Combines multiple XAML files to one large file.  
-This is useful when you want to provide one `Generic.xaml` instead of multiple small XAML files.  
-Using one large XAML file not only makes it easier to consume, but can also drastically improving loading performance.
+[![MIT License](https://img.shields.io/github/license/sandre58/MyWpf?style=for-the-badge)](https://github.com/sandre58/MyWpf/blob/main/LICENSE)
+[![NuGet](https://img.shields.io/nuget/v/MyNet.Xaml.Html?style=for-the-badge)](https://www.nuget.org/packages/MyNet.Xaml.Html)
 
-### Using the MSBuild-Task
+XAML to HTML conversion utilities and helpers for cross-platform content rendering in .NET applications.
 
-```
-<XAMLCombineItems Include="Themes/Controls/*.xaml">
-  <TargetFile>Themes/Generic.xaml</TargetFile>
-</XAMLCombineItems>
-```
+[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-purple)](#)
+[![.NET 9.0](https://img.shields.io/badge/.NET-9.0-purple)](#)
+[![.NET 10.0](https://img.shields.io/badge/.NET-10.0-purple)](#)
+[![C#](https://img.shields.io/badge/language-C%23-blue)](#)
 
-The MSBuild-Task includes the items used for combining as pages during debug builds and removes them from pages during release builds.
-This is done to reduce the binary size for release builds and still enable intellisense in debug builds for those XAML files.
+## Installation
 
-**Remarks when using Rider**  
-To get intellisense in debug builds inside the XAML files and to prevent duplicate display of those files you have to define:
+Install via NuGet:
 
-```
-<PropertyGroup Condition="'$(IsBuildingInsideRider)' == 'True'">
-  <DefaultItemExcludes>$(DefaultItemExcludes);Themes\Controls\*.xaml</DefaultItemExcludes>
-</PropertyGroup>
-
-<ItemGroup Condition="'$(IsBuildingInsideRider)' == 'True'">
-  <Page Include="Themes\Controls\*.xaml" />
-</ItemGroup>
+```bash
+dotnet add package MyNet.Xaml.Html
 ```
 
-### Using the executable
+## Features
 
-`XAMLTools` accepts the following commandline parameters for the `combine` verb:
+- 🔄 **XAML to HTML Conversion** - Convert XAML content to HTML for web rendering
+- 🎨 **Style Preservation** - Maintain styling and formatting during conversion
+- 🌐 **Cross-Platform Rendering** - Enable XAML content display in web browsers
+- 📝 **Rich Text Support** - Handle complex XAML text formatting
+- 🔧 **Extensible** - Easy to customize and extend conversion logic
 
-- `-s "Path_To_Your_SourceFile"` => A file containing a new line separated list of files to combine (lines starting with # are skipped)
-- `-t "Path_To_Your_Target_File.xaml"`
+## Usage
 
-## XAMLColorSchemeGenerator
+### Basic XAML to HTML Conversion
 
-Generates color scheme XAML files while replacing certain parts of a template file.
+```csharp
+using MyNet.Xaml.Html;
 
-For an example on how this tool works see the [generator input](src/MyNet.Xaml.Merger/XAMLColorSchemeGenerator/GeneratorParameters.json) and [template](src/MyNet.Xaml.Merger/XAMLColorSchemeGenerator/ColorScheme.Template.xaml) files.
-
-### Using the MSBuild-Task
-
-```
-<XAMLColorSchemeGeneratorItems Include="Themes\ColorScheme.Template.xaml">
-  <ParametersFile>Themes\GeneratorParameters.json</ParametersFile>
-  <OutputPath>Themes\ColorSchemes</OutputPath>
-</XAMLColorSchemeGeneratorItems>
+// Convert XAML string to HTML
+string xamlContent = "<TextBlock>Hello World</TextBlock>";
+string htmlContent = XamlToHtmlConverter.Convert(xamlContent);
 ```
 
-### Using the executable
+### Converting FlowDocument
 
-`XAMLTools` accepts the following commandline parameters for the `colorscheme` verb:
+```csharp
+// Convert a WPF FlowDocument to HTML
+FlowDocument document = new FlowDocument();
+document.Blocks.Add(new Paragraph(new Run("Sample text")));
 
-- `-p "Path_To_Your_GeneratorParameters.json"`
-- `-t "Path_To_Your_ColorScheme.Template.xaml"`
-- `-o "Path_To_Your_Output_Folder"`
+string html = XamlToHtmlConverter.ConvertFlowDocument(document);
+```
+
+### Advanced Conversion with Options
+
+```csharp
+var options = new ConversionOptions
+{
+    PreserveWhitespace = true,
+    IncludeStyles = true,
+    CustomCssClasses = new Dictionary<string, string>()
+};
+
+string html = XamlToHtmlConverter.Convert(xamlContent, options);
+```
+
+## Common Use Cases
+
+- **Documentation Export** - Convert rich text from WPF applications to HTML for web display
+- **Content Management** - Export XAML-based content to HTML for CMS integration
+- **Reporting** - Generate HTML reports from WPF FlowDocument content
+- **Email Generation** - Convert formatted XAML content to HTML emails
+- **Cross-Platform Content** - Display WPF content in web applications
+
+## Related Packages
+
+This package is part of the [MyWpf](https://github.com/sandre58/MyWpf) collection:
+
+- **[MyNet.Wpf](../MyNet.Wpf)** - Core WPF library with controls and theming
+- **[MyNet.Wpf.Presentation](../MyNet.Wpf.Presentation)** - MVVM presentation helpers
+- **[MyNet.Wpf.LiveCharts](../MyNet.Wpf.LiveCharts)** - Data visualization components
+
+## Contributing
+
+Contributions are welcome! Please see the [Contributing Guidelines](../../CONTRIBUTING.md) for more information.
 
 ## License
 
-Copyright � St�phane ANDRE.
+Copyright © 2016-2025 Stéphane ANDRE.
 
-My .NET WPF is provided as-is under the MIT license. For more information see [LICENSE](./LICENSE).
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[language-shield]: https://img.shields.io/github/languages/top/sandre58/MyNetXaml
-[language-url]: https://github.com/sandre58/MyNetXaml
-[forks-shield]: https://img.shields.io/github/forks/sandre58/MyNetXaml?style=for-the-badge
-[forks-url]: https://github.com/sandre58/MyNetXaml/network/members
-[stars-shield]: https://img.shields.io/github/stars/sandre58/MyNetXaml?style=for-the-badge
-[stars-url]: https://github.com/sandre58/MyNetXaml/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sandre58/MyNetXaml?style=for-the-badge
-[issues-url]: https://github.com/sandre58/MyNetXaml/issues
-[license-shield]: https://img.shields.io/github/license/sandre58/MyNetXaml?style=for-the-badge
-[license-url]: https://github.com/sandre58/MyNetXaml/blob/main/LICENSE
-[build-shield]: https://img.shields.io/github/actions/workflow/status/sandre58/MyNetXaml/ci.yml?logo=github&label=CI
-[build-url]: https://github.com/sandre58/MyNetXaml/actions
-[downloads-shield]: https://img.shields.io/github/downloads/sandre58/MyNetXaml/total?style=for-the-badge
-[downloads-url]: https://github.com/sandre58/MyNetXaml/releases
-[framework-shield]: https://img.shields.io/badge/.NET-8.0-purple
-[framework-url]: https://github.com/sandre58/MyNetXaml/tree/main/src/MyNet.Xaml.Merger.MSBuild
-[version-shield]: https://img.shields.io/nuget/v/MyNet.Xaml.Merger.MSBuild
-[version-url]: https://www.nuget.org/packages/MyNet.Xaml.Merger.MSBuild
+MyNet.Xaml.Html is provided as-is under the MIT license. For more information see [LICENSE](../../LICENSE).
