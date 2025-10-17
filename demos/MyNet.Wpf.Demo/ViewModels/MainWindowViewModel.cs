@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Windows.Input;
 using MyNet.Observable;
 using MyNet.UI.Commands;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Extensions;
 using MyNet.UI.Locators;
 using MyNet.UI.Navigation;
@@ -39,8 +40,11 @@ namespace MyNet.Wpf.Demo.ViewModels
 
         public ICommand IsLightCommand { get; }
 
-        public MainWindowViewModel(INavigationService navigationService, IViewModelLocator viewModelLocator)
+        public IContentDialogService ContentDialogService { get; }
+
+        public MainWindowViewModel(INavigationService navigationService, IViewModelLocator viewModelLocator, IContentDialogService contentDialogService)
         {
+            ContentDialogService = contentDialogService;
             HomeViewModel = viewModelLocator.Get<HomeViewModel>();
             NavigationService = navigationService;
             IsDarkCommand = CommandsManager.Create(() => IsDark = true);

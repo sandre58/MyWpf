@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DialogService.cs" company="Stéphane ANDRE">
+// <copyright file="ContentDialogService.cs" company="Stéphane ANDRE">
 // Copyright (c) Stéphane ANDRE. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -8,18 +8,18 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Dialogs.MessageBox;
 using MyNet.Wpf.Controls;
 
 namespace MyNet.Wpf.Dialogs;
 
-public abstract class DialogService : ICustomDialogService, IMessageBoxService
+public abstract class ContentDialogService : IContentDialogService, IMessageBoxService
 {
     public ObservableCollection<IDialogViewModel> OpenedDialogs { get; private set; } = [];
 
-    public event EventHandler<DialogEventArgs>? DialogOpened;
-    public event EventHandler<DialogEventArgs>? DialogClosed;
+    public event EventHandler<ContentDialogEventArgs>? DialogOpened;
+    public event EventHandler<ContentDialogEventArgs>? DialogClosed;
     public event EventHandler<MessageBoxEventArgs>? MessageBoxOpened;
     public event EventHandler<MessageBoxEventArgs>? MessageBoxClosed;
 
@@ -27,17 +27,17 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
     public abstract Task ShowAsync(object view, IDialogViewModel viewModel);
 
     /// <inheritdoc />
-    public virtual async Task<bool?> ShowDialogAsync(object view, IDialogViewModel viewModel)
+    public virtual async Task<bool?> ShowModalAsync(object view, IDialogViewModel viewModel)
     {
         OpenedDialogs.Add(viewModel);
 
-        DialogOpened?.Invoke(this, new DialogEventArgs(viewModel));
+        DialogOpened?.Invoke(this, new ContentDialogEventArgs(viewModel));
 
         var result = await ShowDialogCoreAsync(view, viewModel).ConfigureAwait(false);
 
         _ = OpenedDialogs.Remove(viewModel);
 
-        DialogClosed?.Invoke(this, new DialogEventArgs(viewModel));
+        DialogClosed?.Invoke(this, new ContentDialogEventArgs(viewModel));
 
         return result;
     }
@@ -48,7 +48,7 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
 
         MessageBoxOpened?.Invoke(this, new MessageBoxEventArgs(viewModel));
 
-        _ = await ShowDialogAsync(view, view).ConfigureAwait(false);
+        _ = await ShowModalAsync(view, view).ConfigureAwait(false);
 
         MessageBoxClosed?.Invoke(this, new MessageBoxEventArgs(viewModel));
 
@@ -57,5 +57,10 @@ public abstract class DialogService : ICustomDialogService, IMessageBoxService
 
     protected abstract Task<bool?> ShowDialogCoreAsync(object view, IDialogViewModel viewModel);
 
-    public void CloseDialog(IDialogViewModel dialog) => dialog.Close();
+    public Task<bool?> CloseAsync(IDialogViewModel dialog)
+    {
+        dialog.Close();
+
+        return Task.FromResult(dialog.DialogResult);
+    }
 }

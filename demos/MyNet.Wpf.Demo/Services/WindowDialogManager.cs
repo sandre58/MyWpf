@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyNet.UI.Dialogs;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Dialogs.FileDialogs;
 using MyNet.UI.Dialogs.MessageBox;
 using MyNet.UI.Locators;
@@ -127,7 +127,7 @@ namespace MyNet.Wpf.Demo.Services
 
             var view = GetViewFromViewModel(viewModel.GetType());
 
-            return view is null ? false : await DialogService.ShowDialogAsync(view, viewModel).ConfigureAwait(false);
+            return view is null ? false : await DialogService.ShowModalAsync(view, viewModel).ConfigureAwait(false);
         }
 
         #endregion ShowDialog

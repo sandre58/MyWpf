@@ -7,7 +7,7 @@
 using System.ComponentModel;
 using System.Windows;
 using MahApps.Metro.Controls;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Loading;
 
 namespace MyNet.Wpf.Controls;
@@ -21,11 +21,11 @@ public class ExtendedWindow : MetroWindow
 
     #region DialogService
 
-    public static readonly DependencyProperty DialogServiceProperty = DependencyProperty.Register(nameof(DialogService), typeof(ICustomDialogService), typeof(ExtendedWindow), new UIPropertyMetadata(null));
+    public static readonly DependencyProperty DialogServiceProperty = DependencyProperty.Register(nameof(DialogService), typeof(IContentDialogService), typeof(ExtendedWindow), new UIPropertyMetadata(null));
 
-    public ICustomDialogService DialogService
+    public IContentDialogService DialogService
     {
-        get => (ICustomDialogService)GetValue(DialogServiceProperty);
+        get => (IContentDialogService)GetValue(DialogServiceProperty);
         set => SetValue(DialogServiceProperty, value);
     }
 

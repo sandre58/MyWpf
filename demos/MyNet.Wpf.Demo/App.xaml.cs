@@ -10,7 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MyNet.UI.Commands;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Dialogs.FileDialogs;
 using MyNet.UI.Dialogs.MessageBox;
 using MyNet.UI.Loading;
@@ -61,10 +62,11 @@ namespace MyNet.Wpf.Demo
             .AddSingleton<IThemeService, ThemeService>()
             .AddSingleton<INavigationService, NavigationService>()
             .AddSingleton<IToasterService, ToasterService>()
-            .AddSingleton<ICustomDialogService, OverlayDialogService>()
+            .AddSingleton<IContentDialogService, OverlayDialogService>()
             .AddSingleton<IMessageBoxService, OverlayDialogService>()
             .AddSingleton<IFileDialogService, FileDialogService>()
             .AddScoped<IBusyServiceFactory, BusyServiceFactory>()
+            .AddSingleton<IDialogService, DialogService>()
             .AddScoped<IMessageBoxFactory, MessageBoxFactory>()
             .AddScoped<IScheduler, WpfScheduler>(_ => WpfScheduler.Current)
             .AddScoped<ICommandFactory, WpfCommandFactory>()

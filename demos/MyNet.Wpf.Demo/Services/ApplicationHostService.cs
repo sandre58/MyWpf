@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using MyNet.Humanizer;
 using MyNet.UI.Commands;
 using MyNet.UI.Dialogs;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.UI.Dialogs.FileDialogs;
 using MyNet.UI.Dialogs.MessageBox;
 using MyNet.UI.Loading;
@@ -37,9 +37,7 @@ public class ApplicationHostService : IHostedService
         IThemeService themeService,
         INavigationService navigationService,
         IToasterService toasterService,
-        ICustomDialogService dialogService,
-        IMessageBoxService messageBoxService,
-        IFileDialogService fileDialogService,
+        IDialogService dialogService,
         IViewModelResolver viewModelResolver,
         IViewModelLocator viewModelLocator,
         IViewResolver viewResolver,
@@ -56,7 +54,7 @@ public class ApplicationHostService : IHostedService
         ThemeManager.Initialize(themeService);
         NavigationManager.Initialize(navigationService, viewModelLocator);
         ToasterManager.Initialize(toasterService);
-        DialogManager.Initialize(dialogService, messageBoxService, fileDialogService, messageBoxFactory, viewResolver, viewLocator, viewModelLocator);
+        DialogManager.Initialize(dialogService);
         WindowDialogManager.Initialize(messageBoxFactory, viewResolver, viewLocator, viewModelLocator);
         BusyManager.Initialize(busyServiceFactory);
         CommandsManager.Initialize(commandFactory);

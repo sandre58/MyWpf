@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.Wpf.Controls;
 
 namespace MyNet.Wpf.Dialogs;
 
-public class OverlayDialogService : DialogService
+public class OverlayDialogService : ContentDialogService
 {
     private Grid? _container;
     private UIElement? _associatedControl;

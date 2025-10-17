@@ -150,6 +150,6 @@
             </my:NavigationView>
         </Grid>
 
-        <Grid my:DialogAssist.AssociatedControl="{Binding ElementName=Root}" my:DialogAssist.AttachService="{x:Static services:DialogManager.CustomDialogService}" />
+        <Grid my:DialogAssist.AssociatedControl="{Binding ElementName=Root}" my:DialogAssist.AttachService="{Binding ContentDialogService}" />
     </Grid>
 </my:ExtendedWindow>

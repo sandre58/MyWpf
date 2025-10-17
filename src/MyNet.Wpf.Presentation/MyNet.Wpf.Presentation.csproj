@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fody" Version="6.9.3">
+    <PackageReference Include="Fody">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MyNet.Utilities.Geography.Extensions" Version="8.0.43" />
-    <PackageReference Include="MyNet.Utilities.Localization.Extensions" Version="8.0.43" />
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0">
+    <PackageReference Include="MyNet.Utilities.Geography.Extensions" />
+    <PackageReference Include="MyNet.Utilities.Localization.Extensions" />
+    <PackageReference Include="PropertyChanged.Fody">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="gong-wpf-dragdrop" Version="4.0.0" />
-    <PackageReference Include="MyNet.Xaml.Merger.MSBuild" Version="4.0.1">
+    <PackageReference Include="gong-wpf-dragdrop" />
+    <PackageReference Include="MyNet.Xaml.Merger.MSBuild">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -1,8 +1,9 @@
-name: CI - Build and Test
+name: CI - Build, Test, Pack and Publish
 
 on:
   push:
-    branches: [ "main", "feature/*", "hotfix/*" ]
+    branches: [ "main", "feature/*" ]
+    tags: ["v*"]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -12,6 +13,6 @@ jobs:
     uses: sandre58/MyWorkflows/.github/workflows/ci.yml@main
     with:
       app-projects: "demos"
-      nuget-projects: "src"
-      app-target-framework: "net9.0-windows"
-      max-depth: 2
+      app-target-framework: "net10.0-windows"
+    secrets:
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

@@ -9,12 +9,12 @@ using System.ComponentModel;
 using System.Reactive.Concurrency;
 using System.Threading.Tasks;
 using System.Windows;
-using MyNet.UI.Dialogs.CustomDialogs;
+using MyNet.UI.Dialogs.ContentDialogs;
 using MyNet.Wpf.Controls;
 
 namespace MyNet.Wpf.Dialogs;
 
-public class WindowDialogService : DialogService
+public class WindowDialogService : ContentDialogService
 {
     /// <inheritdoc />
     public override Task ShowAsync(object view, IDialogViewModel viewModel)
