@@ -3,7 +3,6 @@
 
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -51,17 +50,47 @@ public static class XamlToImageFileService
 
     private static void SaveIcon(Stream input, Stream output)
     {
-        using var bitmap = new System.Drawing.Bitmap(input);
-        var handle = bitmap.GetHicon();
-        using (var icon = System.Drawing.Icon.FromHandle(handle))
-        {
-            icon.Save(output);
-        }
-        _ = DestroyIcon(handle);
-    }
+        // Reset stream position to the beginning
+        input.Position = 0;
 
-    [DllImport("user32.dll", CharSet = CharSet.Auto)]
-    private static extern bool DestroyIcon(IntPtr handle);
+        // Decode the bitmap from the input stream
+        var decoder = BitmapDecoder.Create(input, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+        var frame = decoder.Frames[0];
+
+        // Create a PNG encoder to write the icon
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(frame));
+
+        // Write ICO header
+        using var writer = new BinaryWriter(output);
+        
+        // ICO header (6 bytes)
+        writer.Write((short)0); // Reserved (must be 0)
+        writer.Write((short)1); // Image type (1 = ICO)
+        writer.Write((short)1); // Number of images
+
+        // Image directory entry (16 bytes)
+        var width = frame.PixelWidth > 255 ? 0 : (byte)frame.PixelWidth;
+        var height = frame.PixelHeight > 255 ? 0 : (byte)frame.PixelHeight;
+        
+        writer.Write(width);    // Width
+        writer.Write(height);   // Height
+        writer.Write((byte)0);  // Color palette
+        writer.Write((byte)0);  // Reserved
+        writer.Write((short)1); // Color planes
+        writer.Write((short)32); // Bits per pixel
+        
+        // Get PNG data
+        using var pngStream = new MemoryStream();
+        encoder.Save(pngStream);
+        var pngData = pngStream.ToArray();
+        
+        writer.Write((int)pngData.Length); // Size of image data
+        writer.Write((int)22); // Offset of image data (6 + 16 = 22)
+        
+        // Write PNG data
+        writer.Write(pngData);
+    }
 
     private static MemoryStream ToStream(BitmapSource bitmap)
     {

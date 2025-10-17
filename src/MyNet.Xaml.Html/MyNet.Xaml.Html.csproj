@@ -5,8 +5,4 @@
       <Description>This library provides seamless conversion capabilities between HTML and XAML markup languages, enabling developers to effortlessly translate web content into native XAML format for integration within .NET applications, and vice versa.</Description>
       <PackageTags>MyNet;XAML;HTML;Converter</PackageTags>
   </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="System.Drawing.Common" />
-    </ItemGroup>
 </Project>
